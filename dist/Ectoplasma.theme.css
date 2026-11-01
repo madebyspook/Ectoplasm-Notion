@@ -34,11 +34,11 @@
   --spook-border-test: rgba(255, 168, 255, 0.74);
   --spook-border-hover-test: rgba(255, 168, 255, 0.85);
   --spook-border-active-test: rgba(255, 213, 255, 1);
-  /* Reserved general surface glows; desktop effects use their own tokens below. */
+  /* General surface glows */
   --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
   --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
   --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
-  /* Desktop Tab Bar effects — existing component rules are confirmed source consumers. */
+  /* Desktop Tab Bar effects */
   --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
   --spook-tab-box-shadow:
       inset 0 -1px 0 var(--spook-accent),
@@ -58,7 +58,7 @@
   --spook-text-primary-test: #aa00ff;
   --spook-text-secondary-test: #5555ff;
   --spook-text-muted-test: #0000ff;
-  /* Reserved geometry — no current rules consume these radii. */
+  /* Geometry */
   --spook-radius-small: 6px;
   --spook-radius-medium: 10px;
   --spook-radius-large: 14px;
@@ -72,20 +72,20 @@
   --c-bacPri: var(--spook-bg-primary-test);
   --c-bacSec: var(--spook-bg-secondary-test);
   --c-whiButBac: var(--spook-bg-tertiary-test);
-  /* Neutral text — some native text channels also paint SVGs or masked icons. */
+  /* Neutral text */
   --c-texPri: var(--spook-text-primary-test);
   --c-texSec: var(--spook-text-secondary-test);
   --c-texTer: var(--spook-text-muted-test);
   --c-texAccPri: var(--spook-text-primary-test);
   --c-graTexAccPri: var(--spook-text-muted-test);
-  /* Neutral icons — keep native slots distinct even when they share theme colors. */
+  /* Neutral icons */
   --c-icoPri: var(--spook-text-primary-test);
   --c-icoSec: var(--spook-text-secondary-test);
   --c-icoTer: var(--spook-text-muted-test);
-  /* Translucent neutral edges — shared theme tint/alpha; not border-only channels. */
+  /* Translucent neutral edges */
   --ca-borPriTra: var(--spook-border-test);
   --ca-borSecTra: var(--spook-border-test);
-  /* Additional edge channels — experimental token reuse, not interaction-state selectors. */
+  /* Additional edges */
   --c-borSec: var(--spook-border-test);
   --ca-borStrTra: var(--spook-border-hover-test);
   --c-borPri: var(--spook-border-active-test);
@@ -94,22 +94,12 @@
 /* ========================================
    SIDEBAR
    ======================================== */
-/* Sidebar — navigation container surface.
-   Keep the direct override for native inline backgrounds; text/icons may use the page bridge.
-   This existing component selector is not dark-mode-gated; its scope is unchanged. */
 /* ========================================
    MAIN EDITOR
    ======================================== */
-/* Editor — main page canvas surface, identified by main.notion-frame.
-   Retain the direct native-background override; text/semantic block colors are not reset here. */
 /* ========================================
    TAB BAR
    ======================================== */
-/* Scope strip rules to the desktop root without changing specificity or modes.
-   Keep descendant scope so an extra strip wrapper does not break matching. */
-/* Desktop Tab Bar — shell trays, inactive tabs and New Tab container surfaces.
-   Shell hooks use dark/standard-contrast classes plus first-child/sibling structure.
-   Strip hooks depend on inline RGB(32,32,32) and the English "New Tab" label. */
 .notion-dark-theme.notion-standard-contrast.root > div:first-child,
 .notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar,
 .notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div,
@@ -118,53 +108,33 @@
   background: var(--spook-bg-secondary) !important;
 }
 
-/* Desktop Tab Bar — selected tab surface, underline and inner glow.
-   Selection uses inline RGB(25,25,25), not :active or a database role="tab" state. */
 :where(.root) .hide-scrollbar [role=button][style*="background-color: rgb(25, 25, 25)"] {
   background-color: var(--spook-bg-selected) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
-/* Desktop Tab Bar — unhovered inactive title fade into the tab surface.
-   Depends on inline RGB(32,32,32), a 9px gradient element and :not(:hover).
-   Both fade groups use optional --gradient-direction (90deg fallback); its definition
-   is not owned by this theme. Native orientation behavior remains unverified. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*=linear-gradient] {
   background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-secondary) 100%) !important;
 }
 
-/* Desktop Tab Bar — hovered tab surface, underline and glow.
-   Depends on Notion serializing its hover background as hsl(from rgb(32,32,32)...).
-   Preserve this fallback; an equivalent semantic hover hook has not been established. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
   background-color: var(--spook-bg-hover) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
-/* Desktop Tab Bar — hovered title fade height, leaving the bottom 3px highlight visible.
-   Depends on the same inline HSL state and 9px gradient implementation. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*=linear-gradient] {
   height: calc(100% - 3px) !important;
 }
 
-/* Desktop Tab Bar — blend the hovered title edge and leading close-control fade.
-   Title hook: HSL hover state + 9px gradient; close hook: 16px gradient inside a 34px,
-   pointer-events:none overlay. Shared direction fallback is documented above. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*=linear-gradient],
 :where(.root) .hide-scrollbar div[style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] > div[style*="width: 16px"][style*=linear-gradient] {
   background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-hover) 100%) !important;
 }
 
-/* Desktop Tab Bar — close-control overlay backplate, using the hover surface palette.
-   Notion controls reveal/visibility; this hook depends on absolute positioning,
-   34px dimensions and pointer-events:none rather than a stable component class. */
 :where(.root) .hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
   background: var(--spook-bg-hover) !important;
 }
 
-/* Desktop Tab Bar — CSS :hover overlay for Close/New Tab and navigation/Sidebar/Inbox/New.
-   Depends on English ARIA labels, including Close Tab prefix and Sidebar suffix.
-   Native disabled behavior/opacity remains in charge; no focus or disabled styles added. */
 :where(.root) .hide-scrollbar [role=button][aria-label^="Close Tab"]:hover,
 :where(.root) .hide-scrollbar [aria-label="New Tab"]:hover,
 .notion-dark-theme.notion-standard-contrast.root [aria-label=Back]:hover,
@@ -175,17 +145,11 @@
   background-color: var(--spook-tab-button-hover) !important;
 }
 
-/* Desktop Tab Bar — white/glowing tab-title group, identified by aria-labelledby presence.
-   The wildcard intentionally still reaches wrappers and images; safe title-only coverage
-   has not been demonstrated. No generated label IDs are hard-coded. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby] * {
   color: var(--spook-text-highlight) !important;
   text-shadow: var(--spook-tab-text-glow) !important;
 }
 
-/* Desktop Tab Bar — whiten and glow navigation/control SVGs, including Sidebar actions.
-   English action labels identify controls; parent opacity still handles native dimming.
-   This normalization is separate from page-native icons and editor/media rendering. */
 :where(.root) .hide-scrollbar [aria-label="New Tab"] svg,
 :where(.root) .hide-scrollbar [aria-label^="Close Tab"] svg,
 .notion-dark-theme.notion-standard-contrast.root [aria-label=Back] svg,
@@ -196,9 +160,6 @@
   filter: brightness(0) invert(1) var(--spook-tab-icon-glow) !important;
 }
 
-/* Desktop Tab Bar — existing page-icon image contrast and glow, not editor media.
-   The ineffective img/SVG exclusion is retained for specificity until cascade review
-   supports its removal; filter values and native image opacity remain unchanged. */
 :where(.root) .hide-scrollbar [role=button][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
   filter: brightness(1.15) contrast(4) var(--spook-tab-icon-glow) !important;
 }
@@ -206,15 +167,9 @@
 /* ========================================
    PAGE HEADER
    ======================================== */
-/* Page header — surface behind breadcrumbs and page actions.
-   Depends on .notion-topbar being a direct child of header; retain its secondary surface
-   even where the native page palette uses the primary background. */
 /* ========================================
    TAB BAR NAVIGATION
    ======================================== */
-/* Desktop Tab Bar — tray behind Back/Forward controls.
-   Dark standard-contrast root only; depends on a direct-child tray and English "Back" label.
-   Keep this rule after the page header in main.scss to preserve the existing cascade. */
 .notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label=Back]) {
   background: var(--spook-bg-secondary) !important;
 }

@@ -4,66 +4,106 @@
 
 :root {
     /* Surfaces */
+    // Editor canvas background (override disabled).
     --spook-bg-primary: #1B1D1F;
+    // Desktop Tab Bar trays, inactive tabs and title fades; disabled sidebar/header backgrounds.
     --spook-bg-secondary: #161819;
+    // Usage not yet identified.
     --spook-bg-tertiary: #222526;
 
+    // Application/editor surfaces; database shadows (--c-bacPri).
     --spook-bg-primary-test: #1B1D5F;
+    // Sidebar background (--c-bacSec).
     --spook-bg-secondary-test: #162f19;
+    // Help-button background (--c-whiButBac).
     --spook-bg-tertiary-test: #4f2526;
 
     /* Desktop Tab Bar state surfaces */
+    // Desktop Tab Bar hovered tabs, title/close fades and close-button backplates.
     --spook-bg-hover: #172235;
+    // Desktop Tab Bar selected-tab background.
     --spook-bg-selected: #15243a;
+    // Usage not yet identified.
     --spook-bg-hover-test: #1722ff;
+    // Usage not yet identified.
     --spook-bg-selected-test: #1524ff;
 
     /* Accents */
+    // Desktop Tab Bar selected/hovered underline via --spook-tab-box-shadow.
     --spook-accent: #39a8ff;
+    // Usage not yet identified.
     --spook-accent-bright: #78d5ff;
+    // Usage not yet identified.
     --spook-accent-dark: #2366a0;
+    // Usage not yet identified.
     --spook-accent-test: #ffa8ff;
+    // Usage not yet identified.
     --spook-accent-bright-test: #ffd5ff;
+    // Usage not yet identified.
     --spook-accent-dark-test: #ff66a0;
 
     /* Borders */
+    // Usage not yet identified.
     --spook-border: rgba(57, 168, 255, 0.14);
+    // Usage not yet identified.
     --spook-border-hover: rgba(57, 168, 255, 0.35);
+    // Usage not yet identified.
     --spook-border-active: rgba(120, 213, 255, 0.65);
+    // Button borders; editor/callout paint; database separators, outlines and shadows; sidebar dividers.
     --spook-border-test: rgba(255, 168, 255, 0.74);
+    // Unchecked database checkbox frames (--ca-borStrTra); not limited to hover.
     --spook-border-hover-test: rgba(255, 168, 255, 0.85);
+    // Breadcrumb spans; embedded tab-block borders (--c-borPri); not limited to active state.
     --spook-border-active-test: rgba(255, 213, 255, 1);
 
-    /* Reserved general surface glows; desktop effects use their own tokens below. */
+    /* General surface glows */
+    // Usage not yet identified.
     --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
+    // Usage not yet identified.
     --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
+    // Usage not yet identified.
     --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
 
-    /* Desktop Tab Bar effects — existing component rules are confirmed source consumers. */
+    /* Desktop Tab Bar effects */
+    // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
     --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
 
+    // Desktop Tab Bar selected/hovered tab underline and inner glow.
     --spook-tab-box-shadow:
         inset 0 -1px 0 var(--spook-accent),
         inset 0 0 12px rgba(57, 168, 255, 0.25);
+    // Desktop Tab Bar title-group descendants, including wrappers and images.
     --spook-tab-text-glow:
         0 0 5px rgba(120, 213, 255, 0.65),
         0 0 10px rgba(57, 168, 255, 0.35);
+    // Desktop navigation/control SVGs; tab page-icon images.
     --spook-tab-icon-glow:
         drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
         drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 
     /* Text palette */
+    // Desktop Tab Bar title-group descendants, including wrappers and images.
     --spook-text-highlight: #ffffff;
+    // Usage not yet identified.
     --spook-text-primary: #e8f1ff;
+    // Usage not yet identified.
     --spook-text-secondary: #a9bdd6;
+    // Usage not yet identified.
     --spook-text-muted: #71869f;
+    // Usage not yet identified.
     --spook-text-highlight-test: #ffff00;
+    // Editor/sidebar/database text; selected view tabs; header/database SVGs and masks; to-do borders.
     --spook-text-primary-test: #aa00ff;
+    // Sidebar/editor/database labels and icons; unselected view tabs; filter/sort/settings triggers; masks.
     --spook-text-secondary-test: #5555ff;
+    // Sidebar/header/database labels; sidebar/database icons; Search shortcut and view/control labels.
     --spook-text-muted-test: #0000ff;
 
-    /* Reserved geometry — no current rules consume these radii. */
+    /* Geometry */
+    // Usage not yet identified.
     --spook-radius-small: 6px;
+    // Usage not yet identified.
     --spook-radius-medium: 10px;
+    // Usage not yet identified.
     --spook-radius-large: 14px;
 }

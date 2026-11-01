@@ -2,9 +2,7 @@
    PAGE HEADER
    ======================================== */
 
-/* Page header — surface behind breadcrumbs and page actions.
-   Depends on .notion-topbar being a direct child of header; retain its secondary surface
-   even where the native page palette uses the primary background. */
+// Page header breadcrumbs/actions — background override (disabled).
 header:has(> .notion-topbar) {
    //  background: var(--spook-bg-secondary) !important;
 }
