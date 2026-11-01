@@ -83,6 +83,8 @@ AGENTS.md                            Project and development instructions
 
 Keep module order, selectors, variables, and visuals intact unless a change is requested. `_mixins.scss` currently emits no CSS.
 
+The loader intentionally retains the DOM IDs `spooklucence-notion-theme` for reusing the existing theme element and `spooklucence-test` for removing the old test element. These compatibility identifiers preserve behavior with the original installation; user-facing names and loader messages use Ectoplasma. The existing `--spook-*` CSS variables are unchanged.
+
 ## Troubleshooting
 
 - **Notion unavailable / connection refused:** check `curl http://127.0.0.1:9222/json/version`. If unavailable, fully quit Notion manually and retry `start.sh`. Keep CDP bound to `127.0.0.1`.
