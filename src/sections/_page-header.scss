@@ -1,0 +1,8 @@
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+
+/* Main page header containing breadcrumbs and actions */
+header:has(> .notion-topbar) {
+    background: var(--spook-bg-secondary) !important;
+}

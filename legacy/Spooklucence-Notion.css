@@ -1,0 +1,189 @@
+/**
+ * @name Spooklucence Notion
+ * @version 0.1.0
+ * @description Dark futuristic theme with electric-blue glow
+ */
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+
+:root {
+    /* Backgrounds */
+    --spook-bg-primary: #1B1D1F;
+    --spook-bg-secondary: #161819;
+    --spook-bg-tertiary: #222526;
+
+    /* Interactive backgrounds */
+    --spook-bg-hover: #172235;
+    --spook-bg-selected: #15243a;
+
+    /* Accent colors */
+    --spook-accent: #39a8ff;
+    --spook-accent-bright: #78d5ff;
+    --spook-accent-dark: #2366a0;
+
+    /* Borders */
+    --spook-border: rgba(57, 168, 255, 0.14);
+    --spook-border-hover: rgba(57, 168, 255, 0.35);
+    --spook-border-active: rgba(120, 213, 255, 0.65);
+
+    /* Glow */
+    --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
+    --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
+    --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
+
+    /* Tab bar effects */
+    --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
+    --spook-tab-box-shadow:
+        inset 0 -1px 0 var(--spook-accent),
+        inset 0 0 12px rgba(57, 168, 255, 0.25);
+
+    --spook-tab-text-glow:
+        0 0 5px rgba(120, 213, 255, 0.65),
+        0 0 10px rgba(57, 168, 255, 0.35);
+
+    --spook-tab-icon-glow:
+        drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
+        drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
+
+    /* Text */
+    --spook-text-highlight: #ffffff;
+    --spook-text-primary: #e8f1ff;
+    --spook-text-secondary: #a9bdd6;
+    --spook-text-muted: #71869f;
+
+    /* Geometry */
+    --spook-radius-small: 6px;
+    --spook-radius-medium: 10px;
+    --spook-radius-large: 14px;
+}
+
+/* ========================================
+   SIDEBAR
+   ======================================== */
+
+/* Main sidebar background */
+.notion-sidebar-container {
+    background: var(--spook-bg-secondary) !important;
+}
+
+/* ========================================
+   MAIN EDITOR
+   ======================================== */
+
+/* Main page and editor background */
+main.notion-frame {
+    background: var(--spook-bg-primary) !important;
+}
+
+/* ========================================
+   TAB BAR
+   ======================================== */
+
+/* Tab bar backgrounds */
+.notion-dark-theme.notion-standard-contrast.root > div:first-child, /* Left section */
+.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar, /* Tab strip */
+.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div, /* Right section */
+.hide-scrollbar [role="button"][style*="background-color: rgb(32, 32, 32)"], /* Inactive tabs */
+.hide-scrollbar div:has(> [aria-label="New Tab"]) /* New Tab container */ {
+    background: var(--spook-bg-secondary) !important;
+}
+
+/* Active tab */
+.hide-scrollbar [role="button"][style*="background-color: rgb(25, 25, 25)"] {
+    background-color: var(--spook-bg-selected) !important;
+    box-shadow: var(--spook-tab-box-shadow) !important;
+}
+
+/* Inactive tabs — normal title fade */
+.hide-scrollbar [role="button"][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*="linear-gradient"] {
+    background: linear-gradient(
+        var(--gradient-direction, 90deg),
+        transparent 0%,
+        var(--spook-bg-secondary) 100%
+    ) !important;
+}
+
+/* Tab Hover */
+.hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
+    background-color: var(--spook-bg-hover) !important;
+    box-shadow: var(--spook-tab-box-shadow) !important;
+}
+
+/* Keep hovered title fade clear of the bottom highlight */
+.hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"] {
+    height: calc(100% - 3px) !important;
+}
+
+/* Hovered tab title fade and close-button leading fade */
+.hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"],
+.hide-scrollbar div[style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] > div[style*="width: 16px"][style*="linear-gradient"] {
+    background: linear-gradient(
+        var(--gradient-direction, 90deg),
+        transparent 0%,
+        var(--spook-bg-hover) 100%
+    ) !important;
+}
+
+/* Tab close-button background */
+.hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
+    background: var(--spook-bg-hover) !important;
+}
+
+/* Tab button hover */
+.hide-scrollbar [role="button"][aria-label^="Close Tab"]:hover,
+.hide-scrollbar [aria-label="New Tab"]:hover,
+.notion-dark-theme.notion-standard-contrast.root [aria-label="Back"]:hover,
+.notion-dark-theme.notion-standard-contrast.root [aria-label="Forward"]:hover,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label$="Sidebar"]:hover,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="Inbox"]:hover,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="New"]:hover {
+    background-color: var(--spook-tab-button-hover) !important;
+}
+
+/* Tab titles — white text with blue glow */
+.hide-scrollbar [role="button"][aria-labelledby] * {
+    color: var(--spook-text-highlight) !important;
+    text-shadow: var(--spook-tab-text-glow) !important;
+}
+
+/* Navigation & Sidebar icons */
+.hide-scrollbar [aria-label="New Tab"] svg,
+.hide-scrollbar [aria-label^="Close Tab"] svg,
+.notion-dark-theme.notion-standard-contrast.root [aria-label="Back"] svg,
+.notion-dark-theme.notion-standard-contrast.root [aria-label="Forward"] svg,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label$="Sidebar"] svg,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="Inbox"] svg,
+.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="New"] svg {
+    filter:
+        brightness(0)
+        invert(1)
+        var(--spook-tab-icon-glow) !important;
+}
+
+/* Page icons */
+.hide-scrollbar [role="button"][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
+    filter:
+        brightness(1.15)
+        contrast(4)
+        var(--spook-tab-icon-glow) !important;
+}
+
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+
+/* Main page header containing breadcrumbs and actions */
+header:has(> .notion-topbar) {
+    background: var(--spook-bg-secondary) !important;
+}
+
+/* ========================================
+   TAB BAR NAVIGATION
+   ======================================== */
+
+/* Background behind Back and Forward buttons */
+.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label="Back"]) {
+    background: var(--spook-bg-secondary) !important;
+}

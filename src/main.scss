@@ -1,0 +1,14 @@
+/**
+ * @name Ectoplasma
+ * @version 0.1.0
+ * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
+ */
+
+@use "abstracts/tokens";
+@use "abstracts/mixins";
+@use "sections/sidebar";
+@use "sections/editor";
+@use "sections/tab-bar";
+@use "sections/page-header";
+// Preserve the original navigation rule's position after the page header.
+@use "sections/tab-bar-navigation";

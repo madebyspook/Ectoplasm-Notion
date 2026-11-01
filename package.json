@@ -1,0 +1,22 @@
+{
+  "name": "ectoplasm-notion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ectoplasma theme for macOS Notion Desktop, injected through Chrome DevTools Protocol.",
+  "themeName": "Ectoplasma",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madebyspook/Ectoplasm-Notion.git"
+  },
+  "scripts": {
+    "build": "sass --style=expanded --no-source-map --no-error-css src/main.scss dist/Ectoplasma.theme.css",
+    "watch": "sass --watch --poll --style=expanded --no-source-map --no-error-css src/main.scss:dist/Ectoplasma.theme.css",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": {
+    "node": ">=22.4.0"
+  },
+  "devDependencies": {
+    "sass": "^1.106.1"
+  }
+}
