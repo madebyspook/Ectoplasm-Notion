@@ -20,6 +20,8 @@
   --spook-bg-selected: #15243a;
   --spook-bg-hover-test: #1722ff;
   --spook-bg-selected-test: #1524ff;
+  /* Page interaction states */
+  --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
   /* Accents */
   --spook-accent: #39a8ff;
   --spook-accent-bright: #78d5ff;
@@ -72,6 +74,8 @@
   --c-bacPri: var(--spook-bg-primary-test);
   --c-bacSec: var(--spook-bg-secondary-test);
   --c-whiButBac: var(--spook-bg-tertiary-test);
+  /* Elevated surfaces */
+  --c-popBac: var(--spook-bg-tertiary-test);
   /* Neutral text */
   --c-texPri: var(--spook-text-primary-test);
   --c-texSec: var(--spook-text-secondary-test);
@@ -94,9 +98,53 @@
 /* ========================================
    SIDEBAR
    ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
 /* ========================================
    MAIN EDITOR
    ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty,
+.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
+  --ca-texDisTra: var(--spook-text-muted-test);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link]) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
+  --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+}
+
+/* ========================================
+   POPUPS AND PEEK VIEWS
+   ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --c-bacAccPri: var(--spook-bg-tertiary);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
+  --c-bacEle: var(--spook-bg-primary-test);
+}
+
+/* ========================================
+   DATABASE CONTROLS
+   ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
+  --c-bluBacAccPri: var(--spook-accent-dark);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover) {
+  background-color: var(--spook-page-interaction-overlay);
+}
+
 /* ========================================
    TAB BAR
    ======================================== */

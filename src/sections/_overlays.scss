@@ -1,0 +1,14 @@
+/* ========================================
+   POPUPS AND PEEK VIEWS
+   ======================================== */
+
+// Popups — menu-item hover/pressed/selected backgrounds; hover tooltip surfaces.
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --c-bacAccPri: var(--spook-bg-tertiary);
+}
+
+// Page peek — panel, header and supporting scroller surfaces; retain the native backdrop.
+.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
+    --c-bacEle: var(--spook-bg-primary-test);
+}

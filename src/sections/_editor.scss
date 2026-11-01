@@ -6,3 +6,24 @@
 main.notion-frame {
    //  background: var(--spook-bg-primary) !important;
 }
+
+// Editor — empty text, quote and table-cell placeholders; empty-toggle hints.
+// Toggle hints depend on Notion's inline neutral-text channels.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content [contenteditable="true"][placeholder]:empty,
+    .notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]
+) {
+    --ca-texDisTra: var(--spook-text-muted-test);
+}
+
+// Editor — page-link hover/pressed backgrounds, separate from database cards.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"]
+) {
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+// Code blocks — language, copy and other action-button hover/pressed backgrounds.
+.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
+    --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+}

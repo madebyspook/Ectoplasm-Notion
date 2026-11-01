@@ -13,6 +13,10 @@
     // Help-button background.
     --c-whiButBac: var(--spook-bg-tertiary-test);
 
+    /* Elevated surfaces */
+    // Formatting toolbar; block/type menus; database Filter/Sort popovers; desktop-tab preview.
+    --c-popBac: var(--spook-bg-tertiary-test);
+
     /* Neutral text */
     // Editor text; sidebar/database labels; selected view tabs; database SVGs and masks.
     --c-texPri: var(--spook-text-primary-test);
@@ -34,7 +38,7 @@
     --c-icoTer: var(--spook-text-muted-test);
 
     /* Translucent neutral edges */
-    // Button borders; database inset shadows; editor/callout paint.
+    // Button borders; page-link underlines; ordinary-table controls; database shadows; editor/callout paint.
     --ca-borPriTra: var(--spook-border-test);
     // Table-cell separators; gallery-card outlines and shadows.
     --ca-borSecTra: var(--spook-border-test);
@@ -45,6 +49,6 @@
     --c-borSec: var(--spook-border-test);
     // Unchecked database checkbox frames.
     --ca-borStrTra: var(--spook-border-hover-test);
-    // Breadcrumb spans; embedded tab-block borders.
+    // Breadcrumb spans; ordinary-table and embedded tab-block borders.
     --c-borPri: var(--spook-border-active-test);
 }

@@ -1,0 +1,19 @@
+/* ========================================
+   DATABASE CONTROLS
+   ======================================== */
+
+// Databases — Filter/Sort button hover/pressed backgrounds.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+// Databases — New button and split control; native HSL adjustments retain hover/pressed states.
+// Keep the blue palette local so property/status colors and inverse labels stay native.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
+    --c-bluBacAccPri: var(--spook-accent-dark);
+}
+
+// Database gallery — hover tint beneath the native card face and media.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover) {
+    background-color: var(--spook-page-interaction-overlay);
+}

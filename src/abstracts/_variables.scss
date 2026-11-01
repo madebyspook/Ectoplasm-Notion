@@ -8,14 +8,14 @@
     --spook-bg-primary: #1B1D1F;
     // Desktop Tab Bar trays, inactive tabs and title fades; disabled sidebar/header backgrounds.
     --spook-bg-secondary: #161819;
-    // Usage not yet identified.
+    // Hover tooltip surfaces.
     --spook-bg-tertiary: #222526;
 
-    // Application/editor surfaces; database shadows (--c-bacPri).
+    // Application/editor and peek surfaces; database shadows.
     --spook-bg-primary-test: #1B1D5F;
     // Sidebar background (--c-bacSec).
     --spook-bg-secondary-test: #162f19;
-    // Help-button background (--c-whiButBac).
+    // Help button; formatting/block menus; database popovers; desktop-tab preview.
     --spook-bg-tertiary-test: #4f2526;
 
     /* Desktop Tab Bar state surfaces */
@@ -23,17 +23,21 @@
     --spook-bg-hover: #172235;
     // Desktop Tab Bar selected-tab background.
     --spook-bg-selected: #15243a;
-    // Usage not yet identified.
+    // Page interaction overlay via --spook-page-interaction-overlay.
     --spook-bg-hover-test: #1722ff;
     // Usage not yet identified.
     --spook-bg-selected-test: #1524ff;
+
+    /* Page interaction states */
+    // Sidebar rows; page links; popup items; database controls/cards; code actions.
+    --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
 
     /* Accents */
     // Desktop Tab Bar selected/hovered underline via --spook-tab-box-shadow.
     --spook-accent: #39a8ff;
     // Usage not yet identified.
     --spook-accent-bright: #78d5ff;
-    // Usage not yet identified.
+    // Database New button and its native hover/pressed color adjustments.
     --spook-accent-dark: #2366a0;
     // Usage not yet identified.
     --spook-accent-test: #ffa8ff;
@@ -53,7 +57,7 @@
     --spook-border-test: rgba(255, 168, 255, 0.74);
     // Unchecked database checkbox frames (--ca-borStrTra); not limited to hover.
     --spook-border-hover-test: rgba(255, 168, 255, 0.85);
-    // Breadcrumb spans; embedded tab-block borders (--c-borPri); not limited to active state.
+    // Breadcrumb spans; ordinary-table and embedded tab-block borders; not limited to active state.
     --spook-border-active-test: rgba(255, 213, 255, 1);
 
     /* General surface glows */
@@ -96,7 +100,7 @@
     --spook-text-primary-test: #aa00ff;
     // Sidebar/editor/database labels and icons; unselected view tabs; filter/sort/settings triggers; masks.
     --spook-text-secondary-test: #5555ff;
-    // Sidebar/header/database labels; sidebar/database icons; Search shortcut and view/control labels.
+    // Sidebar/header/database labels/icons; Search and view controls; empty text/quote/toggle hints.
     --spook-text-muted-test: #0000ff;
 
     /* Geometry */
