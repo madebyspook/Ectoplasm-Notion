@@ -17,7 +17,7 @@ Sass and npm are only needed for development. The repository includes compiled `
 
 **Manual verification required before switching launchers.** Keep the working `~/Documents/NotionTheme/` installation and existing Automator application untouched.
 
-1. Clone this repository, or choose **Code → Download ZIP** on GitHub and extract it. Keep `loader.js`, `start.sh`, and `dist/Ectoplasma.theme.css` in their repository layout. The checkout can live anywhere, including a path with spaces. Do not rename or copy the CSS to the old installation.
+1. Clone this repository, or choose **Code → Download ZIP** on GitHub and extract it. Keep `loader.js`, `start.sh`, `scripts/loader-instance.cjs`, and `dist/Ectoplasma.theme.css` in their repository layout. The checkout can live anywhere, including a path with spaces. Do not rename or copy the CSS to the old installation.
 2. At a convenient time, stop the old loader so only one loader injects CSS. If Notion is already running without CDP, fully quit it manually first; startup flags cannot enable debugging on an existing process.
 3. Run the repository's startup script, replacing the example with your actual path:
 
@@ -25,7 +25,7 @@ Sass and npm are only needed for development. The repository includes compiled `
    /bin/bash "/absolute/path/to/Ectoplasm-Notion/start.sh"
    ```
 
-   The script locates `loader.js` beside itself, regardless of the terminal's current directory. It starts Notion with debugging bound to `127.0.0.1:9222` if unavailable, waits for readiness, and starts the loader. The loader reads and watches `dist/Ectoplasma.theme.css` relative to its own directory.
+   The script locates `loader.js` beside itself, regardless of the terminal's current directory. It starts Notion with debugging bound to `127.0.0.1:9222` if unavailable, waits for readiness, and starts the loader. The loader reads and watches `dist/Ectoplasma.theme.css` relative to its own directory. Repeated launcher or direct Node invocations reuse the running loader for this checkout; they exit without starting another watcher or CDP client. A localhost socket reserves ownership atomically and is released automatically when the loader exits, so no stale PID file needs cleaning up.
 4. Confirm `[CSS loaded]` shows the repository's `dist/Ectoplasma.theme.css`, followed by `[Connected]` and `[CSS applied]` for eligible page and Tab Bar targets. Inspect the sidebar, editor, active/inactive/hovered tabs, title fades, icons, navigation, and page header. Open another Notion tab and confirm it is styled.
 5. To verify the full development loop, run `npm ci` and `npm run watch` in the repository in another terminal. Make a temporary SCSS change, confirm Sass recompiles and the loader reports CSS reload/reinjection, and inspect the result in Notion. Restore the change and verify it again. Do not edit generated CSS manually.
 
@@ -64,6 +64,7 @@ Open the folder in VS Code using **File → Open Folder** or `code .`. **Run Bui
 
 - `npm run build` generates expanded `dist/Ectoplasma.theme.css` without source maps.
 - `npm run watch` builds initially and polls for SCSS changes. With `--no-error-css`, compilation errors remove the generated CSS; fixing the source recreates it. Fix build errors before checking reload behavior.
+- `npm test` runs isolated loader startup/lifecycle and inspector tests without accessing the real Notion application.
 - `npm run check` runs read-only `scripts/check.mjs`: it compiles in memory, rejects missing/stale CSS, and validates theme name/version and package-lock versions. It does not test live CDP injection or Notion visuals.
 
 Edit SCSS, then commit the rebuilt CSS with source changes. Keep `src/main.scss` metadata aligned with `themeName` and `version` in `package.json`, and update the lockfile when changing the version. Dart Sass is the only direct development dependency. Build/watch only write repository CSS; they do not launch Notion or the loader.
@@ -75,6 +76,7 @@ src/abstracts/_mixins.scss            Reserved for useful shared mixins
 src/sections/                        Sidebar, editor, tabs, header, navigation
 dist/Ectoplasma.theme.css             Generated, committed CSS watched by loader
 loader.js                            CDP injection and CSS hot reload
+scripts/loader-instance.cjs           Per-checkout single-instance guard
 start.sh                             macOS startup; resolves the loader locally
 scripts/check.mjs                    Read-only output and metadata validation
 .vscode/                             Build, watch, and check tasks
@@ -83,7 +85,7 @@ AGENTS.md                            Project and development instructions
 
 Keep module order, selectors, variables, and visuals intact unless a change is requested. `_mixins.scss` currently emits no CSS.
 
-The loader intentionally retains the DOM IDs `spooklucence-notion-theme` for reusing the existing theme element and `spooklucence-test` for removing the old test element. These compatibility identifiers preserve behavior with the original installation; user-facing names and loader messages use Ectoplasma. The existing `--spook-*` CSS variables are unchanged.
+The loader uses `ectoplasma-notion-theme` for its injected style element and removes `ectoplasma-test` when present. The existing `--spook-*` CSS variables are unchanged.
 
 ## CSS inspector
 
@@ -106,9 +108,11 @@ Captures are bounded (default 6,000 elements and 8 declaration samples per rende
 
 ## Troubleshooting
 
+- **Loader JavaScript changes do not take effect:** stop the existing loader, then relaunch. Repeated launches reuse its loaded JavaScript; only compiled CSS hot-reloads.
+- **Loader startup reports another service:** ownership checks fail safely if another service occupies the checkout’s derived localhost port. No process is stopped. Investigate the reported port before retrying. The guard is per checkout, including symlinked paths; a different clone has its own guard.
 - **Notion unavailable / connection refused:** check `curl http://127.0.0.1:9222/json/version`. If unavailable, fully quit Notion manually and retry `start.sh`. Keep CDP bound to `127.0.0.1`.
 - **Node missing / `WebSocket is not defined`:** check `node --version` and the launcher's `PATH`. Use Node 22.4 or newer without disabling its built-in WebSocket support.
-- **Missing CSS or no reload:** run `npm run build`, inspect Sass errors, and confirm `[CSS loaded]` names this checkout's `dist/Ectoplasma.theme.css`. Run watch and the repository loader together for SCSS live preview. Stop duplicate loaders; the old Automator app still invokes the old installation.
+- **Missing CSS or no reload:** run `npm run build`, inspect Sass errors, and confirm `[CSS loaded]` names this checkout's `dist/Ectoplasma.theme.css`. Run watch and the repository loader together for SCSS live preview. Stop loaders from the original installation or other checkouts separately; the guard only covers this checkout. The existing Automator launcher should point to this repository’s start.sh.
 - **Missing styling or targets:** confirm dark mode/standard contrast and inspect loader errors. Target discovery accepts `page` targets with `https://app.notion.com/` URLs or the exact title `Tab Bar`. DOM, inline-style, localization, URL, or renderer-title changes may require investigation; builds do not verify them.
 - **Terminal works but Automator does not:** verify its repository path, Node directory in `PATH`, and Notion application path. Check the action's errors.
 

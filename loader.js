@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const http = require("node:http");
 const path = require("node:path");
+const { acquireInstance } = require("./scripts/loader-instance.cjs");
 
 const PORT = 9222;
 const CSS_PATH = path.join(__dirname, "dist", "Ectoplasma.theme.css");
@@ -133,17 +134,27 @@ function loadCSS() {
     }
 }
 
-loadCSS();
-scanTargets();
-
-// Discover newly opened Notion tabs.
-setInterval(scanTargets, 2000);
-
-fs.watchFile(CSS_PATH, { interval: 500 }, (curr, prev) => {
-    if (curr.mtimeMs !== prev.mtimeMs) {
-        loadCSS();
+acquireInstance(__dirname).then(instance => {
+    if (!instance) {
+        console.log("Ectoplasma loader already running for this checkout; using the existing instance.");
+        return;
     }
-});
 
-console.log("Ectoplasma Notion loader running.");
-console.log("Press Ctrl+C to stop.");
+    loadCSS();
+    scanTargets();
+
+    // Discover newly opened Notion tabs.
+    setInterval(scanTargets, 2000);
+
+    fs.watchFile(CSS_PATH, { interval: 500 }, (curr, prev) => {
+        if (curr.mtimeMs !== prev.mtimeMs) {
+            loadCSS();
+        }
+    });
+
+    console.log("Ectoplasma Notion loader running.");
+    console.log("Press Ctrl+C to stop.");
+}).catch(error => {
+    console.error(`[Loader startup] ${error.message}`);
+    process.exitCode = 1;
+});
