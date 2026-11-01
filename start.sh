@@ -1,7 +1,8 @@
 #!/bin/bash
 
 NOTION="/Applications/Notion.app/Contents/MacOS/Notion"
-LOADER="$HOME/Documents/NotionTheme/loader.js"
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)" || exit 1
+LOADER="$SCRIPT_DIR/loader.js"
 PORT=9222
 
 # Start Notion with remote debugging if it isn't already running.

@@ -3,7 +3,7 @@ const http = require("node:http");
 const path = require("node:path");
 
 const PORT = 9222;
-const CSS_PATH = path.join(__dirname, "Spooklucence-Notion.css");
+const CSS_PATH = path.join(__dirname, "dist", "Ectoplasma.theme.css");
 const STYLE_ID = "spooklucence-notion-theme";
 
 const connections = new Map();
