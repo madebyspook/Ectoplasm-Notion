@@ -31,6 +31,7 @@
     /* Page interaction states */
     // Sidebar rows; page links; popup items; database controls/cards; code actions.
     --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
+    --spook-page-interaction-overlay-test: rgb(from var(--spook-bg-hover-test) r g b / 1);
 
     /* Accents */
     // Desktop Tab Bar selected/hovered underline via --spook-tab-box-shadow.

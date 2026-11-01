@@ -22,6 +22,7 @@
   --spook-bg-selected-test: #1524ff;
   /* Page interaction states */
   --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
+  --spook-page-interaction-overlay-test: rgb(from var(--spook-bg-hover-test) r g b / 1);
   /* Accents */
   --spook-accent: #39a8ff;
   --spook-accent-bright: #78d5ff;
@@ -99,7 +100,7 @@
    SIDEBAR
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
 /* ========================================
@@ -111,7 +112,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
@@ -138,11 +139,11 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
-  --c-bluBacAccPri: var(--spook-accent-dark);
+  --c-bluBacAccPri: var(--spook-accent-dark-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover) {
-  background-color: var(--spook-page-interaction-overlay);
+  background-color: var(--spook-page-interaction-overlay-test);
 }
 
 /* ========================================
