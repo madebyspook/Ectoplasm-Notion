@@ -37,3 +37,10 @@ Development and delivery
 * Commit, push, or open/update PRs only when authorized. Never merge, tag, release, publish, or change repository settings without explicit permission.
 * Keep installation and user-facing documentation in README.md; keep this file focused on agent-specific technical guidance. Do not add GitHub Pages, remote CSS hosting, or a license without a request.
 * In handoffs, summarize files changed, checks performed, whether live Notion was tested, and any remaining manual steps.
+
+CSS inspection utility
+
+* `npm run inspect` runs the independent read-only inspector under scripts/inspector/ against existing local CDP. It must never start Notion, change DOM/CSS, force states, navigate, call backend APIs, or modify the loader/launcher.
+* `.inspections/` contains local, Git-ignored reports. Keep renderer identities anonymous and attributes/paint values filtered; never save text, input values, URLs, page titles, opaque IDs, unrestricted labels, or native CSS source.
+* `--context` is only an annotation. Preserve the distinction between observed states, no-match in the current snapshot, invalid/unsupported selectors, and heuristic risks. Source samples identify declaration candidates, not guaranteed cascade winners.
+* Run `npm test` for inspector fixtures/privacy/protocol checks and `npm run check` for theme consistency. Use mocks or temporary fixtures for automated tests; live validation is opt-in and read-only.
