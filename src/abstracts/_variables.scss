@@ -15,6 +15,9 @@
     --spook-bg-secondary: #161819;
     // Reserved elevated/panel surface; no current consumer (UI association unverified).
     --spook-bg-tertiary: #222526;
+    --spook-bg-primary-test: #1B1D5F;
+    --spook-bg-secondary-test: #162f19;
+    --spook-bg-tertiary-test: #4f2526;
 
     /* Desktop Tab Bar state surfaces */
     // Hovered tab, title/close fades and close-control backplate; source: _tab-bar.scss.
@@ -22,6 +25,8 @@
     --spook-bg-hover: #172235;
     // Active desktop tab identified by inline RGB; source: _tab-bar.scss, not database tabs.
     --spook-bg-selected: #15243a;
+    --spook-bg-hover-test: #1722ff;
+    --spook-bg-selected-test: #1524ff;
 
     /* Accents */
     // Active/hovered desktop tab underline via --spook-tab-box-shadow; halo RGB is separate.
@@ -30,6 +35,9 @@
     --spook-accent-bright: #78d5ff;
     // Reserved darker accent; no current consumer (future accent-surface usage unverified).
     --spook-accent-dark: #2366a0;
+    --spook-accent-test: #ffa8ff;
+    --spook-accent-bright-test: #ffd5ff;
+    --spook-accent-dark-test: #ff66a0;
 
     /* Borders */
     // Translucent neutral blue edge — source: native --ca-borPriTra/--ca-borSecTra bridge.
@@ -40,6 +48,9 @@
     --spook-border-hover: rgba(57, 168, 255, 0.35);
     // Reserved active/focus edge; no current consumer or verified focus association.
     --spook-border-active: rgba(120, 213, 255, 0.65);
+    --spook-border-test: rgba(255, 168, 255, 0.74);
+    --spook-border-hover-test: rgba(255, 168, 255, 0.85);
+    --spook-border-active-test: rgba(255, 213, 255, 1);
 
     /* Reserved general surface glows; desktop effects use their own tokens below. */
     // Low-intensity panel halo; no current consumer (panel association unverified).
@@ -79,6 +90,10 @@
     // Muted labels/icons via texTer/icoTer bridge; native references confirmed.
     // Check small-text/disabled contrast manually; this is not a dedicated disabled token.
     --spook-text-muted: #71869f;
+    --spook-text-highlight-test: #ffff00;
+    --spook-text-primary-test: #aa00ff;
+    --spook-text-secondary-test: #5555ff;
+    --spook-text-muted-test: #0000ff;
 
     /* Reserved geometry — no current rules consume these radii. */
     // Intended small-control rounding; actual UI association unverified.

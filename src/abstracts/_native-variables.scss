@@ -9,51 +9,71 @@
 // The separate desktop Tab Bar has no matching app root and keeps its component palette.
 // Preserve native semantic/status/property/syntax colors, inverse action text, favorites,
 // media, focus/disabled channels and translucent interaction overlays. No global paint reset.
-// Opaque --c-borPri/--c-borSec also paint text/inset shadows: leave them native.
-// Elevated/white-button families stay native pending variant and contrast testing.
+// Additional neutral channels: .inspections/remaining-color-coverage-2026-11-01/.
+// Border test strengths below are provisional; preserve other elevation/button variants.
 .notion-app-inner.notion-dark-theme {
     /* Neutral surfaces */
     // Primary application surface: observed app background and database shadow references.
     // Inspect app margins/editor surroundings and database shadows; new coverage is unverified.
     // The existing main.notion-frame override still wins the editor canvas background.
-    --c-bacPri: var(--spook-bg-primary);
+    --c-bacPri: var(--spook-bg-primary-test);
     // Secondary surface: sampled native sidebar background reference was observed.
     // The direct sidebar background override still wins there; test other supporting surfaces.
     // Other secondary consumers and the new mapping's appearance are unverified.
-    --c-bacSec: var(--spook-bg-secondary);
+    --c-bacSec: var(--spook-bg-secondary-test);
+    // Neutral button surface: observed help-button background; other consumers may share it.
+    // Native usage confirmed; tertiary test-color mapping and variant contrast need manual verification.
+    --c-whiButBac: var(--spook-bg-tertiary-test);
 
     /* Neutral text — some native text channels also paint SVGs or masked icons. */
     // Primary text: observed editor/sidebar/database labels and selected view tabs;
     // also fill/mask paint. Inspect these areas; final color/contrast is unverified.
-    --c-texPri: var(--spook-text-primary);
+    --c-texPri: var(--spook-text-primary-test);
     // Secondary text: observed sidebar labels, unselected database view tabs,
     // filter/sort/settings triggers and masks. Resulting palette is unverified.
-    --c-texSec: var(--spook-text-secondary);
+    --c-texSec: var(--spook-text-secondary-test);
     // Tertiary text: observed sidebar, page-header and database labels.
     // Inspect muted text readability; placeholder/disabled associations are unverified.
-    --c-texTer: var(--spook-text-muted);
+    --c-texTer: var(--spook-text-muted-test);
     // Accented-neutral text, not semantic accent blue: observed sidebar tree-label ancestry.
     // Inspect sidebar hierarchy; sharing the primary palette reduces native differentiation.
     // Other consumers and the resulting hierarchy are unverified.
-    --c-texAccPri: var(--spook-text-primary);
+    --c-texAccPri: var(--spook-text-primary-test);
+    // Muted UI labels: observed Search shortcut, view/control labels and View/hide details.
+    // Native usage confirmed; muted test-color mapping needs manual verification beyond these controls.
+    --c-graTexAccPri: var(--spook-text-muted-test);
 
     /* Neutral icons — keep native slots distinct even when they share theme colors. */
     // Primary icon: observed header SVG color/fill aliases and database SVG fills.
     // Also an unchecked to-do border reference; inspect both. New paint is unverified.
-    --c-icoPri: var(--spook-text-primary);
+    --c-icoPri: var(--spook-text-primary-test);
     // Secondary icon: observed sidebar/editor/database SVGs and background-painted masks.
     // Inspect neutral control icons; semantic/asset icons may use other channels (unverified).
-    --c-icoSec: var(--spook-text-secondary);
+    --c-icoSec: var(--spook-text-secondary-test);
     // Tertiary icon: observed sidebar SVG fills and some database text/fill references.
     // Inspect muted navigation/property icons; disabled-role coverage is unverified.
-    --c-icoTer: var(--spook-text-muted);
+    --c-icoTer: var(--spook-text-muted-test);
 
     /* Translucent neutral edges — shared theme tint/alpha; not border-only channels. */
     // Primary edge: observed button borders, database inset shadows and editor/callout paint.
     // Inspect borders AND tinted backgrounds; final compositing is unverified.
-    --ca-borPriTra: var(--spook-border);
+    --ca-borPriTra: var(--spook-border-test);
     // Secondary edge: observed table-cell separators, gallery-card shadows and outlines.
     // Uses the same theme edge palette as primary; their former intensity difference
     // may flatten. Inspect line/card hierarchy and contrast manually (unverified).
-    --ca-borSecTra: var(--spook-border);
+    --ca-borSecTra: var(--spook-border-test);
+
+    /* Additional edge channels — experimental token reuse, not interaction-state selectors. */
+    // Secondary edges: observed sidebar inset divider and section border; not sidebar-exclusive.
+    // Native usage confirmed; base border test-color mapping needs manual verification.
+    // This replaces an opaque native color with alpha paint and may soften/composite separators.
+    --c-borSec: var(--spook-border-test);
+    // Stronger edges: observed unchecked database checkbox frames; other consumers are possible.
+    // Native usage confirmed; reuse the stronger hover test token as a test tier, not a hover state.
+    // Mapping and checked/disabled/focus contrast need manual verification; alpha increases here.
+    --ca-borStrTra: var(--spook-border-hover-test);
+    // Primary edges AND breadcrumb spans: observed embedded tab-block borders and span text.
+    // Native usage confirmed; reuse the opaque active test token as a test tier, not active state.
+    // Mapping is provisional: verify both text and edge contrast across components manually.
+    --c-borPri: var(--spook-border-active-test);
 }

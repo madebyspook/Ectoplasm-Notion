@@ -12,17 +12,28 @@
   --spook-bg-primary: #1B1D1F;
   --spook-bg-secondary: #161819;
   --spook-bg-tertiary: #222526;
+  --spook-bg-primary-test: #1B1D5F;
+  --spook-bg-secondary-test: #162f19;
+  --spook-bg-tertiary-test: #4f2526;
   /* Desktop Tab Bar state surfaces */
   --spook-bg-hover: #172235;
   --spook-bg-selected: #15243a;
+  --spook-bg-hover-test: #1722ff;
+  --spook-bg-selected-test: #1524ff;
   /* Accents */
   --spook-accent: #39a8ff;
   --spook-accent-bright: #78d5ff;
   --spook-accent-dark: #2366a0;
+  --spook-accent-test: #ffa8ff;
+  --spook-accent-bright-test: #ffd5ff;
+  --spook-accent-dark-test: #ff66a0;
   /* Borders */
   --spook-border: rgba(57, 168, 255, 0.14);
   --spook-border-hover: rgba(57, 168, 255, 0.35);
   --spook-border-active: rgba(120, 213, 255, 0.65);
+  --spook-border-test: rgba(255, 168, 255, 0.74);
+  --spook-border-hover-test: rgba(255, 168, 255, 0.85);
+  --spook-border-active-test: rgba(255, 213, 255, 1);
   /* Reserved general surface glows; desktop effects use their own tokens below. */
   --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
   --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
@@ -43,6 +54,10 @@
   --spook-text-primary: #e8f1ff;
   --spook-text-secondary: #a9bdd6;
   --spook-text-muted: #71869f;
+  --spook-text-highlight-test: #ffff00;
+  --spook-text-primary-test: #aa00ff;
+  --spook-text-secondary-test: #5555ff;
+  --spook-text-muted-test: #0000ff;
   /* Reserved geometry — no current rules consume these radii. */
   --spook-radius-small: 6px;
   --spook-radius-medium: 10px;
@@ -54,20 +69,26 @@
    ======================================== */
 .notion-app-inner.notion-dark-theme {
   /* Neutral surfaces */
-  --c-bacPri: var(--spook-bg-primary);
-  --c-bacSec: var(--spook-bg-secondary);
+  --c-bacPri: var(--spook-bg-primary-test);
+  --c-bacSec: var(--spook-bg-secondary-test);
+  --c-whiButBac: var(--spook-bg-tertiary-test);
   /* Neutral text — some native text channels also paint SVGs or masked icons. */
-  --c-texPri: var(--spook-text-primary);
-  --c-texSec: var(--spook-text-secondary);
-  --c-texTer: var(--spook-text-muted);
-  --c-texAccPri: var(--spook-text-primary);
+  --c-texPri: var(--spook-text-primary-test);
+  --c-texSec: var(--spook-text-secondary-test);
+  --c-texTer: var(--spook-text-muted-test);
+  --c-texAccPri: var(--spook-text-primary-test);
+  --c-graTexAccPri: var(--spook-text-muted-test);
   /* Neutral icons — keep native slots distinct even when they share theme colors. */
-  --c-icoPri: var(--spook-text-primary);
-  --c-icoSec: var(--spook-text-secondary);
-  --c-icoTer: var(--spook-text-muted);
+  --c-icoPri: var(--spook-text-primary-test);
+  --c-icoSec: var(--spook-text-secondary-test);
+  --c-icoTer: var(--spook-text-muted-test);
   /* Translucent neutral edges — shared theme tint/alpha; not border-only channels. */
-  --ca-borPriTra: var(--spook-border);
-  --ca-borSecTra: var(--spook-border);
+  --ca-borPriTra: var(--spook-border-test);
+  --ca-borSecTra: var(--spook-border-test);
+  /* Additional edge channels — experimental token reuse, not interaction-state selectors. */
+  --c-borSec: var(--spook-border-test);
+  --ca-borStrTra: var(--spook-border-hover-test);
+  --c-borPri: var(--spook-border-active-test);
 }
 
 /* ========================================

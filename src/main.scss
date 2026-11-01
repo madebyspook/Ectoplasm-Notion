@@ -8,7 +8,7 @@
 @use "abstracts/variables";
 // Reserved shared utilities emit no rules. Map page-native channels before components.
 @use "abstracts/mixins";
-@use "sections/native-variables";
+@use "abstracts/native-variables";
 // Keep the existing component order and direct background overrides intact.
 @use "sections/sidebar";
 @use "sections/editor";
