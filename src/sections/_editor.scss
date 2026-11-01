@@ -2,7 +2,8 @@
    MAIN EDITOR
    ======================================== */
 
-/* Main page and editor background */
+/* Editor — main page canvas surface, identified by main.notion-frame.
+   Retain the direct native-background override; text/semantic block colors are not reset here. */
 main.notion-frame {
     background: var(--spook-bg-primary) !important;
 }

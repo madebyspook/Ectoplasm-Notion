@@ -1,54 +1,90 @@
 /* ========================================
-   DESIGN TOKENS
+   ECTOPLASMA DESIGN TOKENS
    ======================================== */
 
+// Theme-owned palette/effects, shared with the separate desktop Tab Bar renderer.
+// "Source" names current SCSS consumers; native-bridge visual effects remain unverified.
+// Reserved tokens have no consumer: changing them alone will not change Notion yet.
 :root {
-    /* Backgrounds */
+    /* Surfaces */
+    // Primary canvas — source: main.notion-frame and native --c-bacPri bridge.
+    // Inspect editor canvas/application margins; native paint references were observed.
     --spook-bg-primary: #1B1D1F;
+    // Supporting surface — source: sidebar, page header, Tab Bar trays/inactive tabs/fades,
+    // and native --c-bacSec bridge. Native secondary-surface effect is unverified.
     --spook-bg-secondary: #161819;
+    // Reserved elevated/panel surface; no current consumer (UI association unverified).
     --spook-bg-tertiary: #222526;
 
-    /* Interactive backgrounds */
+    /* Desktop Tab Bar state surfaces */
+    // Hovered tab, title/close fades and close-control backplate; source: _tab-bar.scss.
+    // This opaque token is not a replacement for Notion's translucent state overlays.
     --spook-bg-hover: #172235;
+    // Active desktop tab identified by inline RGB; source: _tab-bar.scss, not database tabs.
     --spook-bg-selected: #15243a;
 
-    /* Accent colors */
+    /* Accents */
+    // Active/hovered desktop tab underline via --spook-tab-box-shadow; halo RGB is separate.
     --spook-accent: #39a8ff;
+    // Reserved brighter accent; no current consumer (future highlight usage unverified).
     --spook-accent-bright: #78d5ff;
+    // Reserved darker accent; no current consumer (future accent-surface usage unverified).
     --spook-accent-dark: #2366a0;
 
     /* Borders */
+    // Translucent neutral blue edge — source: native --ca-borPriTra/--ca-borSecTra bridge.
+    // Audit references include buttons, database separators/cards and some editor paint;
+    // final tint/contrast and primary-versus-secondary edge hierarchy are unverified.
     --spook-border: rgba(57, 168, 255, 0.14);
+    // Reserved hovered edge; no current consumer or verified hover association.
     --spook-border-hover: rgba(57, 168, 255, 0.35);
+    // Reserved active/focus edge; no current consumer or verified focus association.
     --spook-border-active: rgba(120, 213, 255, 0.65);
 
-    /* Glow */
+    /* Reserved general surface glows; desktop effects use their own tokens below. */
+    // Low-intensity panel halo; no current consumer (panel association unverified).
     --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
+    // Medium-intensity panel halo; no current consumer (panel association unverified).
     --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
+    // Strong panel halo; no current consumer (panel association unverified).
     --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
 
-    /* Tab bar effects */
+    /* Desktop Tab Bar effects — existing component rules are confirmed source consumers. */
+    // CSS :hover overlay for Close/New Tab, Back/Forward, Sidebar, Inbox and New controls.
     --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
+    // Active/hovered tab underline and inner halo; the first inset edge uses --spook-accent.
     --spook-tab-box-shadow:
         inset 0 -1px 0 var(--spook-accent),
         inset 0 0 12px rgba(57, 168, 255, 0.25);
 
+    // Title-group text shadow; current descendant selector also reaches wrappers/images.
     --spook-tab-text-glow:
         0 0 5px rgba(120, 213, 255, 0.65),
         0 0 10px rgba(57, 168, 255, 0.35);
 
+    // Filter halo for desktop navigation/control SVGs and page-icon images, not editor media.
     --spook-tab-icon-glow:
         drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
         drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 
-    /* Text */
+    /* Text palette */
+    // White desktop tab-title descendants; source: _tab-bar.scss. No native mapping uses it.
     --spook-text-highlight: #ffffff;
+    // Primary page text/icons and sidebar neutral labels via texPri/icoPri/texAccPri bridge.
+    // Those native consumers were observed; the new palette's final appearance is unverified.
     --spook-text-primary: #e8f1ff;
+    // Secondary labels, database tabs and neutral icons via texSec/icoSec bridge.
+    // Native references confirmed; new appearance is unverified, including masked icons.
     --spook-text-secondary: #a9bdd6;
+    // Muted labels/icons via texTer/icoTer bridge; native references confirmed.
+    // Check small-text/disabled contrast manually; this is not a dedicated disabled token.
     --spook-text-muted: #71869f;
 
-    /* Geometry */
+    /* Reserved geometry — no current rules consume these radii. */
+    // Intended small-control rounding; actual UI association unverified.
     --spook-radius-small: 6px;
+    // Intended card/control-group rounding; actual UI association unverified.
     --spook-radius-medium: 10px;
+    // Intended large-panel rounding; actual UI association unverified.
     --spook-radius-large: 14px;
 }
