@@ -6,5 +6,5 @@
    Depends on .notion-topbar being a direct child of header; retain its secondary surface
    even where the native page palette uses the primary background. */
 header:has(> .notion-topbar) {
-    background: var(--spook-bg-secondary) !important;
+   //  background: var(--spook-bg-secondary) !important;
 }

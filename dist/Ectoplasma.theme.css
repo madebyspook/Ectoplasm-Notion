@@ -97,19 +97,11 @@
 /* Sidebar — navigation container surface.
    Keep the direct override for native inline backgrounds; text/icons may use the page bridge.
    This existing component selector is not dark-mode-gated; its scope is unchanged. */
-.notion-sidebar-container {
-  background: var(--spook-bg-secondary) !important;
-}
-
 /* ========================================
    MAIN EDITOR
    ======================================== */
 /* Editor — main page canvas surface, identified by main.notion-frame.
    Retain the direct native-background override; text/semantic block colors are not reset here. */
-main.notion-frame {
-  background: var(--spook-bg-primary) !important;
-}
-
 /* ========================================
    TAB BAR
    ======================================== */
@@ -217,10 +209,6 @@ main.notion-frame {
 /* Page header — surface behind breadcrumbs and page actions.
    Depends on .notion-topbar being a direct child of header; retain its secondary surface
    even where the native page palette uses the primary background. */
-header:has(> .notion-topbar) {
-  background: var(--spook-bg-secondary) !important;
-}
-
 /* ========================================
    TAB BAR NAVIGATION
    ======================================== */

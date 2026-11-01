@@ -4,16 +4,11 @@
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 
-// Shared Ectoplasma tokens are available to page and desktop Tab Bar renderers.
 @use "abstracts/variables";
-// Reserved shared utilities emit no rules. Map page-native channels before components.
 @use "abstracts/mixins";
 @use "abstracts/native-variables";
-// Keep the existing component order and direct background overrides intact.
 @use "sections/sidebar";
 @use "sections/editor";
-// Separate desktop renderer adapter; it does not inherit the page-native bridge.
 @use "sections/tab-bar";
 @use "sections/page-header";
-// Preserve the original navigation rule's position after the page header.
 @use "sections/tab-bar-navigation";

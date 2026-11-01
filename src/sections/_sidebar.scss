@@ -6,5 +6,5 @@
    Keep the direct override for native inline backgrounds; text/icons may use the page bridge.
    This existing component selector is not dark-mode-gated; its scope is unchanged. */
 .notion-sidebar-container {
-    background: var(--spook-bg-secondary) !important;
+   //  background: var(--spook-bg-secondary) !important;
 }
