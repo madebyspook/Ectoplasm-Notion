@@ -11,7 +11,9 @@
   "scripts": {
     "build": "sass --style=expanded --no-source-map --no-error-css src/main.scss dist/Ectoplasma.theme.css",
     "watch": "sass --watch --poll --style=expanded --no-source-map --no-error-css src/main.scss:dist/Ectoplasma.theme.css",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "inspect": "node scripts/inspect.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=22.4.0"

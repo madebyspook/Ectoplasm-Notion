@@ -85,6 +85,25 @@ Keep module order, selectors, variables, and visuals intact unless a change is r
 
 The loader intentionally retains the DOM IDs `spooklucence-notion-theme` for reusing the existing theme element and `spooklucence-test` for removing the old test element. These compatibility identifiers preserve behavior with the original installation; user-facing names and loader messages use Ectoplasma. The existing `--spook-*` CSS variables are unchanged.
 
+## CSS inspector
+
+Run `npm run inspect` while Notion is already running through the existing themed launcher. The inspector connects only to local CDP on `127.0.0.1:9222`, discovers Notion page renderers and the separate desktop Tab Bar, and takes one read-only snapshot. It never starts Notion or changes the interface.
+
+```sh
+npm run inspect
+npm run inspect -- --context menu
+npm run inspect -- --max-elements 10000 --samples 12
+npm test
+```
+
+Reports are saved locally in a new Git-ignored `.inspections/<capture>/` directory: `report.md`, `selector-matrix.json`, `styling-inventory.json`, and `metadata.json`. Style profiles are deduplicated, elements are grouped by structural role, and classifications based on heuristics are marked. The matrix checks compiled theme selectors, renderer matches, specificity, state dependencies, and potential fragility/overbreadth. Sampled CSS diagnostics distinguish direct and ancestor declarations; they do not guarantee cascade winners or visual correctness.
+
+The collector records filtered tags/classes/ARIA state attributes, hierarchy, dimensions/visibility measurements, computed and inline paint properties, pseudo-element metadata, and native color-variable values/references per renderer. It excludes page text, input values, private URLs, page titles, opaque IDs, unrestricted labels, and native CSS source. URL/string paint values are redacted. No inspection data leaves the machine. Runtime evaluation explicitly disables CDP's CSP-bypass option; failures remain inspection limitations.
+
+Expose another menu, search panel, database view, tooltip, hover, keyboard-focus, checked, selected, disabled, or expanded state yourself and rerun the command. `--context` is a predefined annotation, not proof of that state. Unobserved states are listed explicitly; no matches does not mean a selector is broken. `--help` lists contexts and options, including a local `--port` override.
+
+Captures are bounded (default 6,000 elements and 8 declaration samples per renderer). Iframe/shadow-root contents, virtualized elements not currently mounted, and container/scope conditions are not fully evaluated. The inspector does not inject CSS, force states, click/type/navigate, inspect backend APIs, remove stylesheets, or modify the loader/launcher. Use temporary fixtures and mocked CDP for automated tests; review live output as evidence for the currently exposed UI only.
+
 ## Troubleshooting
 
 - **Notion unavailable / connection refused:** check `curl http://127.0.0.1:9222/json/version`. If unavailable, fully quit Notion manually and retry `start.sh`. Keep CDP bound to `127.0.0.1`.
