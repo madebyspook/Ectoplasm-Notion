@@ -1,0 +1,8 @@
+/* ========================================
+   TAB BAR NAVIGATION
+   ======================================== */
+
+/* Background behind Back and Forward buttons */
+.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label="Back"]) {
+    background: var(--spook-bg-secondary) !important;
+}
