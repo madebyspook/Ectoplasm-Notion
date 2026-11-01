@@ -1,0 +1,54 @@
+/* ========================================
+   NOTION PAGE RENDERERS — NATIVE VARIABLE BRIDGE
+   ======================================== */
+
+// Notion page renderers — dark application palette; separate from the desktop Tab Bar.
+// Locations below are observed native CSS consumers; test-color effects remain unverified.
+.notion-app-inner.notion-dark-theme {
+    /* Neutral surfaces */
+    // Application/editor backgrounds; database shadows.
+    --c-bacPri: var(--spook-bg-primary-test);
+    // Sidebar background; template Default badges.
+    --c-bacSec: var(--spook-bg-secondary-test);
+    // Help-button background.
+    --c-whiButBac: var(--spook-bg-tertiary-test);
+
+    /* Elevated surfaces */
+    // Formatting toolbar; block/type menus; database Filter/Sort popovers; desktop-tab preview.
+    --c-popBac: var(--spook-bg-tertiary-test);
+
+    /* Neutral text */
+    // Editor text; sidebar/database labels; selected view tabs; database SVGs and masks.
+    --c-texPri: var(--spook-text-primary-test);
+    // Sidebar/editor/database labels; unselected view tabs; filter/sort/settings triggers; SVGs and masks.
+    --c-texSec: var(--spook-text-secondary-test);
+    // Sidebar, page-header and database labels.
+    --c-texTer: var(--spook-text-muted-test);
+    // Sidebar tree labels.
+    --c-texAccPri: var(--spook-text-primary-test);
+    // Search shortcut; view/control labels; View/hide details.
+    --c-graTexAccPri: var(--spook-text-muted-test);
+
+    /* Neutral icons */
+    // Header/database SVGs; unchecked to-do borders.
+    --c-icoPri: var(--spook-text-primary-test);
+    // Sidebar/editor/database/control SVGs; masked icons.
+    --c-icoSec: var(--spook-text-secondary-test);
+    // Sidebar SVGs; database text and icons.
+    --c-icoTer: var(--spook-text-muted-test);
+
+    /* Translucent neutral edges */
+    // Button borders; page-link underlines; ordinary-table controls; database shadows; editor/callout paint.
+    --ca-borPriTra: var(--spook-border-test);
+    // Table-cell separators; gallery-card outlines and shadows.
+    --ca-borSecTra: var(--spook-border-test);
+
+    /* Additional edges */
+    // Hover/active test tokens are strength tiers here, not interaction-state selectors.
+    // Sidebar inset divider and section border.
+    --c-borSec: var(--spook-border-test);
+    // Unchecked database checkbox frames.
+    --ca-borStrTra: var(--spook-border-hover-test);
+    // Breadcrumb spans; ordinary-table and embedded tab-block borders.
+    --c-borPri: var(--spook-border-active-test);
+}

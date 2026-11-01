@@ -2,7 +2,8 @@
    TAB BAR NAVIGATION
    ======================================== */
 
-/* Background behind Back and Forward buttons */
+// Desktop Tab Bar — tray behind Back/Forward controls.
+// Requires a direct-child tray and the English Back label.
 .notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label="Back"]) {
     background: var(--spook-bg-secondary) !important;
 }
