@@ -19,7 +19,13 @@
     --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
-// Code blocks — language, copy and other action-button hover/pressed backgrounds.
+// Code blocks — visible action toolbar and action-button hover/pressed backgrounds.
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-    --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+    --c-bacEle: var(--spook-bg-tertiary-test);
+    --ca-graBacIntTra: var(--spook-page-interaction-overlay-test);
+}
+
+// Code action buttons — readable labels/icons; inline neutral-button channels.
+.notion-app-inner.notion-dark-theme :where(.notion-code-block [role="button"][style*="--ca-graBacIntTra"]) {
+    --c-graTexAccPri: var(--spook-text-highlight-test);
 }

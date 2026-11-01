@@ -13,7 +13,28 @@
     --c-bluBacAccPri: var(--spook-accent-dark-test);
 }
 
-// Database gallery — hover tint beneath the native card face and media.
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover) {
-    background-color: var(--spook-page-interaction-overlay-test);
+// Database gallery — hovered card face; override its inline native background, not the parent.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"]) {
+    background-color: var(--spook-page-interaction-overlay-test) !important;
+}
+
+// Database rows — floating Edit/comment toolbar surfaces.
+// Comment controls use English ARIA labels.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]),
+    .notion-table-view-cell:has([role="button"][aria-label*="comment" i])
+) {
+    --c-bacEle: var(--spook-bg-tertiary-test);
+}
+
+// List Edit button — hover/pressed surface and readable label/icon; inline interaction channel.
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
+    --c-bacInt: var(--spook-page-interaction-overlay-test);
+    --c-texSec: var(--spook-text-highlight);
+}
+
+// Table-cell comment button — hover/pressed surface and icon.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --c-texPri: var(--spook-text-highlight);
 }

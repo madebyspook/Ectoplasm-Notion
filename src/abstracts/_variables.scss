@@ -8,14 +8,14 @@
     --spook-bg-primary: #1B1D1F;
     // Desktop Tab Bar trays, inactive tabs and title fades; disabled sidebar/header backgrounds.
     --spook-bg-secondary: #161819;
-    // Hover tooltip surfaces.
+    // Usage not yet identified.
     --spook-bg-tertiary: #222526;
 
-    // Application/editor and peek surfaces; database shadows.
+    // Application/editor, peek and tooltip surfaces; database shadows.
     --spook-bg-primary-test: #1B1D5F;
-    // Sidebar background (--c-bacSec).
+    // Sidebar background; template Default badges (--c-bacSec).
     --spook-bg-secondary-test: #162f19;
-    // Help button; formatting/block menus; database popovers; desktop-tab preview.
+    // Help button; menus/popovers; code and database action bars; desktop-tab preview.
     --spook-bg-tertiary-test: #4f2526;
 
     /* Desktop Tab Bar state surfaces */
@@ -29,8 +29,9 @@
     --spook-bg-selected-test: #1524ff;
 
     /* Page interaction states */
-    // Sidebar rows; page links; popup items; database controls/cards; code actions.
+    // Popup items; database Filter/Sort and comment controls; code actions.
     --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
+    // Sidebar/page-link/gallery hover; list Edit hover.
     --spook-page-interaction-overlay-test: rgb(from var(--spook-bg-hover-test) r g b / 1);
 
     /* Accents */
@@ -87,7 +88,7 @@
         drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 
     /* Text palette */
-    // Desktop Tab Bar title-group descendants, including wrappers and images.
+    // Desktop tab-title descendants; code actions; list Edit and table comment controls.
     --spook-text-highlight: #ffffff;
     // Usage not yet identified.
     --spook-text-primary: #e8f1ff;

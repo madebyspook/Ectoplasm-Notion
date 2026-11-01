@@ -116,15 +116,21 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-  --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+  --c-bacEle: var(--spook-bg-tertiary-test);
+  --ca-graBacIntTra: var(--spook-page-interaction-overlay-test);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
+  --c-graTexAccPri: var(--spook-text-highlight-test);
 }
 
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
-  --c-bacAccPri: var(--spook-bg-tertiary);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+  --c-bacEle: var(--spook-bg-tertiary-test);
+  --c-bacAccPri: var(--spook-bg-primary-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
@@ -142,8 +148,23 @@
   --c-bluBacAccPri: var(--spook-accent-dark-test);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover) {
-  background-color: var(--spook-page-interaction-overlay-test);
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation]) {
+  background-color: var(--spook-page-interaction-overlay-test) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]),
+.notion-table-view-cell:has([role=button][aria-label*=comment i])) {
+  --c-bacEle: var(--spook-bg-tertiary-test);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
+  --c-bacInt: var(--spook-page-interaction-overlay-test);
+  --c-texSec: var(--spook-text-highlight);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role=button][aria-label*=comment i]) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --c-texPri: var(--spook-text-highlight);
 }
 
 /* ========================================
