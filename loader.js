@@ -3,8 +3,8 @@ const http = require("node:http");
 const path = require("node:path");
 
 const PORT = 9222;
-const CSS_PATH = path.join(__dirname, "Spooklucence-Notion.css");
-const STYLE_ID = "spooklucence-notion-theme";
+const CSS_PATH = path.join(__dirname, "dist", "Ectoplasma.theme.css");
+const STYLE_ID = "ectoplasma-notion-theme";
 
 const connections = new Map();
 let currentCSS = "";
@@ -40,9 +40,10 @@ function injectCSS(ws) {
 
         style.textContent = ${JSON.stringify(currentCSS)};
 
-        document.getElementById("spooklucence-test")?.remove();
-
-        return "Spooklucence CSS applied";
+        // Remove the theme's test element if present.
+        document.getElementById("ectoplasma-test")?.remove();
+        
+        return "Ectoplasma CSS applied";
     })()`;
 
     ws.send(JSON.stringify({
@@ -84,7 +85,7 @@ function connect(target) {
         );
     }
 
-    if (response.result?.result?.value === "Spooklucence CSS applied") {
+    if (response.result?.result?.value === "Ectoplasma CSS applied") {
         console.log(`[CSS applied] ${target.title}`);
     }
     });
@@ -144,5 +145,5 @@ fs.watchFile(CSS_PATH, { interval: 500 }, (curr, prev) => {
     }
 });
 
-console.log("Spooklucence Notion loader running.");
+console.log("Ectoplasma Notion loader running.");
 console.log("Press Ctrl+C to stop.");
