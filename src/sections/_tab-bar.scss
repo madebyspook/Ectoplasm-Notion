@@ -2,8 +2,7 @@
    TAB BAR
    ======================================== */
 
-// Desktop Tab Bar — trays, inactive tabs and New Tab container.
-// Tab states depend on inline RGB; New Tab uses an English ARIA label.
+// Tab bar - Inactive tabs and New Tab container.
 .notion-dark-theme.notion-standard-contrast.root > div:first-child, /* Left section */
 .notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar, /* Tab strip */
 .notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div, /* Right section */
@@ -12,14 +11,24 @@
     background: var(--spook-bg-secondary) !important;
 }
 
-// Desktop Tab Bar — selected-tab background, underline and glow (inline RGB state, not :active).
+// Tab Bar — Back/Forward background.
+.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label="Back"]) {
+    background: var(--spook-bg-secondary) !important;
+}
+
+// Tab bar - Selected-tab background, underline and glow.
 :where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(25, 25, 25)"] {
     background-color: var(--spook-bg-selected) !important;
     box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
-// Desktop Tab Bar — inactive title fade.
-// Uses a 9px inline gradient; --gradient-direction defaults to 90deg.
+// Tab Bar — Hovered-tab background, underline and glow.
+:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
+    background-color: var(--spook-bg-hover) !important;
+    box-shadow: var(--spook-tab-box-shadow) !important;
+}
+
+// Tab Bar — inactive title fade.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*="linear-gradient"] {
     background: linear-gradient(
         var(--gradient-direction, 90deg),
@@ -28,20 +37,12 @@
     ) !important;
 }
 
-// Desktop Tab Bar — hovered-tab background, underline and glow.
-// Depends on Notion's inline HSL hover value.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-    background-color: var(--spook-bg-hover) !important;
-    box-shadow: var(--spook-tab-box-shadow) !important;
-}
-
-// Desktop Tab Bar — hovered title fade above the bottom 3px highlight.
+// Tab Bar — hovered title fade above the bottom 3px highlight.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"] {
     height: calc(100% - 3px) !important;
 }
 
-// Desktop Tab Bar — hovered title edge and close-button fade.
-// Uses 9px title gradients and 16px gradients inside 34px close overlays.
+// Tab Bar — Hovered title edge and close-button fade.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"],
 :where(.root) .hide-scrollbar div[style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] > div[style*="width: 16px"][style*="linear-gradient"] {
     background: linear-gradient(
@@ -51,13 +52,12 @@
     ) !important;
 }
 
-// Desktop Tab Bar — close-button backplate (34px absolute overlay).
+// Tab Bar — Close-button backplate (34px absolute overlay).
 :where(.root) .hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
     background: var(--spook-bg-hover) !important;
 }
 
-// Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
-// Controls are identified by English ARIA labels.
+// Tab Bar - Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
 :where(.root) .hide-scrollbar [role="button"][aria-label^="Close Tab"]:hover,
 :where(.root) .hide-scrollbar [aria-label="New Tab"]:hover,
 .notion-dark-theme.notion-standard-contrast.root [aria-label="Back"]:hover,
@@ -68,15 +68,13 @@
     background-color: var(--spook-tab-button-hover) !important;
 }
 
-// Desktop Tab Bar — title-group text and glow.
-// The descendant wildcard also reaches wrappers and images.
+// Tab Bar — title-group text and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
     color: var(--spook-text-highlight) !important;
     text-shadow: var(--spook-tab-text-glow) !important;
 }
 
-// Desktop navigation/control SVGs — white icons and glow.
-// Controls are identified by English ARIA labels.
+// Tab Bar - navigation/control SVGs — white icons and glow.
 :where(.root) .hide-scrollbar [aria-label="New Tab"] svg,
 :where(.root) .hide-scrollbar [aria-label^="Close Tab"] svg,
 .notion-dark-theme.notion-standard-contrast.root [aria-label="Back"] svg,
@@ -90,8 +88,7 @@
         var(--spook-tab-icon-glow) !important;
 }
 
-// Desktop Tab Bar page-icon images — contrast and glow.
-// Keep the existing img/SVG exclusion's specificity.
+// Tab Bar page-icon images — contrast and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
     filter:
         brightness(1.15)

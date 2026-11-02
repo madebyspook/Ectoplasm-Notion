@@ -4,11 +4,10 @@
 
 // Databases — Filter/Sort button hover/pressed backgrounds.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
 // Databases — New button and split control; native HSL adjustments retain hover/pressed states.
-// Keep the blue palette local so property/status colors and inverse labels stay native.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
     --c-bluBacAccPri: var(--spook-accent-dark-test);
 }
@@ -18,23 +17,22 @@
     background-color: var(--spook-page-interaction-overlay-test) !important;
 }
 
-// Database rows — floating Edit/comment toolbar surfaces.
-// Comment controls use English ARIA labels.
-.notion-app-inner.notion-dark-theme :where(
-    .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]),
-    .notion-table-view-cell:has([role="button"][aria-label*="comment" i])
-) {
+// Database table - comment button
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role="button"][aria-label*="comment" i])) {
+    --c-bacEle: var(--spook-bg-tertiary-test);
+}
+// Database list - edit button outline
+.notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
     --c-bacEle: var(--spook-bg-tertiary-test);
 }
 
-// List Edit button — hover/pressed surface and readable label/icon; inline interaction channel.
+// Database list - edit button — hover/pressed surface and readable label/icon
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
-    --c-bacInt: var(--spook-page-interaction-overlay-test);
-    --c-texSec: var(--spook-text-highlight);
+    --c-bacInt: var(--spook-page-interaction-overlay-test); // Hover background
+    --c-texSec: var(--spook-text-highlight-test); // Button text
 }
 
 // Table-cell comment button — hover/pressed surface and icon.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
-    --c-texPri: var(--spook-text-highlight);
+    --ca-bacIntTra: var(--spook-page-interaction-overlay-test); // Comment button Hover
 }
