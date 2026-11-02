@@ -2,14 +2,17 @@
    POPUPS AND PEEK VIEWS
    ======================================== */
 
-// Popups — menu-item states; nested workspace/library surfaces; shared hover tooltips.
+// Tooltip - background
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
-    --c-bacEle: var(--spook-bg-tertiary-test);
     --c-bacAccPri: var(--spook-bg-primary-test);
 }
 
-// Page peek — panel, header and supporting scroller surfaces; retain the native backdrop.
+// Tooltip - Element hover background
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
+    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+}
+
+// Page Side Peek & Center Peek backrgound
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
-    --c-bacEle: var(--spook-bg-primary-test);
+    --c-bacEle: var(--spook-bg-secondary-test);
 }

@@ -2,8 +2,7 @@
    SIDEBAR
    ======================================== */
 
-// Sidebar — Home/Meetings, page rows, disclosure buttons, categories and spaces.
-// Native alpha multipliers retain selected, hover and pressed differences.
+// Sidebar — Element Hover & Active Home/Meetings
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
     --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }

@@ -2,30 +2,28 @@
    MAIN EDITOR
    ======================================== */
 
-
-// Editor — empty text, quote and table-cell placeholders; empty-toggle hints.
-// Toggle hints depend on Notion's inline neutral-text channels.
-.notion-app-inner.notion-dark-theme :where(
-    .notion-page-content [contenteditable="true"][placeholder]:empty,
-    .notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]
-) {
+// Block - toggle - empty placeholder text
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
     --ca-texDisTra: var(--spook-text-muted-test);
 }
 
-// Editor — page-link hover/pressed backgrounds, separate from database cards.
-.notion-app-inner.notion-dark-theme :where(
-    .notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"]
-) {
+// Block - empty placeholder text
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable="true"][placeholder]:empty) {
+    --ca-texDisTra: var(--spook-text-muted-test);
+}
+
+// Block — Page - hover background
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"]) {
     --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
-// Code blocks — visible action toolbar and action-button hover/pressed backgrounds.
+// Block - code blocks — action buttons 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-    --c-bacEle: var(--spook-bg-tertiary-test);
-    --ca-graBacIntTra: var(--spook-page-interaction-overlay-test);
+    --c-bacEle: var(--spook-bg-tertiary-test); // background
+    --ca-graBacIntTra: var(--spook-page-interaction-overlay-test); // hover
 }
 
-// Code action buttons — readable labels/icons; inline neutral-button channels.
+// Block - code blocks - action buttons text
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [role="button"][style*="--ca-graBacIntTra"]) {
     --c-graTexAccPri: var(--spook-text-highlight-test);
 }

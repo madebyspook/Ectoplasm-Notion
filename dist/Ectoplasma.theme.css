@@ -106,8 +106,11 @@
 /* ========================================
    MAIN EDITOR
    ======================================== */
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty,
-.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
+  --ca-texDisTra: var(--spook-text-muted-test);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty) {
   --ca-texDisTra: var(--spook-text-muted-test);
 }
 
@@ -128,20 +131,22 @@
    POPUPS AND PEEK VIEWS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
-  --c-bacEle: var(--spook-bg-tertiary-test);
   --c-bacAccPri: var(--spook-bg-primary-test);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
-  --c-bacEle: var(--spook-bg-primary-test);
+  --c-bacEle: var(--spook-bg-secondary-test);
 }
 
 /* ========================================
    DATABASE CONTROLS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
@@ -152,19 +157,21 @@
   background-color: var(--spook-page-interaction-overlay-test) !important;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]),
-.notion-table-view-cell:has([role=button][aria-label*=comment i])) {
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role=button][aria-label*=comment i])) {
+  --c-bacEle: var(--spook-bg-tertiary-test);
+}
+
+.notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]) {
   --c-bacEle: var(--spook-bg-tertiary-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
   --c-bacInt: var(--spook-page-interaction-overlay-test);
-  --c-texSec: var(--spook-text-highlight);
+  --c-texSec: var(--spook-text-highlight-test);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role=button][aria-label*=comment i]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
-  --c-texPri: var(--spook-text-highlight);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
 /* ========================================
@@ -178,18 +185,22 @@
   background: var(--spook-bg-secondary) !important;
 }
 
+.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label=Back]) {
+  background: var(--spook-bg-secondary) !important;
+}
+
 :where(.root) .hide-scrollbar [role=button][style*="background-color: rgb(25, 25, 25)"] {
   background-color: var(--spook-bg-selected) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
-:where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*=linear-gradient] {
-  background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-secondary) 100%) !important;
-}
-
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
   background-color: var(--spook-bg-hover) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
+}
+
+:where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*=linear-gradient] {
+  background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-secondary) 100%) !important;
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*=linear-gradient] {
@@ -232,14 +243,4 @@
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
   filter: brightness(1.15) contrast(4) var(--spook-tab-icon-glow) !important;
-}
-
-/* ========================================
-   PAGE HEADER
-   ======================================== */
-/* ========================================
-   TAB BAR NAVIGATION
-   ======================================== */
-.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label=Back]) {
-  background: var(--spook-bg-secondary) !important;
 }
