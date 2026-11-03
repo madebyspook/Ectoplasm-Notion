@@ -12,31 +12,19 @@
   --spook-bg-primary: #1B1D1F;
   --spook-bg-secondary: #161819;
   --spook-bg-tertiary: #222526;
-  --spook-bg-primary-test: #1B1D5F;
-  --spook-bg-secondary-test: #162f19;
-  --spook-bg-tertiary-test: #4f2526;
-  /* Desktop Tab Bar state surfaces */
+  /* Interaction surfaces */
   --spook-bg-hover: #172235;
   --spook-bg-selected: #15243a;
-  --spook-bg-hover-test: #1722ff;
-  --spook-bg-selected-test: #1524ff;
   /* Page interaction states */
-  --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover-test) r g b / 0.12);
-  --spook-page-interaction-overlay-test: rgb(from var(--spook-bg-hover-test) r g b / 1);
+  --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover) r g b / 0.12);
   /* Accents */
   --spook-accent: #39a8ff;
   --spook-accent-bright: #78d5ff;
   --spook-accent-dark: #2366a0;
-  --spook-accent-test: #ffa8ff;
-  --spook-accent-bright-test: #ffd5ff;
-  --spook-accent-dark-test: #ff66a0;
   /* Borders */
   --spook-border: rgba(57, 168, 255, 0.14);
   --spook-border-hover: rgba(57, 168, 255, 0.35);
   --spook-border-active: rgba(120, 213, 255, 0.65);
-  --spook-border-test: rgba(255, 168, 255, 0.74);
-  --spook-border-hover-test: rgba(255, 168, 255, 0.85);
-  --spook-border-active-test: rgba(255, 213, 255, 1);
   /* General surface glows */
   --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
   --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
@@ -57,10 +45,6 @@
   --spook-text-primary: #e8f1ff;
   --spook-text-secondary: #a9bdd6;
   --spook-text-muted: #71869f;
-  --spook-text-highlight-test: #ffff00;
-  --spook-text-primary-test: #aa00ff;
-  --spook-text-secondary-test: #5555ff;
-  --spook-text-muted-test: #0000ff;
   /* Predefined text colors */
   --spook-text-gray: #7d7a75;
   --spook-text-brown: #9f765a;
@@ -71,16 +55,6 @@
   --spook-text-purple: #9a6bb4;
   --spook-text-pink: #c14c8a;
   --spook-text-red: #cf5148;
-  /* Predefined text colors — Test */
-  --spook-text-gray-test: #E0E0E0;
-  --spook-text-brown-test: #E8BFA5;
-  --spook-text-orange-test: #FFD0A0;
-  --spook-text-yellow-test: #FFF4A0;
-  --spook-text-green-test: #A8F5C0;
-  --spook-text-blue-test: #A8D8FF;
-  --spook-text-purple-test: #DCC0FF;
-  --spook-text-pink-test: #FFB8E0;
-  --spook-text-red-test: #FFB0B0;
   /* Predefined background colors */
   --spook-bg-gray: #383836;
   --spook-bg-brown: #45362d;
@@ -91,51 +65,52 @@
   --spook-bg-purple: #3c2d47;
   --spook-bg-pink: #4e2b3c;
   --spook-bg-red: #502c29;
-  /* Predefined background colors — Test */
-  --spook-bg-gray-test: #D0D0D0;
-  --spook-bg-brown-test: #D9AD91;
-  --spook-bg-orange-test: #FFC080;
-  --spook-bg-yellow-test: #FFE880;
-  --spook-bg-green-test: #90E8B0;
-  --spook-bg-blue-test: #90C8FF;
-  --spook-bg-purple-test: #C8A0FF;
-  --spook-bg-pink-test: #FF98D0;
-  --spook-bg-red-test: #FF9898;
-  /* Custom button hover backgrounds — test */
-  --spook-button-hover-default-test: color-mix(in srgb, var(--spook-bg-primary-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-gray-test: color-mix(in srgb, var(--spook-bg-gray-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-brown-test: color-mix(in srgb, var(--spook-bg-brown-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-orange-test: color-mix(in srgb, var(--spook-bg-orange-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-yellow-test: color-mix(in srgb, var(--spook-bg-yellow-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-green-test: color-mix(in srgb, var(--spook-bg-green-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-blue-test: color-mix(in srgb, var(--spook-bg-blue-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-purple-test: color-mix(in srgb, var(--spook-bg-purple-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-pink-test: color-mix(in srgb, var(--spook-bg-pink-test) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-red-test: color-mix(in srgb, var(--spook-bg-red-test) 80%, var(--spook-bg-secondary));
-  /* Select/Status tag backgrounds — test */
-  --spook-tag-bg-default-test: rgb(from var(--spook-bg-gray-test) r g b / 0.5);
-  --spook-tag-bg-gray-test: rgb(from var(--spook-bg-gray-test) r g b / 0.25);
-  --spook-tag-bg-brown-test: rgb(from var(--spook-bg-brown-test) r g b / 0.25);
-  --spook-tag-bg-orange-test: rgb(from var(--spook-bg-orange-test) r g b / 0.25);
-  --spook-tag-bg-yellow-test: rgb(from var(--spook-bg-yellow-test) r g b / 0.25);
-  --spook-tag-bg-green-test: rgb(from var(--spook-bg-green-test) r g b / 0.25);
-  --spook-tag-bg-blue-test: rgb(from var(--spook-bg-blue-test) r g b / 0.25);
-  --spook-tag-bg-purple-test: rgb(from var(--spook-bg-purple-test) r g b / 0.25);
-  --spook-tag-bg-pink-test: rgb(from var(--spook-bg-pink-test) r g b / 0.25);
-  --spook-tag-bg-red-test: rgb(from var(--spook-bg-red-test) r g b / 0.25);
-  /* Tooltip supporting text — test */
-  --spook-tooltip-text-secondary-test: #B8FFFF;
-  /* Native SVG icon colors — test filters */
-  --spook-icon-gray-filter-test: brightness(0) invert(87.84%);
-  --spook-icon-lightgray-filter-test: brightness(0) invert(98.04%);
-  --spook-icon-brown-filter-test: brightness(0) invert(62.71%) sepia(79.88%) saturate(125.22%) hue-rotate(339.88deg) brightness(111.96%) contrast(85.45%);
-  --spook-icon-orange-filter-test: brightness(0) invert(71.66%) sepia(32.15%) saturate(370.87%) hue-rotate(345.13deg) brightness(110.66%) contrast(100.78%);
-  --spook-icon-yellow-filter-test: brightness(0) invert(56.7%) sepia(54.76%) saturate(261.61%) hue-rotate(359.43deg) brightness(153.36%) contrast(100.29%);
-  --spook-icon-green-filter-test: brightness(0) invert(87.03%) sepia(40.23%) saturate(311.84%) hue-rotate(73.84deg) brightness(99.59%) contrast(92.91%);
-  --spook-icon-blue-filter-test: brightness(0) invert(76.06%) sepia(32.23%) saturate(326.83%) hue-rotate(166.21deg) brightness(100.57%) contrast(100.25%);
-  --spook-icon-purple-filter-test: brightness(0) invert(73.57%) sepia(24.43%) saturate(382.78%) hue-rotate(223.94deg) brightness(101.79%) contrast(102.14%);
-  --spook-icon-pink-filter-test: brightness(0) invert(57.84%) sepia(29.58%) saturate(551.34%) hue-rotate(292.79deg) brightness(131.89%) contrast(113.71%);
-  --spook-icon-red-filter-test: brightness(0) invert(82.2%) sepia(81.69%) saturate(516.05%) hue-rotate(290.82deg) brightness(99.26%) contrast(103.76%);
+  /* Custom button hover backgrounds */
+  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-primary) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-gray: color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-brown: color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-orange: color-mix(in srgb, var(--spook-bg-orange) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-yellow: color-mix(in srgb, var(--spook-bg-yellow) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-green: color-mix(in srgb, var(--spook-bg-green) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-blue: color-mix(in srgb, var(--spook-bg-blue) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-purple: color-mix(in srgb, var(--spook-bg-purple) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-pink: color-mix(in srgb, var(--spook-bg-pink) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-red: color-mix(in srgb, var(--spook-bg-red) 80%, var(--spook-bg-secondary));
+  /* Select/Status tag text */
+  --spook-tag-text-default: #f0efed;
+  --spook-tag-text-gray: #f0efed;
+  --spook-tag-text-brown: #f5ede9;
+  --spook-tag-text-orange: #fbebde;
+  --spook-tag-text-yellow: #f9f3dc;
+  --spook-tag-text-green: #e8f1ec;
+  --spook-tag-text-blue: #e5f2fc;
+  --spook-tag-text-purple: #f3ebf9;
+  --spook-tag-text-pink: #fae9f1;
+  --spook-tag-text-red: #fce9e7;
+  /* Select/Status tag backgrounds */
+  --spook-tag-bg-default: #fffff315;
+  --spook-tag-bg-gray: #fffceb4e;
+  --spook-tag-bg-brown: #ffb8845d;
+  --spook-tag-bg-orange: #ff8f477b;
+  --spook-tag-bg-yellow: #ffbc3575;
+  --spook-tag-bg-green: #71ffaf56;
+  --spook-tag-bg-blue: #51a6ff7e;
+  --spook-tag-bg-purple: #d093ff6d;
+  --spook-tag-bg-pink: #ff85c06d;
+  --spook-tag-bg-red: #ff746986;
+  /* Tooltip supporting text */
+  --spook-tooltip-text-secondary: #B8FFFF;
+  /* Native SVG icon colors */
+  --spook-icon-gray-filter: none;
+  --spook-icon-lightgray-filter: none;
+  --spook-icon-brown-filter: none;
+  --spook-icon-orange-filter: none;
+  --spook-icon-yellow-filter: none;
+  --spook-icon-green-filter: none;
+  --spook-icon-blue-filter: none;
+  --spook-icon-purple-filter: none;
+  --spook-icon-pink-filter: none;
+  --spook-icon-red-filter: none;
   /* Geometry */
   --spook-radius-small: 6px;
   --spook-radius-medium: 10px;
@@ -147,85 +122,89 @@
    ======================================== */
 .notion-app-inner.notion-dark-theme {
   /* Neutral surfaces */
-  --c-bacPri: var(--spook-bg-primary-test);
-  --c-bacSec: var(--spook-bg-secondary-test);
-  --c-whiButBac: var(--spook-bg-tertiary-test);
+  --c-bacPri: var(--spook-bg-primary);
+  --c-bacSec: var(--spook-bg-secondary);
+  --c-whiButBac: var(--spook-bg-tertiary);
   /* Elevated surfaces */
-  --c-popBac: var(--spook-bg-tertiary-test);
+  --c-popBac: var(--spook-bg-tertiary);
   /* Neutral text */
-  --c-texPri: var(--spook-text-primary-test);
-  --c-texSec: var(--spook-text-secondary-test);
-  --c-texTer: var(--spook-text-muted-test);
-  --c-texAccPri: var(--spook-text-primary-test);
-  --c-graTexAccPri: var(--spook-text-muted-test);
+  --c-texPri: var(--spook-text-primary);
+  --c-texSec: var(--spook-text-secondary);
+  --c-texTer: var(--spook-text-muted);
+  --c-texAccPri: var(--spook-text-primary);
+  --c-graTexAccPri: var(--spook-text-muted);
   /* Neutral icons */
-  --c-icoPri: var(--spook-text-primary-test);
-  --c-icoSec: var(--spook-text-secondary-test);
-  --c-icoTer: var(--spook-text-muted-test);
+  --c-icoPri: var(--spook-text-primary);
+  --c-icoSec: var(--spook-text-secondary);
+  --c-icoTer: var(--spook-text-muted);
   /* Translucent neutral edges */
-  --ca-borPriTra: var(--spook-border-test);
-  --ca-borSecTra: var(--spook-border-test);
+  --ca-borPriTra: var(--spook-border);
+  --ca-borSecTra: var(--spook-border);
   /* Additional edges */
-  --c-borSec: var(--spook-border-test);
-  --ca-borStrTra: var(--spook-border-hover-test);
-  --c-borPri: var(--spook-border-active-test);
+  --c-borSec: var(--spook-border);
+  --ca-borStrTra: var(--spook-border-hover);
+  --c-borPri: var(--spook-border-active);
   /* Predefined text colors */
-  --c-graTexSec: var(--spook-text-gray-test);
-  --c-broTexSec: var(--spook-text-brown-test);
-  --c-oraTexSec: var(--spook-text-orange-test);
-  --c-yelTexSec: var(--spook-text-yellow-test);
-  --c-greTexSec: var(--spook-text-green-test);
-  --c-bluTexSec: var(--spook-text-blue-test);
-  --c-purTexSec: var(--spook-text-purple-test);
-  --c-pinTexSec: var(--spook-text-pink-test);
-  --c-redTexSec: var(--spook-text-red-test);
+  --c-graTexSec: var(--spook-text-gray);
+  --c-broTexSec: var(--spook-text-brown);
+  --c-oraTexSec: var(--spook-text-orange);
+  --c-yelTexSec: var(--spook-text-yellow);
+  --c-greTexSec: var(--spook-text-green);
+  --c-bluTexSec: var(--spook-text-blue);
+  --c-purTexSec: var(--spook-text-purple);
+  --c-pinTexSec: var(--spook-text-pink);
+  --c-redTexSec: var(--spook-text-red);
   /* Database tag text */
-  --c-graTexPri: var(--spook-text-gray-test);
-  --c-oraTexPri: var(--spook-text-orange-test);
-  --c-bluTexPri: var(--spook-text-blue-test);
-  --c-greTexPri: var(--spook-text-green-test);
-  --c-broTexPri: var(--spook-text-brown-test);
-  --c-yelTexPri: var(--spook-text-yellow-test);
-  --c-purTexPri: var(--spook-text-purple-test);
-  --c-pinTexPri: var(--spook-text-pink-test);
-  --c-redTexPri: var(--spook-text-red-test);
+  --c-graTexPri: var(--spook-tag-text-gray);
+  --c-broTexPri: var(--spook-tag-text-brown);
+  --c-oraTexPri: var(--spook-tag-text-orange);
+  --c-yelTexPri: var(--spook-tag-text-yellow);
+  --c-greTexPri: var(--spook-tag-text-green);
+  --c-bluTexPri: var(--spook-tag-text-blue);
+  --c-purTexPri: var(--spook-tag-text-purple);
+  --c-pinTexPri: var(--spook-tag-text-pink);
+  --c-redTexPri: var(--spook-tag-text-red);
   /* Predefined background colors */
-  --c-graBacSec: var(--spook-bg-gray-test);
-  --c-broBacSec: var(--spook-bg-brown-test);
-  --c-oraBacSec: var(--spook-bg-orange-test);
-  --c-yelBacSec: var(--spook-bg-yellow-test);
-  --c-greBacSec: var(--spook-bg-green-test);
-  --c-bluBacSec: var(--spook-bg-blue-test);
-  --c-purBacSec: var(--spook-bg-purple-test);
-  --c-pinBacSec: var(--spook-bg-pink-test);
-  --c-redBacSec: var(--spook-bg-red-test);
+  --c-graBacSec: var(--spook-bg-gray);
+  --c-broBacSec: var(--spook-bg-brown);
+  --c-oraBacSec: var(--spook-bg-orange);
+  --c-yelBacSec: var(--spook-bg-yellow);
+  --c-greBacSec: var(--spook-bg-green);
+  --c-bluBacSec: var(--spook-bg-blue);
+  --c-purBacSec: var(--spook-bg-purple);
+  --c-pinBacSec: var(--spook-bg-pink);
+  --c-redBacSec: var(--spook-bg-red);
   /* Select/Status tag backgrounds */
-  --ca-graBacTerTra: var(--spook-tag-bg-gray-test);
-  --ca-broBacTerTra: var(--spook-tag-bg-brown-test);
-  --ca-oraBacTerTra: var(--spook-tag-bg-orange-test);
-  --ca-yelBacTerTra: var(--spook-tag-bg-yellow-test);
-  --ca-greBacTerTra: var(--spook-tag-bg-green-test);
-  --ca-bluBacTerTra: var(--spook-tag-bg-blue-test);
-  --ca-purBacTerTra: var(--spook-tag-bg-purple-test);
-  --ca-pinBacTerTra: var(--spook-tag-bg-pink-test);
-  --ca-redBacTerTra: var(--spook-tag-bg-red-test);
+  --ca-graBacTerTra: rgb(from var(--spook-bg-gray) r g b / 0.25);
+  --ca-broBacTerTra: var(--spook-tag-bg-brown);
+  --ca-oraBacTerTra: var(--spook-tag-bg-orange);
+  --ca-yelBacTerTra: var(--spook-tag-bg-yellow);
+  --ca-greBacTerTra: var(--spook-tag-bg-green);
+  --ca-bluBacTerTra: var(--spook-tag-bg-blue);
+  --ca-purBacTerTra: var(--spook-tag-bg-purple);
+  --ca-pinBacTerTra: var(--spook-tag-bg-pink);
+  --ca-redBacTerTra: var(--spook-tag-bg-red);
 }
 
 /* ========================================
    SIDEBAR
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
-  --c-bacEle: var(--spook-bg-secondary-test);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --c-bacEle: var(--spook-bg-secondary);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-switcher .notion-record-icon) {
-  --ca-bacTerTra: var(--spook-bg-tertiary-test);
+  --ca-bacTerTra: var(--spook-bg-tertiary);
 }
 
 /* ========================================
    MAIN EDITOR
    ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
+  --cl-pagTitPlaTexCol: var(--spook-text-muted);
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"],
 [style*="font-weight:700"], [style*="font-weight: 700"],
 [style*="font-weight:bold"], [style*="font-weight: bold"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
@@ -234,163 +213,168 @@
   font-weight: 900 !important;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
-  --cl-pagTitPlaTexCol: var(--spook-text-muted-test);
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty) {
+  --ca-texDisTra: var(--spook-text-muted);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
-  --ca-texDisTra: var(--spook-text-muted-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty) {
-  --ca-texDisTra: var(--spook-text-muted-test);
+  --ca-texDisTra: var(--spook-text-muted);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-  --c-bacEle: var(--spook-bg-tertiary-test);
-  --ca-graBacIntTra: var(--spook-page-interaction-overlay-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
-  --c-graTexAccPri: var(--spook-text-highlight-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
-  --cl-palGra400: var(--spook-button-hover-gray-test);
-  --ca-palBro400: var(--spook-button-hover-brown-test);
-  --ca-palOra400: var(--spook-button-hover-orange-test);
-  --ca-palYel400: var(--spook-button-hover-yellow-test);
-  --ca-palGre400: var(--spook-button-hover-green-test);
-  --ca-palBlu400: var(--spook-button-hover-blue-test);
-  --ca-palPur400: var(--spook-button-hover-purple-test);
-  --ca-palPin400: var(--spook-button-hover-pink-test);
-  --ca-palRed400: var(--spook-button-hover-red-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button][style*="hsl(from var(--c-bacPri)"]) {
-  background-color: var(--spook-button-hover-default-test) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled)) {
-  --c-bluBacAccPri: var(--spook-accent-dark-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled:checked) svg) {
-  fill: var(--spook-text-highlight-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
-  --ca-texDisTra: var(--spook-text-muted-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
-  --c-yelBacSec: var(--spook-bg-tertiary-test);
-  --c-yelTexSec: var(--spook-text-highlight-test);
-  --c-yelIcoSec: var(--spook-text-blue-test);
-  --ca-yelBorStrTra: var(--spook-border-hover-test);
   --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
+  --c-bacEle: var(--spook-bg-tertiary);
+  --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
+  --c-graTexAccPri: var(--spook-text-highlight);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
+  --cl-palGra400: var(--spook-button-hover-gray);
+  --ca-palBro400: var(--spook-button-hover-brown);
+  --ca-palOra400: var(--spook-button-hover-orange);
+  --ca-palYel400: var(--spook-button-hover-yellow);
+  --ca-palGre400: var(--spook-button-hover-green);
+  --ca-palBlu400: var(--spook-button-hover-blue);
+  --ca-palPur400: var(--spook-button-hover-purple);
+  --ca-palPin400: var(--spook-button-hover-pink);
+  --ca-palRed400: var(--spook-button-hover-red);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button][style*="hsl(from var(--c-bacPri)"]) {
+  background-color: var(--spook-button-hover-default) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled)) {
+  --c-bluBacAccPri: var(--spook-accent-dark);
+}
+
+.notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled:checked) svg) {
+  fill: var(--spook-text-highlight);
+}
+
+.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+  --ca-texDisTra: var(--spook-text-muted);
+}
+
 .notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role=menu]:has(svg.notionTemplate)) {
-  --ca-bacTerTra: rgb(from var(--spook-bg-tertiary-test) r g b / 0.5);
+  --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
 }
 
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-  --c-bacAccPri: var(--spook-bg-primary-test);
-  --c-texInvPri: var(--spook-text-highlight-test);
-  --c-texInvSec: var(--spook-tooltip-text-secondary-test);
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+  --c-bacAccPri: var(--spook-bg-primary);
+  --c-texInvPri: var(--spook-text-highlight);
+  --c-texInvSec: var(--spook-tooltip-text-secondary);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
-  --c-bacEle: var(--spook-bg-secondary-test);
+  --c-bacEle: var(--spook-bg-secondary);
 }
 
 /* ========================================
    DATABASE CONTROLS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
-  --c-bluBacAccPri: var(--spook-accent-dark-test);
-  --c-bluTexInvPri: var(--spook-text-highlight-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation]) {
-  background-color: var(--spook-page-interaction-overlay-test) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role=button][aria-label*=comment i])) {
-  --c-bacEle: var(--spook-bg-tertiary-test);
-}
-
-.notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]) {
-  --c-bacEle: var(--spook-bg-tertiary-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
-  --c-bacInt: var(--spook-page-interaction-overlay-test);
-  --c-texSec: var(--spook-text-highlight-test);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role=button][aria-label*=comment i]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+  --c-bluBacAccPri: var(--spook-accent-dark);
+  --c-bluTexInvPri: var(--spook-text-highlight);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
-  --ca-bacTerTra: var(--spook-tag-bg-default-test);
+  --ca-bacTerTra: var(--spook-tag-bg-default);
+}
+
+.notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"]) {
+  --c-texPri: var(--spook-tag-text-default);
+  --ca-bacTerTra: var(--spook-tag-bg-default);
+}
+
+.notion-app-inner.notion-dark-theme :where([style*="--ca-graBacTerTra"][style*="--c-graTexPri"]) {
+  --ca-graBacTerTra: var(--spook-tag-bg-gray);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role=button][aria-label*=comment i])) {
+  --c-bacEle: var(--spook-bg-tertiary);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role=button][aria-label*=comment i]) {
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+:where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]) {
+  --c-bacEle: var(--spook-bg-tertiary);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
+  --c-bacInt: var(--spook-page-interaction-overlay);
+  --c-texSec: var(--spook-text-highlight);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation]) {
+  background-color: var(--spook-page-interaction-overlay) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
+  --c-yelBacSec: var(--spook-bg-tertiary);
+  --c-yelTexSec: var(--spook-text-highlight);
+  --c-yelIcoSec: var(--spook-text-blue);
+  --ca-yelBorStrTra: var(--spook-border-hover);
+  --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
 /* ========================================
    NATIVE SVG PAGE ICONS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"])) {
-  filter: var(--spook-icon-gray-filter-test);
+  filter: var(--spook-icon-gray-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_lightgray.svg"], [src*="_lightgray.svg?"])) {
-  filter: var(--spook-icon-lightgray-filter-test);
+  filter: var(--spook-icon-lightgray-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_brown.svg"], [src*="_brown.svg?"])) {
-  filter: var(--spook-icon-brown-filter-test);
+  filter: var(--spook-icon-brown-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_orange.svg"], [src*="_orange.svg?"])) {
-  filter: var(--spook-icon-orange-filter-test);
+  filter: var(--spook-icon-orange-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_yellow.svg"], [src*="_yellow.svg?"])) {
-  filter: var(--spook-icon-yellow-filter-test);
+  filter: var(--spook-icon-yellow-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_green.svg"], [src*="_green.svg?"])) {
-  filter: var(--spook-icon-green-filter-test);
+  filter: var(--spook-icon-green-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_blue.svg"], [src*="_blue.svg?"])) {
-  filter: var(--spook-icon-blue-filter-test);
+  filter: var(--spook-icon-blue-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_purple.svg"], [src*="_purple.svg?"])) {
-  filter: var(--spook-icon-purple-filter-test);
+  filter: var(--spook-icon-purple-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_pink.svg"], [src*="_pink.svg?"])) {
-  filter: var(--spook-icon-pink-filter-test);
+  filter: var(--spook-icon-pink-filter);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_red.svg"], [src*="_red.svg?"])) {
-  filter: var(--spook-icon-red-filter-test);
+  filter: var(--spook-icon-red-filter);
 }
 
 /* ========================================

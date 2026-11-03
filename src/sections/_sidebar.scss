@@ -4,12 +4,12 @@
 
 // Sidebar — Element Hover & Active Home/Meetings
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
     // Collapsed-sidebar flyout panel.
-    --c-bacEle: var(--spook-bg-secondary-test);
+    --c-bacEle: var(--spook-bg-secondary);
 }
 
 // Workspace icon — fallback badge surface; uploaded-image pixels are unchanged.
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-switcher .notion-record-icon) {
-    --ca-bacTerTra: var(--spook-bg-tertiary-test);
+    --ca-bacTerTra: var(--spook-bg-tertiary);
 }
