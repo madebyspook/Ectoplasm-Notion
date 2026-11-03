@@ -6,12 +6,12 @@
 
 // Databases — Filter/Sort button hover/pressed backgrounds.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 // Databases — New button and split control; native HSL adjustments retain hover/pressed states.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
-    --c-bluBacAccPri: var(--spook-accent-dark);
+    --c-bluBacAccPri: var(--spook-accent);
     --c-bluTexInvPri: var(--spook-text-highlight);
 }
 
@@ -40,7 +40,7 @@
 
 // Table-cell comment button — hover/pressed surface and icon.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay); // Comment button Hover
+    --ca-bacIntTra: var(--spook-bg-interact); // Comment button Hover
 }
 
 // --- List view ---
@@ -52,7 +52,7 @@
 
 // List Edit control — hover/pressed surface and label/icon.
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
-    --c-bacInt: var(--spook-page-interaction-overlay); // Hover background
+    --c-bacInt: var(--spook-bg-interact); // Hover background
     --c-texSec: var(--spook-text-highlight); // Button text
 }
 
@@ -60,7 +60,7 @@
 
 // Database gallery — hovered card face; override its inline native background, not the parent.
 .notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"]) {
-    background-color: var(--spook-page-interaction-overlay) !important;
+    background-color: var(--spook-bg-interact) !important;
 }
 
 // --- Template Editor ---
@@ -74,7 +74,7 @@
     // Learn more icon.
     --c-yelIcoSec: var(--spook-text-blue);
     // Duplicate every… button border.
-    --ca-yelBorStrTra: var(--spook-border-hover);
+    --ca-yelBorStrTra: var(--spook-border);
     // Banner links and controls — native hover, pressed and focus-visible backgrounds.
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --ca-bacIntTra: var(--spook-bg-interact);
 }

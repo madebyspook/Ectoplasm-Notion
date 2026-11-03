@@ -7,9 +7,9 @@
     --c-bacAccPri: var(--spook-bg-primary);
     // Tooltip labels and supporting shortcuts; inverse text stays local to overlays.
     --c-texInvPri: var(--spook-text-highlight);
-    --c-texInvSec: var(--spook-tooltip-text-secondary);
+    --c-texInvSec: var(--spook-text-secondary);
     // Overlay controls — hover and pressed backgrounds.
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 // Page side peek and center peek — background.

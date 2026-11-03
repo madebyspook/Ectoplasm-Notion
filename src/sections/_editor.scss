@@ -43,7 +43,7 @@
 
 // Page links — hover background.
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"]) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+    --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 // --- Code blocks ---
@@ -51,7 +51,7 @@
 // Code actions — surface and hover background.
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
     --c-bacEle: var(--spook-bg-tertiary); // background
-    --ca-graBacIntTra: var(--spook-page-interaction-overlay); // hover
+    --ca-graBacIntTra: var(--spook-bg-interact); // hover
 }
 
 // Code actions — label color.
@@ -83,7 +83,7 @@
 
 // Editor and database checkboxes — checked fill; preserve unchecked and disabled paint.
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled)) {
-    --c-bluBacAccPri: var(--spook-accent-dark);
+    --c-bluBacAccPri: var(--spook-accent);
 }
 
 // Editor and database checkboxes — enabled checkmark; native SVG fill is hardcoded.
