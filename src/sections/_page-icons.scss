@@ -1,0 +1,13 @@
+/* ========================================
+   NATIVE SVG PAGE ICONS
+   ======================================== */
+
+// Record icons — shared native color suffix, with or without a mode query.
+// Excludes uploaded images, emoji, inline SVG controls and rasterized desktop-tab icons.
+@each $color in "gray", "lightgray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red" {
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-record-icon img[src^="/icons/"]:is([src$="_#{$color}.svg"], [src*="_#{$color}.svg?"])
+    ) {
+        filter: var(--spook-icon-#{$color}-filter-test);
+    }
+}

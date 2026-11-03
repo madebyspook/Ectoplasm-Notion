@@ -2,17 +2,17 @@
    POPUPS AND PEEK VIEWS
    ======================================== */
 
-// Tooltip - background
+// Tooltips — background, labels and shortcuts.
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
     --c-bacAccPri: var(--spook-bg-primary-test);
-}
-
-// Tooltip - Element hover background
-.notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
+    // Tooltip labels and supporting shortcuts; inverse text stays local to overlays.
+    --c-texInvPri: var(--spook-text-highlight-test);
+    --c-texInvSec: var(--spook-tooltip-text-secondary-test);
+    // Overlay controls — hover and pressed backgrounds.
     --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
 }
 
-// Page Side Peek & Center Peek backrgound
+// Page side peek and center peek — background.
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
     --c-bacEle: var(--spook-bg-secondary-test);
 }
