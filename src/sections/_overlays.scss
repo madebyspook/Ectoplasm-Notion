@@ -4,15 +4,15 @@
 
 // Tooltips — background, labels and shortcuts.
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-    --c-bacAccPri: var(--spook-bg-primary-test);
+    --c-bacAccPri: var(--spook-bg-primary);
     // Tooltip labels and supporting shortcuts; inverse text stays local to overlays.
-    --c-texInvPri: var(--spook-text-highlight-test);
-    --c-texInvSec: var(--spook-tooltip-text-secondary-test);
+    --c-texInvPri: var(--spook-text-highlight);
+    --c-texInvSec: var(--spook-tooltip-text-secondary);
     // Overlay controls — hover and pressed backgrounds.
-    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
 // Page side peek and center peek — background.
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
-    --c-bacEle: var(--spook-bg-secondary-test);
+    --c-bacEle: var(--spook-bg-secondary);
 }

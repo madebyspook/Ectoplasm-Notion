@@ -8,6 +8,6 @@
     .notion-app-inner.notion-dark-theme :where(
         .notion-record-icon img[src^="/icons/"]:is([src$="_#{$color}.svg"], [src*="_#{$color}.svg?"])
     ) {
-        filter: var(--spook-icon-#{$color}-filter-test);
+        filter: var(--spook-icon-#{$color}-filter);
     }
 }

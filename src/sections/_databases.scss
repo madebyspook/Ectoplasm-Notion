@@ -2,43 +2,79 @@
    DATABASE CONTROLS
    ======================================== */
 
+// --- Shared database controls ---
+
 // Databases — Filter/Sort button hover/pressed backgrounds.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay-test);
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
 
 // Databases — New button and split control; native HSL adjustments retain hover/pressed states.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
-    --c-bluBacAccPri: var(--spook-accent-dark-test);
-    --c-bluTexInvPri: var(--spook-text-highlight-test);
+    --c-bluBacAccPri: var(--spook-accent-dark);
+    --c-bluTexInvPri: var(--spook-text-highlight);
 }
 
-// Database gallery — hovered card face; override its inline native background, not the parent.
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"]) {
-    background-color: var(--spook-page-interaction-overlay-test) !important;
+// --- Table view ---
+
+// Default Select/Status tags — keep the shared neutral channel local to tables.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view) {
+    --ca-bacTerTra: var(--spook-tag-bg-default);
 }
 
-// Database table - comment button
+// Default Select/Status chips — native foreground/background pair across database views and properties.
+.notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"]) {
+    --c-texPri: var(--spook-tag-text-default);
+    --ca-bacTerTra: var(--spook-tag-bg-default);
+}
+
+// Gray Select/Status chips — leave the shared table-of-contents surface unchanged.
+.notion-app-inner.notion-dark-theme :where([style*="--ca-graBacTerTra"][style*="--c-graTexPri"]) {
+    --ca-graBacTerTra: var(--spook-tag-bg-gray);
+}
+
+// Table-cell comment control — raised surface.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role="button"][aria-label*="comment" i])) {
-    --c-bacEle: var(--spook-bg-tertiary-test);
-}
-// Database list - edit button outline
-.notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
-    --c-bacEle: var(--spook-bg-tertiary-test);
-}
-
-// Database list - edit button — hover/pressed surface and readable label/icon
-.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
-    --c-bacInt: var(--spook-page-interaction-overlay-test); // Hover background
-    --c-texSec: var(--spook-text-highlight-test); // Button text
+    --c-bacEle: var(--spook-bg-tertiary);
 }
 
 // Table-cell comment button — hover/pressed surface and icon.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
-    --ca-bacIntTra: var(--spook-page-interaction-overlay-test); // Comment button Hover
+    --ca-bacIntTra: var(--spook-page-interaction-overlay); // Comment button Hover
 }
 
-// Default Select/Status tags — keep the shared neutral channel local to tables.
-.notion-app-inner.notion-dark-theme :where(.notion-table-view) {
-    --ca-bacTerTra: var(--spook-tag-bg-default-test);
+// --- List view ---
+
+// List Edit control — raised outline surface; zero-specificity app guard preserves priority.
+:where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
+    --c-bacEle: var(--spook-bg-tertiary);
+}
+
+// List Edit control — hover/pressed surface and label/icon.
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
+    --c-bacInt: var(--spook-page-interaction-overlay); // Hover background
+    --c-texSec: var(--spook-text-highlight); // Button text
+}
+
+// --- Gallery view ---
+
+// Database gallery — hovered card face; override its inline native background, not the parent.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"]) {
+    background-color: var(--spook-page-interaction-overlay) !important;
+}
+
+// --- Template Editor ---
+
+// Database template peek header — banner; depends on its native yellow inline surface.
+.notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
+    // Template banner surface; leave predefined yellow highlights unchanged elsewhere.
+    --c-yelBacSec: var(--spook-bg-tertiary);
+    // Template information, database link, repeat label and chevron.
+    --c-yelTexSec: var(--spook-text-highlight);
+    // Learn more icon.
+    --c-yelIcoSec: var(--spook-text-blue);
+    // Duplicate every… button border.
+    --ca-yelBorStrTra: var(--spook-border-hover);
+    // Banner links and controls — native hover, pressed and focus-visible backgrounds.
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
 }
