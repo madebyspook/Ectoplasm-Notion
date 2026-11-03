@@ -3,39 +3,17 @@
    ======================================== */
 
 :root {
-    /* Surfaces */
-    // Application/editor and tooltip backgrounds; Default-button hover base.
-    --spook-bg-primary: #1B1D1F;
-    // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
-    --spook-bg-secondary: #161819;
-    // Menus, help, code/database controls, template banner, starter pills and workspace badge.
-    --spook-bg-tertiary: #222526;
-
-    /* Interaction surfaces */
-    // Desktop Tab Bar hovered tabs, title/close fades and close-button backplates.
-    --spook-bg-hover: #172235;
-    // Desktop Tab Bar selected-tab background.
-    --spook-bg-selected: #15243a;
-
-    /* Page interaction states */
-    // Page, sidebar, database, overlay and code interactions — 12% alpha base.
-    --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover) r g b / 0.12);
-
     /* Accents */
-    // Desktop Tab Bar selected/hovered underline via --spook-tab-box-shadow.
-    --spook-accent: #39a8ff;
-    // Reserved production bright-accent token; no current consumer.
-    --spook-accent-bright: #78d5ff;
-    // Database New button and enabled checked-checkbox fills.
-    --spook-accent-dark: #2366a0;
+    --spook-accent: #3C86ff;
+
+    /* Surfaces */
+    --spook-bg-primary: oklch(from var(--spook-accent) 18% 0.01 h); // Application/editor and tooltip backgrounds; Default-button hover base.
+    --spook-bg-secondary: oklch(from var(--spook-accent) 20% 0.0225 h); // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
+    --spook-bg-tertiary: oklch(from var(--spook-accent) 24% 0.02 h); // Menus, help, code/database controls, template banner, starter pills and workspace badge.
+    --spook-bg-interact: rgba(from var(--spook-accent) r g b / 0.1); // Used for hover and select backgrounds
 
     /* Borders */
-    // Button borders, tables, gallery, editor/callouts and sidebar dividers.
-    --spook-border: rgba(57, 168, 255, 0.14);
-    // Unchecked database checkbox frames and template repeat-button border.
-    --spook-border-hover: rgba(57, 168, 255, 0.35);
-    // Breadcrumb spans, ordinary-table and embedded tab-block borders.
-    --spook-border-active: rgba(120, 213, 255, 0.65);
+    --spook-border: rgba(from var(--spook-accent) r g b / 0.25);
 
     /* General surface glows */
     // Reserved production subtle glow; no current consumer.
@@ -45,32 +23,11 @@
     // Reserved production strong glow; no current consumer.
     --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
 
-    /* Desktop Tab Bar effects */
-    // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
-    --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
-
-    // Desktop Tab Bar selected/hovered tab underline and inner glow.
-    --spook-tab-box-shadow:
-        inset 0 -1px 0 var(--spook-accent),
-        inset 0 0 12px rgba(57, 168, 255, 0.25);
-    // Desktop Tab Bar title-group descendants, including wrappers and images.
-    --spook-tab-text-glow:
-        0 0 5px rgba(120, 213, 255, 0.65),
-        0 0 10px rgba(57, 168, 255, 0.35);
-    // Desktop navigation/control SVGs; tab page-icon images.
-    --spook-tab-icon-glow:
-        drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
-        drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
-
     /* Text palette */
-    // Desktop tab titles, tooltips, code/list actions, checkmarks, database New and template labels.
-    --spook-text-highlight: #ffffff;
-    // Primary application text, selected view tabs, icons and masks.
-    --spook-text-primary: #e8f1ff;
-    // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
-    --spook-text-secondary: #a9bdd6;
-    // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
-    --spook-text-muted: #71869f;
+    --spook-text-highlight: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black); // Desktop tab titles, tooltips, code/list actions, checkmarks, database New and template labels.
+    --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 25%, white) 95%, black); // Primary application text, selected view tabs, icons and masks.
+    --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 35%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
+    --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black); // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
 
     /* Predefined text colors */
     // Native Notion Dark Mode palette; independently customizable.
@@ -135,10 +92,6 @@
     --spook-tag-bg-pink: #ff85c06d;
     --spook-tag-bg-red: #ff746986;
 
-    /* Tooltip supporting text */
-    // Block-tooltip hints; shared tooltip shortcuts.
-    --spook-tooltip-text-secondary: #B8FFFF;
-
     /* Native SVG icon colors */
     // Native SVGs carry their own colors; filter: none preserves their original paint.
     // Each filter remains independently customizable for record icons across the application.
@@ -153,11 +106,18 @@
     --spook-icon-pink-filter: none;
     --spook-icon-red-filter: none;
 
-    /* Geometry */
-    // Reserved small corner radius; no current consumer.
-    --spook-radius-small: 6px;
-    // Reserved medium corner radius; no current consumer.
-    --spook-radius-medium: 10px;
-    // Reserved large corner radius; no current consumer.
-    --spook-radius-large: 14px;
+    /* Desktop Tab Bar */
+    --spook-tab-button-hover: rgba(57, 168, 255, 0.16); // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
+    // Desktop Tab Bar selected/hovered tab underline and inner glow.
+    --spook-tab-box-shadow:
+        inset 0 -1px 0 var(--spook-accent),
+        inset 0 0 12px rgba(57, 168, 255, 0.25);
+    // Desktop Tab Bar title-group descendants, including wrappers and images.
+    --spook-tab-text-glow:
+        0 0 5px rgba(120, 213, 255, 0.65),
+        0 0 10px rgba(57, 168, 255, 0.35);
+    // Desktop navigation/control SVGs; tab page-icon images.
+    --spook-tab-icon-glow:
+        drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
+        drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 }

@@ -8,43 +8,24 @@
    ECTOPLASMA DESIGN TOKENS
    ======================================== */
 :root {
-  /* Surfaces */
-  --spook-bg-primary: #1B1D1F;
-  --spook-bg-secondary: #161819;
-  --spook-bg-tertiary: #222526;
-  /* Interaction surfaces */
-  --spook-bg-hover: #172235;
-  --spook-bg-selected: #15243a;
-  /* Page interaction states */
-  --spook-page-interaction-overlay: rgb(from var(--spook-bg-hover) r g b / 0.12);
   /* Accents */
-  --spook-accent: #39a8ff;
-  --spook-accent-bright: #78d5ff;
-  --spook-accent-dark: #2366a0;
+  --spook-accent: #3C86ff;
+  /* Surfaces */
+  --spook-bg-primary: oklch(from var(--spook-accent) 18% 0.01 h);
+  --spook-bg-secondary: oklch(from var(--spook-accent) 20% 0.0225 h);
+  --spook-bg-tertiary: oklch(from var(--spook-accent) 24% 0.02 h);
+  --spook-bg-interact: rgba(from var(--spook-accent) r g b / 0.1);
   /* Borders */
-  --spook-border: rgba(57, 168, 255, 0.14);
-  --spook-border-hover: rgba(57, 168, 255, 0.35);
-  --spook-border-active: rgba(120, 213, 255, 0.65);
+  --spook-border: rgba(from var(--spook-accent) r g b / 0.25);
   /* General surface glows */
   --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
   --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
   --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
-  /* Desktop Tab Bar effects */
-  --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
-  --spook-tab-box-shadow:
-      inset 0 -1px 0 var(--spook-accent),
-      inset 0 0 12px rgba(57, 168, 255, 0.25);
-  --spook-tab-text-glow:
-      0 0 5px rgba(120, 213, 255, 0.65),
-      0 0 10px rgba(57, 168, 255, 0.35);
-  --spook-tab-icon-glow:
-      drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
-      drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
   /* Text palette */
-  --spook-text-highlight: #ffffff;
-  --spook-text-primary: #e8f1ff;
-  --spook-text-secondary: #a9bdd6;
-  --spook-text-muted: #71869f;
+  --spook-text-highlight: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black);
+  --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 25%, white) 95%, black);
+  --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 35%, white) 60%, black);
+  --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black);
   /* Predefined text colors */
   --spook-text-gray: #7d7a75;
   --spook-text-brown: #9f765a;
@@ -98,8 +79,6 @@
   --spook-tag-bg-purple: #d093ff6d;
   --spook-tag-bg-pink: #ff85c06d;
   --spook-tag-bg-red: #ff746986;
-  /* Tooltip supporting text */
-  --spook-tooltip-text-secondary: #B8FFFF;
   /* Native SVG icon colors */
   --spook-icon-gray-filter: none;
   --spook-icon-lightgray-filter: none;
@@ -111,10 +90,17 @@
   --spook-icon-purple-filter: none;
   --spook-icon-pink-filter: none;
   --spook-icon-red-filter: none;
-  /* Geometry */
-  --spook-radius-small: 6px;
-  --spook-radius-medium: 10px;
-  --spook-radius-large: 14px;
+  /* Desktop Tab Bar */
+  --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
+  --spook-tab-box-shadow:
+      inset 0 -1px 0 var(--spook-accent),
+      inset 0 0 12px rgba(57, 168, 255, 0.25);
+  --spook-tab-text-glow:
+      0 0 5px rgba(120, 213, 255, 0.65),
+      0 0 10px rgba(57, 168, 255, 0.35);
+  --spook-tab-icon-glow:
+      drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
+      drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 }
 
 /* ========================================
@@ -142,8 +128,8 @@
   --ca-borSecTra: var(--spook-border);
   /* Additional edges */
   --c-borSec: var(--spook-border);
-  --ca-borStrTra: var(--spook-border-hover);
-  --c-borPri: var(--spook-border-active);
+  --ca-borStrTra: var(--spook-border);
+  --c-borPri: var(--spook-border);
   /* Predefined text colors */
   --c-graTexSec: var(--spook-text-gray);
   --c-broTexSec: var(--spook-text-brown);
@@ -190,7 +176,7 @@
    SIDEBAR
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-bg-interact);
   --c-bacEle: var(--spook-bg-secondary);
 }
 
@@ -222,12 +208,12 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
   --c-bacEle: var(--spook-bg-tertiary);
-  --ca-graBacIntTra: var(--spook-page-interaction-overlay);
+  --ca-graBacIntTra: var(--spook-bg-interact);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
@@ -251,7 +237,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled)) {
-  --c-bluBacAccPri: var(--spook-accent-dark);
+  --c-bluBacAccPri: var(--spook-accent);
 }
 
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled:checked) svg) {
@@ -272,8 +258,8 @@
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
   --c-bacAccPri: var(--spook-bg-primary);
   --c-texInvPri: var(--spook-text-highlight);
-  --c-texInvSec: var(--spook-tooltip-text-secondary);
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --c-texInvSec: var(--spook-text-secondary);
+  --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
@@ -284,11 +270,11 @@
    DATABASE CONTROLS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
-  --c-bluBacAccPri: var(--spook-accent-dark);
+  --c-bluBacAccPri: var(--spook-accent);
   --c-bluTexInvPri: var(--spook-text-highlight);
 }
 
@@ -310,7 +296,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role=button][aria-label*=comment i]) {
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 :where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]) {
@@ -318,20 +304,20 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
-  --c-bacInt: var(--spook-page-interaction-overlay);
+  --c-bacInt: var(--spook-bg-interact);
   --c-texSec: var(--spook-text-highlight);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation]) {
-  background-color: var(--spook-page-interaction-overlay) !important;
+  background-color: var(--spook-bg-interact) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
   --c-yelBacSec: var(--spook-bg-tertiary);
   --c-yelTexSec: var(--spook-text-highlight);
   --c-yelIcoSec: var(--spook-text-blue);
-  --ca-yelBorStrTra: var(--spook-border-hover);
-  --ca-bacIntTra: var(--spook-page-interaction-overlay);
+  --ca-yelBorStrTra: var(--spook-border);
+  --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 /* ========================================
@@ -393,12 +379,12 @@
 }
 
 :where(.root) .hide-scrollbar [role=button][style*="background-color: rgb(25, 25, 25)"] {
-  background-color: var(--spook-bg-selected) !important;
+  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-  background-color: var(--spook-bg-hover) !important;
+  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
@@ -412,11 +398,11 @@
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*=linear-gradient],
 :where(.root) .hide-scrollbar div[style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] > div[style*="width: 16px"][style*=linear-gradient] {
-  background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-hover) 100%) !important;
+  background: linear-gradient(var(--gradient-direction, 90deg), transparent 0%, var(--spook-bg-interact) 100%) !important;
 }
 
 :where(.root) .hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
-  background: var(--spook-bg-hover) !important;
+  background: var(--spook-bg-interact) !important;
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-label^="Close Tab"]:hover,
