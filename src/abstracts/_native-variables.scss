@@ -51,4 +51,53 @@
     --ca-borStrTra: var(--spook-border-hover-test);
     // Breadcrumb spans; ordinary-table and embedded tab-block borders.
     --c-borPri: var(--spook-border-active-test);
+
+    /* Predefined text colors */
+    // Default text uses --c-texPri above.
+    --c-graTexSec: var(--spook-text-gray-test);
+    --c-broTexSec: var(--spook-text-brown-test);
+    --c-oraTexSec: var(--spook-text-orange-test);
+    --c-yelTexSec: var(--spook-text-yellow-test);
+    --c-greTexSec: var(--spook-text-green-test);
+    --c-bluTexSec: var(--spook-text-blue-test);
+    --c-purTexSec: var(--spook-text-purple-test);
+    --c-pinTexSec: var(--spook-text-pink-test);
+    --c-redTexSec: var(--spook-text-red-test);
+
+    /* Database tag text */
+    // Select/Status tag text.
+    --c-graTexPri: var(--spook-text-gray-test);
+    --c-oraTexPri: var(--spook-text-orange-test);
+    --c-bluTexPri: var(--spook-text-blue-test);
+    --c-greTexPri: var(--spook-text-green-test);
+
+    --c-broTexPri: var(--spook-text-brown-test);
+    --c-yelTexPri: var(--spook-text-yellow-test);
+    --c-purTexPri: var(--spook-text-purple-test);
+    --c-pinTexPri: var(--spook-text-pink-test);
+    --c-redTexPri: var(--spook-text-red-test);
+
+    /* Predefined background colors */
+    --c-graBacSec: var(--spook-bg-gray-test);
+    --c-broBacSec: var(--spook-bg-brown-test);
+    --c-oraBacSec: var(--spook-bg-orange-test);
+    --c-yelBacSec: var(--spook-bg-yellow-test);
+    --c-greBacSec: var(--spook-bg-green-test);
+    --c-bluBacSec: var(--spook-bg-blue-test);
+    --c-purBacSec: var(--spook-bg-purple-test);
+    --c-pinBacSec: var(--spook-bg-pink-test);
+    --c-redBacSec: var(--spook-bg-red-test);
+
+    /* Select/Status tag backgrounds */
+    // Shared translucent palette; separate from editor background colors.
+    --ca-graBacTerTra: var(--spook-tag-bg-gray-test);
+    --ca-broBacTerTra: var(--spook-tag-bg-brown-test);
+    --ca-oraBacTerTra: var(--spook-tag-bg-orange-test);
+    --ca-yelBacTerTra: var(--spook-tag-bg-yellow-test);
+    --ca-greBacTerTra: var(--spook-tag-bg-green-test);
+    --ca-bluBacTerTra: var(--spook-tag-bg-blue-test);
+    --ca-purBacTerTra: var(--spook-tag-bg-purple-test);
+    --ca-pinBacTerTra: var(--spook-tag-bg-pink-test);
+    --ca-redBacTerTra: var(--spook-tag-bg-red-test);
+
 }

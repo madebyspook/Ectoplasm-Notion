@@ -10,6 +10,7 @@
 // Databases — New button and split control; native HSL adjustments retain hover/pressed states.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
     --c-bluBacAccPri: var(--spook-accent-dark-test);
+    --c-bluTexInvPri: var(--spook-text-highlight-test);
 }
 
 // Database gallery — hovered card face; override its inline native background, not the parent.
@@ -35,4 +36,9 @@
 // Table-cell comment button — hover/pressed surface and icon.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
     --ca-bacIntTra: var(--spook-page-interaction-overlay-test); // Comment button Hover
+}
+
+// Default Select/Status tags — keep the shared neutral channel local to tables.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view) {
+    --ca-bacTerTra: var(--spook-tag-bg-default-test);
 }

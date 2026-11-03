@@ -2,6 +2,27 @@
    MAIN EDITOR
    ======================================== */
 
+// Editor rich-text bold — retain heading/code weights; override Notion's inline formatting.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content [contenteditable="true"]
+    :is(strong, b, span.notion-enable-hover:is(
+        [style*="font-weight:600"], [style*="font-weight: 600"],
+        [style*="font-weight:700"], [style*="font-weight: 700"],
+        [style*="font-weight:bold"], [style*="font-weight: bold"]
+    )):not(:where(
+        h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+        .notion-header-block *, .notion-sub_header-block *, .notion-sub_sub_header-block *,
+        .notion-code-block *, .katex *
+    ))
+) {
+    font-weight: 900 !important;
+}
+
+// Page Title - Placeholder
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
+    --cl-pagTitPlaTexCol: var(--spook-text-muted-test);
+}
+
 // Block - toggle - empty placeholder text
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
     --ca-texDisTra: var(--spook-text-muted-test);
@@ -26,4 +47,56 @@
 // Block - code blocks - action buttons text
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [role="button"][style*="--ca-graBacIntTra"]) {
     --c-graTexAccPri: var(--spook-text-highlight-test);
+}
+
+// Custom button blocks — native per-color hover palette.
+.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
+    --cl-palGra400: var(--spook-button-hover-gray-test);
+    --ca-palBro400: var(--spook-button-hover-brown-test);
+    --ca-palOra400: var(--spook-button-hover-orange-test);
+    --ca-palYel400: var(--spook-button-hover-yellow-test);
+    --ca-palGre400: var(--spook-button-hover-green-test);
+    --ca-palBlu400: var(--spook-button-hover-blue-test);
+    --ca-palPur400: var(--spook-button-hover-purple-test);
+    --ca-palPin400: var(--spook-button-hover-pink-test);
+    --ca-palRed400: var(--spook-button-hover-red-test);
+}
+
+// Default button — Notion writes an inline HSL hover color instead of a palette variable.
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"][style*="hsl(from var(--c-bacPri)"]) {
+    background-color: var(--spook-button-hover-default-test) !important;
+}
+
+// Enabled checkbox widgets — checked fill; retain native unchecked and disabled paint.
+.notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled)) {
+    --c-bluBacAccPri: var(--spook-accent-dark-test);
+}
+
+// Enabled checked checkbox widgets — native SVG checkmark uses a hardcoded fill.
+.notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled:checked) svg) {
+    fill: var(--spook-text-highlight-test);
+}
+
+// Page comments - input placeholder
+.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+    --ca-texDisTra: var(--spook-text-muted-test);
+}
+
+// Database template peek header — banner; depends on its native yellow inline surface.
+.notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
+    // Template banner surface; leave predefined yellow highlights unchanged elsewhere.
+    --c-yelBacSec: var(--spook-bg-tertiary-test);
+    // Template information, database link, repeat label and chevron.
+    --c-yelTexSec: var(--spook-text-highlight-test);
+    // Learn more icon.
+    --c-yelIcoSec: var(--spook-text-blue-test);
+    // Duplicate every… button border.
+    --ca-yelBorStrTra: var(--spook-border-hover-test);
+    // Banner links and controls — native hover, pressed and focus-visible backgrounds.
+    --ca-bacIntTra: var(--spook-page-interaction-overlay);
+}
+
+// Get started with — Database, Form, Templates and more pills; native hover increases alpha.
+.notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role="menu"]:has(svg.notionTemplate)) {
+    --ca-bacTerTra: rgb(from var(--spook-bg-tertiary-test) r g b / 0.5);
 }

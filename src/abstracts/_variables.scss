@@ -105,6 +105,98 @@
     // Sidebar/header/database labels/icons; Search and view controls; empty text/quote/toggle hints.
     --spook-text-muted-test: #0000ff;
 
+    /* Predefined text colors */
+    // Reference palette; native mappings currently use the test palette below.
+    --spook-text-gray: #7d7a75;
+    --spook-text-brown: #9f765a;
+    --spook-text-orange: #d27b2d;
+    --spook-text-yellow: #cb9434;
+    --spook-text-green: #50946e;
+    --spook-text-blue: #387dc9;
+    --spook-text-purple: #9a6bb4;
+    --spook-text-pink: #c14c8a;
+    --spook-text-red: #cf5148;
+
+    /* Predefined text colors — Test */
+    --spook-text-gray-test: #E0E0E0;
+    --spook-text-brown-test: #E8BFA5;
+    --spook-text-orange-test: #FFD0A0;
+    --spook-text-yellow-test: #FFF4A0;
+    --spook-text-green-test: #A8F5C0;
+    --spook-text-blue-test: #A8D8FF;
+    --spook-text-purple-test: #DCC0FF;
+    --spook-text-pink-test: #FFB8E0;
+    --spook-text-red-test: #FFB0B0;
+
+    /* Predefined background colors */
+    // Reference palette; native mappings currently use the test palette below.
+    --spook-bg-gray: #383836;
+    --spook-bg-brown: #45362d;
+    --spook-bg-orange: #53361f;
+    --spook-bg-yellow: #504425;
+    --spook-bg-green: #263d30;
+    --spook-bg-blue: #233850;
+    --spook-bg-purple: #3c2d47;
+    --spook-bg-pink: #4e2b3c;
+    --spook-bg-red: #502c29;
+
+    /* Predefined background colors — Test */
+    --spook-bg-gray-test: #D0D0D0;
+    --spook-bg-brown-test: #D9AD91;
+    --spook-bg-orange-test: #FFC080;
+    --spook-bg-yellow-test: #FFE880;
+    --spook-bg-green-test: #90E8B0;
+    --spook-bg-blue-test: #90C8FF;
+    --spook-bg-purple-test: #C8A0FF;
+    --spook-bg-pink-test: #FF98D0;
+    --spook-bg-red-test: #FF9898;
+
+    /* Custom button hover backgrounds — test */
+    // Button-block hover only; independently adjustable shades of the current background palette.
+    --spook-button-hover-default-test: color-mix(in srgb, var(--spook-bg-primary-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-gray-test: color-mix(in srgb, var(--spook-bg-gray-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-brown-test: color-mix(in srgb, var(--spook-bg-brown-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-orange-test: color-mix(in srgb, var(--spook-bg-orange-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-yellow-test: color-mix(in srgb, var(--spook-bg-yellow-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-green-test: color-mix(in srgb, var(--spook-bg-green-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-blue-test: color-mix(in srgb, var(--spook-bg-blue-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-purple-test: color-mix(in srgb, var(--spook-bg-purple-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-pink-test: color-mix(in srgb, var(--spook-bg-pink-test) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-red-test: color-mix(in srgb, var(--spook-bg-red-test) 80%, var(--spook-bg-secondary));
+
+    /* Select/Status tag backgrounds — test */
+    // Separate from tag text; reuse editor test hues with independently adjustable opacity.
+    // Default tags use a stronger neutral surface than the named colors.
+    --spook-tag-bg-default-test: rgb(from var(--spook-bg-gray-test) r g b / 0.5);
+    --spook-tag-bg-gray-test: rgb(from var(--spook-bg-gray-test) r g b / 0.25);
+    --spook-tag-bg-brown-test: rgb(from var(--spook-bg-brown-test) r g b / 0.25);
+    --spook-tag-bg-orange-test: rgb(from var(--spook-bg-orange-test) r g b / 0.25);
+    --spook-tag-bg-yellow-test: rgb(from var(--spook-bg-yellow-test) r g b / 0.25);
+    --spook-tag-bg-green-test: rgb(from var(--spook-bg-green-test) r g b / 0.25);
+    --spook-tag-bg-blue-test: rgb(from var(--spook-bg-blue-test) r g b / 0.25);
+    --spook-tag-bg-purple-test: rgb(from var(--spook-bg-purple-test) r g b / 0.25);
+    --spook-tag-bg-pink-test: rgb(from var(--spook-bg-pink-test) r g b / 0.25);
+    --spook-tag-bg-red-test: rgb(from var(--spook-bg-red-test) r g b / 0.25);
+
+    /* Tooltip supporting text — test */
+    // Block-tooltip hints; shared tooltip shortcuts.
+    --spook-tooltip-text-secondary-test: #B8FFFF;
+
+    /* Native SVG icon colors — test filters */
+    // Record icons in the editor, sidebar, breadcrumbs and databases; preserve image alpha.
+    // Values are CSS filter chains, not hexadecimal colors.
+    // Pale gray tint (~#E0E0E0).
+    --spook-icon-gray-filter-test: brightness(0) invert(87.84%);
+    --spook-icon-lightgray-filter-test: brightness(0) invert(98.04%);
+    --spook-icon-brown-filter-test: brightness(0) invert(62.71%) sepia(79.88%) saturate(125.22%) hue-rotate(339.88deg) brightness(111.96%) contrast(85.45%);
+    --spook-icon-orange-filter-test: brightness(0) invert(71.66%) sepia(32.15%) saturate(370.87%) hue-rotate(345.13deg) brightness(110.66%) contrast(100.78%);
+    --spook-icon-yellow-filter-test: brightness(0) invert(56.7%) sepia(54.76%) saturate(261.61%) hue-rotate(359.43deg) brightness(153.36%) contrast(100.29%);
+    --spook-icon-green-filter-test: brightness(0) invert(87.03%) sepia(40.23%) saturate(311.84%) hue-rotate(73.84deg) brightness(99.59%) contrast(92.91%);
+    --spook-icon-blue-filter-test: brightness(0) invert(76.06%) sepia(32.23%) saturate(326.83%) hue-rotate(166.21deg) brightness(100.57%) contrast(100.25%);
+    --spook-icon-purple-filter-test: brightness(0) invert(73.57%) sepia(24.43%) saturate(382.78%) hue-rotate(223.94deg) brightness(101.79%) contrast(102.14%);
+    --spook-icon-pink-filter-test: brightness(0) invert(57.84%) sepia(29.58%) saturate(551.34%) hue-rotate(292.79deg) brightness(131.89%) contrast(113.71%);
+    --spook-icon-red-filter-test: brightness(0) invert(82.2%) sepia(81.69%) saturate(516.05%) hue-rotate(290.82deg) brightness(99.26%) contrast(103.76%);
+
     /* Geometry */
     // Usage not yet identified.
     --spook-radius-small: 6px;
