@@ -9,13 +9,38 @@
     --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+// View tabs — hover and selected surfaces; preserve native text and indicators.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab:is(:hover, [aria-selected="true"])) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Database toolbar — leave the accent New/split control on its own native palette.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-collection-filter:hover,
+    .notion-collection-sort:hover,
+    .notion-collection-automation-edit-view:hover,
+    .notion-collection-edit-view:hover,
+    .notion-collection_view-block [role="button"][aria-label="Search"]:hover
+) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
 // Databases — New button and split control; native HSL adjustments retain hover/pressed states.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
     --c-bluBacAccPri: var(--spook-accent);
-    --c-bluTexInvPri: var(--spook-text-highlight);
+    --c-bluTexInvPri: var(--spook-text-primary);
 }
 
 // --- Table view ---
+
+// Column-header triggers and the footer's New page control.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-table-view-header-cell > div > [role="button"]:hover,
+    .notion-table-view-add-column:hover,
+    .notion-table-view-add-row:hover
+) {
+    background-color: var(--spook-bg-interact) !important;
+}
 
 // Default Select/Status tags — keep the shared neutral channel local to tables.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
@@ -45,6 +70,21 @@
 
 // --- List view ---
 
+// Notion writes the row's hover surface inline on its page-link anchor.
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item > div > a[role="link"]:hover) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Empty titles use an inline WebKit text fill inherited by their generated placeholder.
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [data-content-editable-leaf][placeholder]:empty) {
+    --ca-texDisTra: var(--spook-text-muted);
+}
+
+// New page sits beside the list items, directly inside the view's block wrapper.
+.notion-app-inner.notion-dark-theme :where(.notion-list-view > .notion-collection_view-block > [role="button"]:hover) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
 // List Edit control — raised outline surface; zero-specificity app guard preserves priority.
 :where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
     --c-bacEle: var(--spook-bg-tertiary);
@@ -53,14 +93,51 @@
 // List Edit control — hover/pressed surface and label/icon.
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
     --c-bacInt: var(--spook-bg-interact); // Hover background
-    --c-texSec: var(--spook-text-highlight); // Button text
+    --c-texSec: var(--spook-text-primary); // Button text
 }
 
 // --- Gallery view ---
 
-// Database gallery — hovered card face; override its inline native background, not the parent.
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"]) {
+// Gallery placeholders use the same WebKit text-fill channel as list titles.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item [data-content-editable-leaf][placeholder]:empty) {
+    --ca-texDisTra: var(--spook-text-muted);
+}
+
+// The preview is the first child; title and optional properties are separate siblings after it.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item > [role="presentation"] > a[role="link"] > div ~ div) {
+    background-color: var(--spook-bg-tertiary) !important;
+
+    // Equal-height cards can leave spare space after a short title or property list.
+    &:last-child {
+        flex-grow: 1;
+
+        // Keep a title-only card's label at its existing position as its surface grows.
+        > div:has(> [data-content-editable-leaf][placeholder]) {
+            align-self: flex-start;
+        }
+    }
+}
+
+// Blank page previews have a separate inline surface from the card face.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item [style*="background: var(--ca-bacSecTra)"]) {
+    background-color: var(--spook-bg-secondary) !important;
+}
+
+// Hover only the content siblings, leaving the preview and card face on their existing backgrounds.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"] > a[role="link"] > div ~ div) {
     background-color: var(--spook-bg-interact) !important;
+}
+
+// Gallery footer controls; card actions keep their existing behavior.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view [role="button"]:not(.notion-collection-item *):hover) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// --- Board view ---
+
+// Only gray card faces consume this native channel; other column colors are independent.
+.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
+    --c-graBacEle: var(--spook-bg-gray);
 }
 
 // --- Template Editor ---
@@ -70,7 +147,7 @@
     // Template banner surface; leave predefined yellow highlights unchanged elsewhere.
     --c-yelBacSec: var(--spook-bg-tertiary);
     // Template information, database link, repeat label and chevron.
-    --c-yelTexSec: var(--spook-text-highlight);
+    --c-yelTexSec: var(--spook-text-primary);
     // Learn more icon.
     --c-yelIcoSec: var(--spook-text-blue);
     // Duplicate every… button border.

@@ -46,7 +46,40 @@
     --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+// Page and database-page links share the same interactive anchor in different block wrappers.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role="link"]:hover,
+    .notion-page-content a.notion-page-mention-token:hover
+) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// --- Tab blocks ---
+
+// Embedded tabs; the desktop Tab Bar is a separate renderer.
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tablist"] [role="tab"]:is(:hover, [aria-selected="true"])) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Empty tab panels expose a separate content button, outside the tab header list.
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tabpanel"] .notion-text-block > [role="button"][style*="--ca-bacIntTra"]:hover) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// --- Checkbox blocks ---
+
+// Completed to-do blocks
+.notion-app-inner.notion-dark-theme .notion-to_do-block .notion-strikethrough-container {
+    color: var(--spook-text-secondary) !important;
+    text-decoration-color: rgba(from var(--spook-text-secondary) r g b / 0.5) !important;
+}
+
 // --- Code blocks ---
+
+// Code block background
+.notion-code-block div[style*="--ca-graBacPriTra"] {
+    background: rgb(from var(--spook-bg-gray) r g b / 0.5) !important;
+}
 
 // Code actions — surface and hover background.
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
@@ -56,7 +89,7 @@
 
 // Code actions — label color.
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [role="button"][style*="--ca-graBacIntTra"]) {
-    --c-graTexAccPri: var(--spook-text-highlight);
+    --c-graTexAccPri: var(--spook-text-secondary);
 }
 
 // --- Custom button blocks ---
@@ -79,6 +112,11 @@
     background-color: var(--spook-button-hover-default) !important;
 }
 
+// Custom button blocks — text color.
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]) > div[style*="--c-texTer"] {
+    color: var(--spook-text-secondary) !important;
+}
+
 // --- Shared checkbox widgets ---
 
 // Editor and database checkboxes — checked fill; preserve unchecked and disabled paint.
@@ -88,7 +126,7 @@
 
 // Editor and database checkboxes — enabled checkmark; native SVG fill is hardcoded.
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled:checked) svg) {
-    fill: var(--spook-text-highlight);
+    fill: var(--spook-text-primary);
 }
 
 // --- Page comments ---

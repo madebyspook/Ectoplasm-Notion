@@ -6,7 +6,7 @@
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
     --c-bacAccPri: var(--spook-bg-primary);
     // Tooltip labels and supporting shortcuts; inverse text stays local to overlays.
-    --c-texInvPri: var(--spook-text-highlight);
+    --c-texInvPri: var(--spook-text-primary);
     --c-texInvSec: var(--spook-text-secondary);
     // Overlay controls — hover and pressed backgrounds.
     --ca-bacIntTra: var(--spook-bg-interact);
