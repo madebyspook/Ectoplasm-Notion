@@ -10,10 +10,12 @@
 :root {
   /* Accents */
   --spook-accent: #3C86ff;
+  --spook-bg-brightness: 0.25;
+  --spook-bg-chroma: 0.008;
   /* Surfaces */
-  --spook-bg-primary: oklch(from var(--spook-accent) 18% 0.01 h);
-  --spook-bg-secondary: oklch(from var(--spook-accent) 20% 0.0225 h);
-  --spook-bg-tertiary: oklch(from var(--spook-accent) 24% 0.02 h);
+  --spook-bg-primary: oklch(from var(--spook-accent) var(--spook-bg-brightness) var(--spook-bg-chroma) h);
+  --spook-bg-secondary: oklch(from var(--spook-accent) calc(var(--spook-bg-brightness)*1.1) calc(var(--spook-bg-chroma)*1.75) h);
+  --spook-bg-tertiary: oklch(from var(--spook-accent) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*2.5) h);
   --spook-bg-interact: rgba(from var(--spook-accent) r g b / 0.1);
   /* Borders */
   --spook-border: rgba(from var(--spook-accent) r g b / 0.25);
@@ -22,30 +24,30 @@
   --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
   --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
   /* Text palette */
-  --spook-text-highlight: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black);
+  --spook-text-neon: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black);
   --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 25%, white) 95%, black);
   --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 35%, white) 60%, black);
   --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black);
   /* Predefined text colors */
-  --spook-text-gray: #7d7a75;
-  --spook-text-brown: #9f765a;
-  --spook-text-orange: #d27b2d;
-  --spook-text-yellow: #cb9434;
-  --spook-text-green: #50946e;
-  --spook-text-blue: #387dc9;
-  --spook-text-purple: #9a6bb4;
-  --spook-text-pink: #c14c8a;
-  --spook-text-red: #cf5148;
+  --spook-text-gray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-text-brown: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-orange: oklch(from color-mix(in oklch shorter hue, #d27b2d 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-yellow: oklch(from color-mix(in oklch shorter hue, #cb9434 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-green: oklch(from color-mix(in oklch shorter hue, #50946e 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-blue: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-purple: oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-text-red: oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
   /* Predefined background colors */
-  --spook-bg-gray: #383836;
-  --spook-bg-brown: #45362d;
-  --spook-bg-orange: #53361f;
-  --spook-bg-yellow: #504425;
-  --spook-bg-green: #263d30;
-  --spook-bg-blue: #233850;
-  --spook-bg-purple: #3c2d47;
-  --spook-bg-pink: #4e2b3c;
-  --spook-bg-red: #502c29;
+  --spook-bg-gray: oklch(from color-mix(in oklch shorter hue, #383836 90%, var(--spook-accent)) calc(l * 0.9) c h);
+  --spook-bg-brown: oklch(from color-mix(in oklch shorter hue, #45362d 90%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-orange: oklch(from color-mix(in oklch shorter hue, #53361f 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-yellow: oklch(from color-mix(in oklch shorter hue, #504425 90%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-bg-green: oklch(from color-mix(in oklch shorter hue, #263d30 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-blue: oklch(from color-mix(in oklch shorter hue, #233850 75%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-purple: oklch(from color-mix(in oklch shorter hue, #3c2d47 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-pink: oklch(from color-mix(in oklch shorter hue, #4e2b3c 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-bg-red: oklch(from color-mix(in oklch shorter hue, #502c29 90%, var(--spook-accent)) calc(l * 1) c h);
   /* Custom button hover backgrounds */
   --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-primary) 80%, var(--spook-bg-secondary));
   --spook-button-hover-gray: color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
@@ -58,30 +60,30 @@
   --spook-button-hover-pink: color-mix(in srgb, var(--spook-bg-pink) 80%, var(--spook-bg-secondary));
   --spook-button-hover-red: color-mix(in srgb, var(--spook-bg-red) 80%, var(--spook-bg-secondary));
   /* Select/Status tag text */
-  --spook-tag-text-default: #f0efed;
-  --spook-tag-text-gray: #f0efed;
-  --spook-tag-text-brown: #f5ede9;
-  --spook-tag-text-orange: #fbebde;
-  --spook-tag-text-yellow: #f9f3dc;
-  --spook-tag-text-green: #e8f1ec;
-  --spook-tag-text-blue: #e5f2fc;
-  --spook-tag-text-purple: #f3ebf9;
-  --spook-tag-text-pink: #fae9f1;
-  --spook-tag-text-red: #fce9e7;
+  --spook-tag-text-default: oklch(from color-mix(in oklch shorter hue, #f0efed 75%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-gray: oklch(from color-mix(in oklch shorter hue, #f0efed 75%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-brown: oklch(from color-mix(in oklch shorter hue, #f5ede9 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-orange: oklch(from color-mix(in oklch shorter hue, #fbebde 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-yellow: oklch(from color-mix(in oklch shorter hue, #f9f3dc 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-green: oklch(from color-mix(in oklch shorter hue, #e8f1ec 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-blue: oklch(from color-mix(in oklch shorter hue, #e5f2fc 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-purple: oklch(from color-mix(in oklch shorter hue, #f3ebf9 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-pink: oklch(from color-mix(in oklch shorter hue, #fae9f1 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-red: oklch(from color-mix(in oklch shorter hue, #fce9e7 85%, var(--spook-accent)) calc(l * 1) c h);
   /* Select/Status tag backgrounds */
-  --spook-tag-bg-default: #fffff315;
-  --spook-tag-bg-gray: #fffceb4e;
-  --spook-tag-bg-brown: #ffb8845d;
-  --spook-tag-bg-orange: #ff8f477b;
-  --spook-tag-bg-yellow: #ffbc3575;
-  --spook-tag-bg-green: #71ffaf56;
-  --spook-tag-bg-blue: #51a6ff7e;
-  --spook-tag-bg-purple: #d093ff6d;
-  --spook-tag-bg-pink: #ff85c06d;
-  --spook-tag-bg-red: #ff746986;
+  --spook-tag-bg-default: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 25%, var(--spook-accent)) calc(l * 1.3) c h) r g b / 8.24%);
+  --spook-tag-bg-gray: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-accent)) calc(l * 0.8) calc(c * 0.2) h) r g b / 60.59%);
+  --spook-tag-bg-brown: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-accent)) calc(l * 1) c h) r g b / 36.47%);
+  --spook-tag-bg-orange: rgb(from oklch(from color-mix(in oklch shorter hue, #ff8f47 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 48.24%);
+  --spook-tag-bg-yellow: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 45.88%);
+  --spook-tag-bg-green: rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 33.73%);
+  --spook-tag-bg-blue: rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-accent)) calc(l * 1) c h) r g b / 49.41%);
+  --spook-tag-bg-purple: rgb(from oklch(from color-mix(in oklch shorter hue, #d093ff 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 42.75%);
+  --spook-tag-bg-pink: rgb(from oklch(from color-mix(in oklch shorter hue, #ff85c0 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 42.75%);
+  --spook-tag-bg-red: rgb(from oklch(from color-mix(in oklch shorter hue, #ff7469 90%, var(--spook-accent)) calc(l * 1) c h) r g b / 52.55%);
   /* Native SVG icon colors */
-  --spook-icon-gray-filter: none;
-  --spook-icon-lightgray-filter: none;
+  --spook-icon-gray-filter: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
+  --spook-icon-lightgray-filter: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(110%);
   --spook-icon-brown-filter: none;
   --spook-icon-orange-filter: none;
   --spook-icon-yellow-filter: none;
@@ -211,13 +213,35 @@
   --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role=link]:hover,
+.notion-page-content a.notion-page-mention-token:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tablist] [role=tab]:is(:hover, [aria-selected=true])) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tabpanel] .notion-text-block > [role=button][style*="--ca-bacIntTra"]:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme .notion-to_do-block .notion-strikethrough-container {
+  color: var(--spook-text-secondary) !important;
+  text-decoration-color: rgba(from var(--spook-text-secondary) r g b/0.5) !important;
+}
+
+.notion-code-block div[style*="--ca-graBacPriTra"] {
+  background: rgb(from var(--spook-bg-gray) r g b/0.5) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
   --c-bacEle: var(--spook-bg-tertiary);
   --ca-graBacIntTra: var(--spook-bg-interact);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
-  --c-graTexAccPri: var(--spook-text-highlight);
+  --c-graTexAccPri: var(--spook-text-secondary);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-button-block) {
@@ -236,12 +260,16 @@
   background-color: var(--spook-button-hover-default) !important;
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]) > div[style*="--c-texTer"] {
+  color: var(--spook-text-secondary) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled)) {
   --c-bluBacAccPri: var(--spook-accent);
 }
 
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled:checked) svg) {
-  fill: var(--spook-text-highlight);
+  fill: var(--spook-text-primary);
 }
 
 .notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
@@ -257,7 +285,7 @@
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
   --c-bacAccPri: var(--spook-bg-primary);
-  --c-texInvPri: var(--spook-text-highlight);
+  --c-texInvPri: var(--spook-text-primary);
   --c-texInvSec: var(--spook-text-secondary);
   --ca-bacIntTra: var(--spook-bg-interact);
 }
@@ -273,9 +301,27 @@
   --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab:is(:hover, [aria-selected=true])) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-collection-filter:hover,
+.notion-collection-sort:hover,
+.notion-collection-automation-edit-view:hover,
+.notion-collection-edit-view:hover,
+.notion-collection_view-block [role=button][aria-label=Search]:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
   --c-bluBacAccPri: var(--spook-accent);
-  --c-bluTexInvPri: var(--spook-text-highlight);
+  --c-bluTexInvPri: var(--spook-text-primary);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-header-cell > div > [role=button]:hover,
+.notion-table-view-add-column:hover,
+.notion-table-view-add-row:hover) {
+  background-color: var(--spook-bg-interact) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
@@ -299,22 +345,60 @@
   --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item > div > a[role=link]:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [data-content-editable-leaf][placeholder]:empty) {
+  --ca-texDisTra: var(--spook-text-muted);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view > .notion-collection_view-block > [role=button]:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
 :where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role=button][style*="--c-bacInt"]) {
   --c-bacEle: var(--spook-bg-tertiary);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][style*="--c-bacInt"]) {
   --c-bacInt: var(--spook-bg-interact);
-  --c-texSec: var(--spook-text-highlight);
+  --c-texSec: var(--spook-text-primary);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation]) {
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item [data-content-editable-leaf][placeholder]:empty) {
+  --ca-texDisTra: var(--spook-text-muted);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item > [role=presentation] > a[role=link] > div ~ div) {
+  background-color: var(--spook-bg-tertiary) !important;
+}
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item > [role=presentation] > a[role=link] > div ~ div):last-child {
+  flex-grow: 1;
+}
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item > [role=presentation] > a[role=link] > div ~ div):last-child > div:has(> [data-content-editable-leaf][placeholder]) {
+  align-self: flex-start;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item [style*="background: var(--ca-bacSecTra)"]) {
+  background-color: var(--spook-bg-secondary) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role=presentation] > a[role=link] > div ~ div) {
   background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view [role=button]:not(.notion-collection-item *):hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
+  --c-graBacEle: var(--spook-bg-gray);
 }
 
 .notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
   --c-yelBacSec: var(--spook-bg-tertiary);
-  --c-yelTexSec: var(--spook-text-highlight);
+  --c-yelTexSec: var(--spook-text-primary);
   --c-yelIcoSec: var(--spook-text-blue);
   --ca-yelBorStrTra: var(--spook-border);
   --ca-bacIntTra: var(--spook-bg-interact);
@@ -361,6 +445,10 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_red.svg"], [src*="_red.svg?"])) {
   filter: var(--spook-icon-red-filter);
+}
+
+.notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"] {
+  filter: var(--spook-icon-lightgray-filter) !important;
 }
 
 /* ========================================
@@ -416,7 +504,7 @@
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby] * {
-  color: var(--spook-text-highlight) !important;
+  color: var(--spook-text-neon) !important;
   text-shadow: var(--spook-tab-text-glow) !important;
 }
 

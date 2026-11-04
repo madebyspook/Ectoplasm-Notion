@@ -11,3 +11,8 @@
         filter: var(--spook-icon-#{$color}-filter);
     }
 }
+
+// Referenced page links — tint the inline page-icon slot regardless of icon filename.
+.notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"] {
+    filter: var(--spook-icon-lightgray-filter) !important;
+}
