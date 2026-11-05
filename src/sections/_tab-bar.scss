@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    TAB BAR
    ======================================== */
@@ -94,16 +96,10 @@
 .notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label$="Sidebar"] svg,
 .notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="Inbox"] svg,
 .notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="New"] svg {
-    filter:
-        brightness(0)
-        invert(1)
-        var(--spook-tab-icon-glow) !important;
+    @include mixins.icon-glow();
 }
 
-// Tab Bar page-icon images — contrast and glow.
+//Tab Bar page-icon images — contrast and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
-    filter:
-        brightness(1.15)
-        contrast(4)
-        var(--spook-tab-icon-glow) !important;
+    @include mixins.icon-glow();
 }

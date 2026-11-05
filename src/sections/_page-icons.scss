@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    NATIVE SVG PAGE ICONS
    ======================================== */
@@ -8,13 +10,19 @@
     .notion-app-inner.notion-dark-theme :where(
         .notion-record-icon img[src^="/icons/"]:is([src$="_#{$color}.svg"], [src*="_#{$color}.svg?"])
     ) {
-        filter: var(--spook-icon-#{$color}-filter);
+        @include mixins.icon-glow(
+            var(--spook-icon-filter-#{$color}),
+            var(--spook-icon-glow-#{$color})
+        );
     }
 }
 
-// Referenced page links and default sidebar pages share the light-gray icon tint.
-// Sidebar defaults are inline SVGs; custom image icons and emoji keep their own colors.
+// Referenced links, sidebar defaults and page-block defaults share the light-gray tint.
+// Default record icons are inline SVGs; custom image icons and emoji keep their own colors.
 .notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"],
-.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container .notion-record-icon svg:is(.page, .pageEmpty)) {
-    filter: var(--spook-icon-lightgray-filter) !important;
+.notion-app-inner.notion-dark-theme :where(
+    .notion-sidebar-container .notion-record-icon svg:is(.page, .pageEmpty),
+    .notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"] .notion-record-icon svg:is(.page, .pageEmpty)
+) {
+    @include mixins.icon-glow(var(--spook-icon-filter-lightgray));
 }
