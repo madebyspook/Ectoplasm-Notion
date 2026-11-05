@@ -326,7 +326,8 @@
   --ca-bacIntTra: var(--spook-bg-interact);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab:is(:hover, [aria-selected=true])) {
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab:is(:hover, [aria-selected=true]),
+.notion-collection_view-block [role=tablist] [role=button][aria-haspopup=dialog]:has(> svg.arrowChevronSingleDownSmall):not(:hover, :active, :focus-visible)) {
   background-color: var(--spook-bg-interact) !important;
 }
 
