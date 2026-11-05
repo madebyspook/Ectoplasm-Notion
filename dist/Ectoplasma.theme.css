@@ -24,27 +24,37 @@
   --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 30%, white) 95%, black);
   --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 40%, white) 60%, black);
   --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black);
-  /* Predefined text colors */
-  --spook-text-gray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-text-brown: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-orange: oklch(from color-mix(in oklch shorter hue, #d27b2d 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-yellow: oklch(from color-mix(in oklch shorter hue, #cb9434 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-green: oklch(from color-mix(in oklch shorter hue, #50946e 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-blue: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-purple: oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-text-red: oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
-  /* Predefined background colors */
-  --spook-bg-gray: oklch(from color-mix(in oklch shorter hue, #383836 90%, var(--spook-accent)) calc(l * 0.9) c h);
-  --spook-bg-brown: oklch(from color-mix(in oklch shorter hue, #45362d 90%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-orange: oklch(from color-mix(in oklch shorter hue, #53361f 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-yellow: oklch(from color-mix(in oklch shorter hue, #504425 90%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-bg-green: oklch(from color-mix(in oklch shorter hue, #263d30 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-blue: oklch(from color-mix(in oklch shorter hue, #233850 75%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-purple: oklch(from color-mix(in oklch shorter hue, #3c2d47 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-pink: oklch(from color-mix(in oklch shorter hue, #4e2b3c 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-bg-red: oklch(from color-mix(in oklch shorter hue, #502c29 90%, var(--spook-accent)) calc(l * 1) c h);
-  /* Custom button hover backgrounds */
+  /* Colors */
+  --spook-gray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-brown: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-orange: oklch(from color-mix(in oklch shorter hue, #d2802d 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-yellow: oklch(from color-mix(in oklch shorter hue, #cb9e34 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-green: oklch(from color-mix(in oklch shorter hue, #509467 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-blue: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-purple: oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-red: oklch(from color-mix(in oklch shorter hue, #cf4848 90%, var(--spook-accent)) calc(l * 1.1) c h);
+  /* Colored text */
+  --spook-text-gray: var(--spook-gray);
+  --spook-text-brown: var(--spook-brown);
+  --spook-text-orange: var(--spook-orange);
+  --spook-text-yellow: var(--spook-yellow);
+  --spook-text-green: var(--spook-green);
+  --spook-text-blue: var(--spook-blue);
+  --spook-text-purple: var(--spook-purple);
+  --spook-text-pink: var(--spook-pink);
+  --spook-text-red: var(--spook-red);
+  /* Background colors for text, callout and button */
+  --spook-bg-gray: oklch(from var(--spook-gray) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-brown: oklch(from var(--spook-brown) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-orange: oklch(from var(--spook-orange) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-yellow: oklch(from var(--spook-yellow) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-green: oklch(from var(--spook-green) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-blue: oklch(from var(--spook-blue) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-purple: oklch(from var(--spook-purple) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-pink: oklch(from var(--spook-pink) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-red: oklch(from var(--spook-red) calc(l * 0.5) calc(c * 0.45) h);
+  /* Button hover Backgrounds */
   --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gray) 20%, var(--spook-bg-secondary));
   --spook-button-hover-gray: color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
   --spook-button-hover-brown: color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
@@ -56,19 +66,19 @@
   --spook-button-hover-pink: color-mix(in srgb, var(--spook-bg-pink) 80%, var(--spook-bg-secondary));
   --spook-button-hover-red: color-mix(in srgb, var(--spook-bg-red) 80%, var(--spook-bg-secondary));
   /* Select/Status tag text */
-  --spook-tag-text-default: oklch(from color-mix(in oklch shorter hue, #f0efed 75%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-gray: oklch(from color-mix(in oklch shorter hue, #f0efed 75%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-brown: oklch(from color-mix(in oklch shorter hue, #f5ede9 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-orange: oklch(from color-mix(in oklch shorter hue, #fbebde 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-yellow: oklch(from color-mix(in oklch shorter hue, #f9f3dc 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-green: oklch(from color-mix(in oklch shorter hue, #e8f1ec 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-blue: oklch(from color-mix(in oklch shorter hue, #e5f2fc 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-purple: oklch(from color-mix(in oklch shorter hue, #f3ebf9 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-pink: oklch(from color-mix(in oklch shorter hue, #fae9f1 85%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-tag-text-red: oklch(from color-mix(in oklch shorter hue, #fce9e7 85%, var(--spook-accent)) calc(l * 1) c h);
+  --spook-tag-text-default: color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
+  --spook-tag-text-gray: color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
+  --spook-tag-text-brown: color-mix(in srgb, var(--spook-text-brown) 20%, var(--spook-text-primary));
+  --spook-tag-text-orange: color-mix(in srgb, var(--spook-text-organge) 20%, var(--spook-text-primary));
+  --spook-tag-text-yellow: color-mix(in srgb, var(--spook-text-yellow) 20%, var(--spook-text-primary));
+  --spook-tag-text-green: color-mix(in srgb, var(--spook-text-green) 20%, var(--spook-text-primary));
+  --spook-tag-text-blue: color-mix(in srgb, var(--spook-text-blue) 20%, var(--spook-text-primary));
+  --spook-tag-text-purple: color-mix(in srgb, var(--spook-text-purple) 20%, var(--spook-text-primary));
+  --spook-tag-text-pink: color-mix(in srgb, var(--spook-text-pink) 20%, var(--spook-text-primary));
+  --spook-tag-text-red: color-mix(in srgb, var(--spook-text-red) 20%, var(--spook-text-primary));
   /* Select/Status tag backgrounds */
   --spook-tag-bg-default: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 25%, var(--spook-accent)) calc(l * 1.3) c h) r g b / 8.24%);
-  --spook-tag-bg-gray: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-accent)) calc(l * 0.8) calc(c * 0.2) h) r g b / 60.59%);
+  --spook-tag-bg-gray: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-accent)) calc(l * 0.9) calc(c * 0.4) h) r g b / 60.59%);
   --spook-tag-bg-brown: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-accent)) calc(l * 1) c h) r g b / 36.47%);
   --spook-tag-bg-orange: rgb(from oklch(from color-mix(in oklch shorter hue, #ff8f47 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 48.24%);
   --spook-tag-bg-yellow: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 45.88%);
@@ -80,24 +90,24 @@
   /* Native SVG icon colors */
   --spook-icon-filter-gray: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
   --spook-icon-filter-lightgray: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
-  --spook-icon-filter-brown: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-orange: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-yellow: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-green: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-blue: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-purple: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-pink: saturate(100%) hue-rotate(0deg) brightness(100%);
-  --spook-icon-filter-red: saturate(100%) hue-rotate(0deg) brightness(100%);
+  --spook-icon-filter-brown: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-orange: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-yellow: saturate(100%) hue-rotate(20deg) brightness(120%);
+  --spook-icon-filter-green: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-blue: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-purple: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-pink: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-red: saturate(100%) hue-rotate(0deg) brightness(110%);
   --spook-icon-glow-gray: var(--spook-accent);
-  --spook-icon-glow-lightgray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
-  --spook-icon-glow-brown: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-orange: oklch(from color-mix(in oklch shorter hue, #d27b2d 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-yellow: oklch(from color-mix(in oklch shorter hue, #cb9434 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-green: oklch(from color-mix(in oklch shorter hue, #50946e 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-blue: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-purple: oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
-  --spook-icon-glow-red: oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
+  --spook-icon-glow-lightgray: var(--spook-gray);
+  --spook-icon-glow-brown: var(--spook-brown);
+  --spook-icon-glow-orange: var(--spook-orange);
+  --spook-icon-glow-yellow: var(--spook-yellow);
+  --spook-icon-glow-green: var(--spook-green);
+  --spook-icon-glow-blue: var(--spook-blue);
+  --spook-icon-glow-purple: var(--spook-purple);
+  --spook-icon-glow-pink: var(--spook-pink);
+  --spook-icon-glow-red: var(--spook-red);
   /* Desktop Tab Bar */
   --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
   --spook-tab-box-shadow:
