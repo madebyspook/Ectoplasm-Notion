@@ -87,16 +87,55 @@
     --spook-tag-bg-red:     rgb(from oklch(from color-mix(in oklch shorter hue, #ff7469 90%, var(--spook-accent)) calc(l * 1) c h) r g b / 52.55%);
 
     /* Native SVG icon colors */
-    --spook-icon-gray-filter: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
-    --spook-icon-lightgray-filter: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(110%);
-    --spook-icon-brown-filter: none;
-    --spook-icon-orange-filter: none;
-    --spook-icon-yellow-filter: none;
-    --spook-icon-green-filter: none;
-    --spook-icon-blue-filter: none;
-    --spook-icon-purple-filter: none;
-    --spook-icon-pink-filter: none;
-    --spook-icon-red-filter: none;
+    --spook-icon-filter-gray:      brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
+    --spook-icon-filter-lightgray: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
+    --spook-icon-filter-brown:     saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-orange:    saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-yellow:    saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-green:     saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-blue:      saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-purple:    saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-pink:      saturate(100%) hue-rotate(0deg) brightness(100%);
+    --spook-icon-filter-red:       saturate(100%) hue-rotate(0deg) brightness(100%);
+
+    --spook-icon-glow-gray:      var(--spook-accent);
+    --spook-icon-glow-lightgray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
+    --spook-icon-glow-brown:     oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-orange:    oklch(from color-mix(in oklch shorter hue, #d27b2d 85%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-yellow:    oklch(from color-mix(in oklch shorter hue, #cb9434 85%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-green:     oklch(from color-mix(in oklch shorter hue, #50946e 85%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-blue:      oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-purple:    oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-pink:      oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
+    --spook-icon-glow-red:       oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
+
+    /* Glow */
+    --spook-glow-neon-weak:
+        0 0 4px rgba(from var(--spook-accent) r g b / 0.65),
+        0 0 12px rgba(from var(--spook-accent) r g b / 0.40),
+        0 0 24px rgba(from var(--spook-accent) r g b / 0.20);
+    --spook-glow-neon-strong:
+        0 0 3px rgba(from var(--spook-accent) r g b / 1),
+        0 0 9px rgba(from var(--spook-accent) r g b / 0.95),
+        0 0 22px rgba(from var(--spook-accent) r g b / 0.75),
+        0 0 45px rgba(from var(--spook-accent) r g b / 0.48),
+        0 0 70px rgba(from var(--spook-accent) r g b / 0.23);
+    --spook-glow-accent:
+        0 0 3px rgba(from var(--spook-accent) r g b / 1),
+        0 0 6px 1px rgba(from var(--spook-accent) r g b / 1),
+        0 0 8px 1px rgba(from var(--spook-accent) r g b / 1),
+        0 0 12px 1px rgba(from var(--spook-accent) r g b / 0.55),
+        0 0 20px rgba(from var(--spook-accent) r g b / 0.3);
+    --spook-glow-filter-weak:
+        drop-shadow(0 0 4px rgba(from var(--spook-accent) r g b / 0.5));
+    --spook-glow-filter-strong:
+        drop-shadow(0 0 5px rgb(from var(--spook-accent) r g b / 0.5))
+        drop-shadow(0 0 6px rgb(from var(--spook-accent) r g b / 0.25));
+    --spook-glow-filter-accent:
+        drop-shadow(0 0 1px rgb(from var(--spook-accent) r g b / 1))
+        drop-shadow(0 0 2px rgb(from var(--spook-accent) r g b / 0.9))
+        drop-shadow(0 0 4px rgb(from var(--spook-accent) r g b / 0.8))
+        drop-shadow(0 0 8px rgb(from var(--spook-accent) r g b / 0.7));
 
     /* Desktop Tab Bar */
     --spook-tab-button-hover: rgba(57, 168, 255, 0.16); // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
@@ -108,8 +147,4 @@
     --spook-tab-text-glow:
         0 0 5px rgba(120, 213, 255, 0.65),
         0 0 10px rgba(57, 168, 255, 0.35);
-    // Desktop navigation/control SVGs; tab page-icon images.
-    --spook-tab-icon-glow:
-        drop-shadow(0 0 5px rgba(120, 213, 255, 0.65))
-        drop-shadow(0 0 10px rgba(57, 168, 255, 0.35));
 }
