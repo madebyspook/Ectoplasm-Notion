@@ -20,7 +20,12 @@
     .notion-collection-sort:hover,
     .notion-collection-automation-edit-view:hover,
     .notion-collection-edit-view:hover,
-    .notion-collection_view-block [role="button"][aria-label="Search"]:hover
+    .notion-collection_view-block [role="button"][aria-label="Search"]:hover,
+    :is(
+        .notion-collection-add-view,
+        .notion-collection_view-block [role="button"][aria-label="Minimize"],
+        .notion-collection_view-block a[role="link"][aria-label="Open as full page"]
+    ):hover:not(:active, :disabled, [aria-disabled="true"], [aria-pressed="true"])
 ) {
     background-color: var(--spook-bg-interact) !important;
 }

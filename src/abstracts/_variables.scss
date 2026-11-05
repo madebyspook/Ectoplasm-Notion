@@ -51,7 +51,7 @@
     --spook-bg-red:    oklch(from color-mix(in oklch shorter hue, #502c29 90%, var(--spook-accent)) calc(l * 1) c h);
 
     /* Custom button hover backgrounds */
-    --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-primary) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gray) 20%, var(--spook-bg-secondary));
     --spook-button-hover-gray:    color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
     --spook-button-hover-brown:   color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
     --spook-button-hover-orange:  color-mix(in srgb, var(--spook-bg-orange) 80%, var(--spook-bg-secondary));

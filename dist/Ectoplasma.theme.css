@@ -49,7 +49,7 @@
   --spook-bg-pink: oklch(from color-mix(in oklch shorter hue, #4e2b3c 85%, var(--spook-accent)) calc(l * 1) c h);
   --spook-bg-red: oklch(from color-mix(in oklch shorter hue, #502c29 90%, var(--spook-accent)) calc(l * 1) c h);
   /* Custom button hover backgrounds */
-  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-primary) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gray) 20%, var(--spook-bg-secondary));
   --spook-button-hover-gray: color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
   --spook-button-hover-brown: color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
   --spook-button-hover-orange: color-mix(in srgb, var(--spook-bg-orange) 80%, var(--spook-bg-secondary));
@@ -256,7 +256,8 @@
   --ca-palRed400: var(--spook-button-hover-red);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button][style*="hsl(from var(--c-bacPri)"]) {
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]:is([style*="--c-whiButHovBac"],
+[style*="hsl(from var(--c-bacPri)"]):hover) {
   background-color: var(--spook-button-hover-default) !important;
 }
 
@@ -309,7 +310,10 @@
 .notion-collection-sort:hover,
 .notion-collection-automation-edit-view:hover,
 .notion-collection-edit-view:hover,
-.notion-collection_view-block [role=button][aria-label=Search]:hover) {
+.notion-collection_view-block [role=button][aria-label=Search]:hover,
+:is(.notion-collection-add-view,
+.notion-collection_view-block [role=button][aria-label=Minimize],
+.notion-collection_view-block a[role=link][aria-label="Open as full page"]):hover:not(:active, :disabled, [aria-disabled=true], [aria-pressed=true])) {
   background-color: var(--spook-bg-interact) !important;
 }
 
@@ -447,7 +451,8 @@
   filter: var(--spook-icon-red-filter);
 }
 
-.notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"] {
+.notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"],
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container .notion-record-icon svg:is(.page, .pageEmpty)) {
   filter: var(--spook-icon-lightgray-filter) !important;
 }
 
