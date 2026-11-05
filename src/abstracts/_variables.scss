@@ -17,15 +17,10 @@
     /* Borders */
     --spook-border: rgba(from var(--spook-accent) r g b / 0.25);
 
-    /* General surface glows */
-    --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
-    --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
-    --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
-
     /* Text palette */
     --spook-text-neon:      color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black); // Desktop tab titles; other controls use the primary or secondary text tokens.
-    --spook-text-primary:   color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 25%, white) 95%, black); // Primary application text, selected view tabs, icons and masks.
-    --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 35%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
+    --spook-text-primary:   color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 30%, white) 95%, black); // Primary application text, selected view tabs, icons and masks.
+    --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 40%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
     --spook-text-muted:     color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black); // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
 
     /* Predefined text colors */
@@ -109,33 +104,6 @@
     --spook-icon-glow-pink:      oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
     --spook-icon-glow-red:       oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
 
-    /* Glow */
-    --spook-glow-neon-weak:
-        0 0 4px rgba(from var(--spook-accent) r g b / 0.65),
-        0 0 12px rgba(from var(--spook-accent) r g b / 0.40),
-        0 0 24px rgba(from var(--spook-accent) r g b / 0.20);
-    --spook-glow-neon-strong:
-        0 0 3px rgba(from var(--spook-accent) r g b / 1),
-        0 0 9px rgba(from var(--spook-accent) r g b / 0.95),
-        0 0 22px rgba(from var(--spook-accent) r g b / 0.75),
-        0 0 45px rgba(from var(--spook-accent) r g b / 0.48),
-        0 0 70px rgba(from var(--spook-accent) r g b / 0.23);
-    --spook-glow-accent:
-        0 0 3px rgba(from var(--spook-accent) r g b / 1),
-        0 0 6px 1px rgba(from var(--spook-accent) r g b / 1),
-        0 0 8px 1px rgba(from var(--spook-accent) r g b / 1),
-        0 0 12px 1px rgba(from var(--spook-accent) r g b / 0.55),
-        0 0 20px rgba(from var(--spook-accent) r g b / 0.3);
-    --spook-glow-filter-weak:
-        drop-shadow(0 0 4px rgba(from var(--spook-accent) r g b / 0.5));
-    --spook-glow-filter-strong:
-        drop-shadow(0 0 5px rgb(from var(--spook-accent) r g b / 0.5))
-        drop-shadow(0 0 6px rgb(from var(--spook-accent) r g b / 0.25));
-    --spook-glow-filter-accent:
-        drop-shadow(0 0 1px rgb(from var(--spook-accent) r g b / 1))
-        drop-shadow(0 0 2px rgb(from var(--spook-accent) r g b / 0.9))
-        drop-shadow(0 0 4px rgb(from var(--spook-accent) r g b / 0.8))
-        drop-shadow(0 0 8px rgb(from var(--spook-accent) r g b / 0.7));
 
     /* Desktop Tab Bar */
     --spook-tab-button-hover: rgba(57, 168, 255, 0.16); // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.

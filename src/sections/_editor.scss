@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    MAIN EDITOR
    ======================================== */
@@ -7,6 +9,11 @@
 // Page title — placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
     --cl-pagTitPlaTexCol: var(--spook-text-muted);
+}
+
+// Page title — text glow.
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1) {
+    @include mixins.text-glow(1);
 }
 
 // --- Rich-text typography ---
@@ -24,7 +31,20 @@
         .notion-code-block *, .katex *
     ))
 ) {
-    font-weight: 900 !important;
+    font-weight: 700 !important;
+    @include mixins.text-glow(0.75);
+}
+
+// Headings — subtle text glow.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content h1,
+    .notion-page-content h2,
+    .notion-page-content h3,
+    .notion-page-content h4,
+    .notion-page-content h5,
+    .notion-page-content h6
+) {
+    @include mixins.text-glow(1);
 }
 
 // --- Empty-block placeholders ---

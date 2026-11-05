@@ -8,3 +8,10 @@
         drop-shadow(0 0 6px rgb(from #{$glow-color} r g b / 0.3))
         !important;
 }
+
+@mixin text-glow($strength: 1) {
+    text-shadow:
+        0 0 3px rgb(from currentColor r g b / calc(0.6 * #{$strength})),
+        0 0 8px rgb(from currentColor r g b / calc(0.3 * #{$strength}));
+}
+

@@ -19,14 +19,10 @@
   --spook-bg-interact: rgba(from var(--spook-accent) r g b / 0.1);
   /* Borders */
   --spook-border: rgba(from var(--spook-accent) r g b / 0.25);
-  /* General surface glows */
-  --spook-glow-subtle: 0 0 8px rgba(57, 168, 255, 0.10);
-  --spook-glow-medium: 0 0 12px rgba(57, 168, 255, 0.25);
-  --spook-glow-strong: 0 0 18px rgba(57, 168, 255, 0.45);
   /* Text palette */
   --spook-text-neon: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 15%, white) 95%, black);
-  --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 25%, white) 95%, black);
-  --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 35%, white) 60%, black);
+  --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 30%, white) 95%, black);
+  --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 40%, white) 60%, black);
   --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-accent) 50%, white) 50%, black);
   /* Predefined text colors */
   --spook-text-gray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-accent)) calc(l * 1) c h);
@@ -102,33 +98,6 @@
   --spook-icon-glow-purple: oklch(from color-mix(in oklch shorter hue, #9a6bb4 85%, var(--spook-accent)) calc(l * 1.1) c h);
   --spook-icon-glow-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
   --spook-icon-glow-red: oklch(from color-mix(in oklch shorter hue, #cf5148 90%, var(--spook-accent)) calc(l * 1.1) c h);
-  /* Glow */
-  --spook-glow-neon-weak:
-      0 0 4px rgba(from var(--spook-accent) r g b / 0.65),
-      0 0 12px rgba(from var(--spook-accent) r g b / 0.40),
-      0 0 24px rgba(from var(--spook-accent) r g b / 0.20);
-  --spook-glow-neon-strong:
-      0 0 3px rgba(from var(--spook-accent) r g b / 1),
-      0 0 9px rgba(from var(--spook-accent) r g b / 0.95),
-      0 0 22px rgba(from var(--spook-accent) r g b / 0.75),
-      0 0 45px rgba(from var(--spook-accent) r g b / 0.48),
-      0 0 70px rgba(from var(--spook-accent) r g b / 0.23);
-  --spook-glow-accent:
-      0 0 3px rgba(from var(--spook-accent) r g b / 1),
-      0 0 6px 1px rgba(from var(--spook-accent) r g b / 1),
-      0 0 8px 1px rgba(from var(--spook-accent) r g b / 1),
-      0 0 12px 1px rgba(from var(--spook-accent) r g b / 0.55),
-      0 0 20px rgba(from var(--spook-accent) r g b / 0.3);
-  --spook-glow-filter-weak:
-      drop-shadow(0 0 4px rgba(from var(--spook-accent) r g b / 0.5));
-  --spook-glow-filter-strong:
-      drop-shadow(0 0 5px rgb(from var(--spook-accent) r g b / 0.5))
-      drop-shadow(0 0 6px rgb(from var(--spook-accent) r g b / 0.25));
-  --spook-glow-filter-accent:
-      drop-shadow(0 0 1px rgb(from var(--spook-accent) r g b / 1))
-      drop-shadow(0 0 2px rgb(from var(--spook-accent) r g b / 0.9))
-      drop-shadow(0 0 4px rgb(from var(--spook-accent) r g b / 0.8))
-      drop-shadow(0 0 8px rgb(from var(--spook-accent) r g b / 0.7));
   /* Desktop Tab Bar */
   --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
   --spook-tab-box-shadow:
@@ -227,12 +196,26 @@
   --cl-pagTitPlaTexCol: var(--spook-text-muted);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"],
 [style*="font-weight:700"], [style*="font-weight: 700"],
 [style*="font-weight:bold"], [style*="font-weight: bold"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 .notion-header-block *, .notion-sub_header-block *, .notion-sub_sub_header-block *,
 .notion-code-block *, .katex *))) {
-  font-weight: 900 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content h1,
+.notion-page-content h2,
+.notion-page-content h3,
+.notion-page-content h4,
+.notion-page-content h5,
+.notion-page-content h6) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty) {
