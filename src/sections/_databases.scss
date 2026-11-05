@@ -10,7 +10,11 @@
 }
 
 // View tabs — hover and selected surfaces; preserve native text and indicators.
-.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab:is(:hover, [aria-selected="true"])) {
+// Compact active-view switcher — resting surface only; keep native interaction states.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-collection-view-tab:is(:hover, [aria-selected="true"]),
+    .notion-collection_view-block [role="tablist"] [role="button"][aria-haspopup="dialog"]:has(> svg.arrowChevronSingleDownSmall):not(:hover, :active, :focus-visible)
+) {
     background-color: var(--spook-bg-interact) !important;
 }
 
