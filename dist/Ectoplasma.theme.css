@@ -79,8 +79,8 @@
   /* Select/Status tag backgrounds */
   --spook-tag-bg-default: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 5%, var(--spook-accent)) calc(l * 1.3) c h) r g b / 8.24%);
   --spook-tag-bg-gray: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-accent)) calc(l * 0.9) calc(c * 0.4) h) r g b / 60.59%);
-  --spook-tag-bg-brown: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-accent)) calc(l * 1) c h) r g b / 36.47%);
-  --spook-tag-bg-orange: rgb(from oklch(from color-mix(in oklch shorter hue, #ff8f47 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 48.24%);
+  --spook-tag-bg-brown: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-accent)) calc(l * 0.9) c h) r g b / 36.47%);
+  --spook-tag-bg-orange: rgb(from oklch(from color-mix(in oklch shorter hue, #ffa047 95%, var(--spook-accent)) calc(l * 1) c h) r g b / 48.24%);
   --spook-tag-bg-yellow: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 45.88%);
   --spook-tag-bg-green: rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-accent)) calc(l * 1) c h) r g b / 33.73%);
   --spook-tag-bg-blue: rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-accent)) calc(l * 1) c h) r g b / 49.41%);
@@ -498,12 +498,10 @@
 }
 
 :where(.root) .hide-scrollbar [role=button][style*="background-color: rgb(25, 25, 25)"] {
-  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
