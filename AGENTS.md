@@ -31,6 +31,14 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - After each task, leave changes uncommitted and provide a concise, ready-to-use commit message summarizing the work. Do not stage or commit automatically. Commit only with explicit approval; push and create/update pull requests only when requested. Never merge, tag, release, publish, or change repository settings without explicit permission.
 - Keep installation and user-facing guidance in `README.md`. Do not add dependencies, hosting, licensing, or unrelated infrastructure without a task-specific reason and approval.
 - In handoffs, summarize files changed, validation results, whether live Notion was checked, and any remaining limitations or manual steps.
+- Follow Semantic Versioning (MAJOR.MINOR.PATCH) for every code-changing commit:
+  - PATCH: Bug fixes, styling adjustments, and refactoring without new functionality.
+  - MINOR: New backward-compatible features or capabilities.
+  - MAJOR: Breaking changes.
+  - Use the highest applicable bump when a commit contains multiple change types.
+  - Do not bump versions for documentation-only changes.
+- Prepare the version bump when changes are ready to commit, not after every development iteration. Keep versions synchronized across `src/main.scss`, `package.json`, and `package-lock.json`.
+- Rebuild and run checks after updating the version. Include the version bump in the same commit as the changes, never as a separate commit. Do not commit without explicit approval.
 
 ## Maintaining this file
 
