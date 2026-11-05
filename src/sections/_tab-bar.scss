@@ -24,13 +24,13 @@
 
 // Tab Bar — selected-tab background, underline and glow.
 :where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(25, 25, 25)"] {
-    background-color: var(--spook-bg-interact) !important;
+    // background-color: var(--spook-bg-interact) !important;
     box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
 // Tab Bar — Hovered-tab background, underline and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-    background-color: var(--spook-bg-interact) !important;
+    // background-color: var(--spook-bg-interact) !important;
     box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
@@ -85,7 +85,7 @@
 // Tab Bar — title-group text and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
     color: var(--spook-text-neon) !important;
-    text-shadow: var(--spook-tab-text-glow) !important;
+    @include mixins.text-glow();
 }
 
 // Tab Bar — navigation/control SVGs — white icons and glow.

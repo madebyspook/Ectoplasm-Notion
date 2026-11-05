@@ -140,8 +140,9 @@
 
 // --- Board view ---
 
-// Only gray card faces consume this native channel; other column colors are independent.
+// Default and gray card faces use separate channels; other column colors stay native.
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
+    --c-bacEle: var(--spook-bg-tertiary);
     --c-graBacEle: var(--spook-bg-gray);
 }
 
