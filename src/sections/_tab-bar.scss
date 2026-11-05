@@ -85,7 +85,7 @@
 // Tab Bar — title-group text and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
     color: var(--spook-text-neon) !important;
-    @include mixins.text-glow(1);
+    @include mixins.text-glow();
 }
 
 // Tab Bar — navigation/control SVGs — white icons and glow.

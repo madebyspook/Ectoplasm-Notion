@@ -34,7 +34,6 @@
     --spook-pink:   oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-accent)) calc(l * 1.1) c h);
     --spook-red:    oklch(from color-mix(in oklch shorter hue, #cf4848 90%, var(--spook-accent)) calc(l * 1.1) c h);
 
-
     /* Colored text */
     --spook-text-gray:   var(--spook-gray);
     --spook-text-brown:  var(--spook-brown);

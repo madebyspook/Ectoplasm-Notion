@@ -44,7 +44,7 @@
     .notion-page-content h5,
     .notion-page-content h6
 ) {
-    @include mixins.text-glow(1);
+    @include mixins.text-glow();
 }
 
 // --- Empty-block placeholders ---

@@ -421,6 +421,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
+  --c-bacEle: var(--spook-bg-tertiary);
   --c-graBacEle: var(--spook-bg-gray);
 }
 
