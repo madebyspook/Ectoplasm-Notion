@@ -107,8 +107,11 @@
     --ca-palRed400: var(--spook-button-hover-red);
 }
 
-// Default button — Notion writes an inline HSL hover color instead of a palette variable.
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"][style*="hsl(from var(--c-bacPri)"]) {
+// Default buttons use either the native white-button token or a relative HSL hover color.
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]:is(
+    [style*="--c-whiButHovBac"],
+    [style*="hsl(from var(--c-bacPri)"]
+):hover) {
     background-color: var(--spook-button-hover-default) !important;
 }
 
