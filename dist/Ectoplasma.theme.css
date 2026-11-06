@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.0.0
+ * @version 1.0.1
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -203,7 +203,7 @@
   --cl-pagTitPlaTexCol: var(--spook-text-muted);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-block h1) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
@@ -216,12 +216,12 @@
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content h1,
-.notion-page-content h2,
-.notion-page-content h3,
-.notion-page-content h4,
-.notion-page-content h5,
-.notion-page-content h6) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content h1:not(:empty),
+.notion-page-content h2:not(:empty),
+.notion-page-content h3:not(:empty),
+.notion-page-content h4:not(:empty),
+.notion-page-content h5:not(:empty),
+.notion-page-content h6:not(:empty)) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 

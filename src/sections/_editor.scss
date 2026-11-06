@@ -11,8 +11,8 @@
     --cl-pagTitPlaTexCol: var(--spook-text-muted);
 }
 
-// Page title — text glow.
-.notion-app-inner.notion-dark-theme :where(.notion-page-block h1) {
+// Page title — populated text glow; :empty also matches the generated placeholder.
+.notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
     @include mixins.text-glow(1);
 }
 
@@ -35,14 +35,14 @@
     @include mixins.text-glow(0.75);
 }
 
-// Headings — subtle text glow.
+// Headings — subtle text glow for populated content.
 .notion-app-inner.notion-dark-theme :where(
-    .notion-page-content h1,
-    .notion-page-content h2,
-    .notion-page-content h3,
-    .notion-page-content h4,
-    .notion-page-content h5,
-    .notion-page-content h6
+    .notion-page-content h1:not(:empty),
+    .notion-page-content h2:not(:empty),
+    .notion-page-content h3:not(:empty),
+    .notion-page-content h4:not(:empty),
+    .notion-page-content h5:not(:empty),
+    .notion-page-content h6:not(:empty)
 ) {
     @include mixins.text-glow();
 }
