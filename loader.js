@@ -1,160 +1,61 @@
-const fs = require("node:fs");
-const http = require("node:http");
-const path = require("node:path");
-const { acquireInstance } = require("./scripts/loader-instance.cjs");
+const fs = require('node:fs');
+const path = require('node:path');
+const { acquireInstance } = require('./scripts/loader-instance.cjs');
+const { connect, Injector } = require('./scripts/injector.cjs');
 
-const PORT = 9222;
-const CSS_PATH = path.join(__dirname, "dist", "Ectoplasma.theme.css");
-const STYLE_ID = "ectoplasma-notion-theme";
+const CSS_PATH = path.join(__dirname, 'dist', 'Ectoplasma.theme.css');
 
-const connections = new Map();
-let currentCSS = "";
-
-function getTargets() {
-    return new Promise((resolve, reject) => {
-        http.get(`http://127.0.0.1:${PORT}/json/list`, res => {
-            let data = "";
-
-            res.on("data", chunk => data += chunk);
-            res.on("end", () => {
-                try {
-                    resolve(JSON.parse(data));
-                } catch (error) {
-                    reject(error);
-                }
-            });
-        }).on("error", reject);
-    });
-}
-
-function injectCSS(ws) {
-    if (ws.readyState !== WebSocket.OPEN) return;
-
-    const expression = `(() => {
-        let style = document.getElementById(${JSON.stringify(STYLE_ID)});
-
-        if (!style) {
-            style = document.createElement("style");
-            style.id = ${JSON.stringify(STYLE_ID)};
-            (document.head || document.documentElement).appendChild(style);
-        }
-
-        style.textContent = ${JSON.stringify(currentCSS)};
-
-        // Remove the theme's test element if present.
-        document.getElementById("ectoplasma-test")?.remove();
-        
-        return "Ectoplasma CSS applied";
-    })()`;
-
-    ws.send(JSON.stringify({
-        id: 1,
-        method: "Runtime.evaluate",
-        params: {
-            expression,
-            returnByValue: true
-        }
-    }));
-}
-
-function connect(target) {
-    if (connections.has(target.id)) return;
-
-    const ws = new WebSocket(target.webSocketDebuggerUrl);
-    connections.set(target.id, ws);
-
-    ws.addEventListener("open", () => {
-        console.log(`[Connected] ${target.title || target.url}`);
-        injectCSS(ws);
-    });
-
-    // Report responses and errors from Notion's debugging interface.
-    ws.addEventListener("message", event => {
-    const response = JSON.parse(event.data);
-
-    if (response.error) {
-        console.error(
-            `[Injection error] ${target.title}:`,
-            JSON.stringify(response.error, null, 2)
-        );
-    }
-
-    if (response.result?.exceptionDetails) {
-        console.error(
-            `[JavaScript exception] ${target.title}:`,
-            JSON.stringify(response.result.exceptionDetails, null, 2)
-        );
-    }
-
-    if (response.result?.result?.value === "Ectoplasma CSS applied") {
-        console.log(`[CSS applied] ${target.title}`);
-    }
-    });
-
-    ws.addEventListener("close", () => {
-        connections.delete(target.id);
-    });
-
-    ws.addEventListener("error", error => {
-        console.error(`[WebSocket] ${error.message}`);
-        connections.delete(target.id);
-    });
-}
-
-async function scanTargets() {
-    try {
-        const targets = await getTargets();
-
-        for (const target of targets) {
-            if (
-                target.type === "page" &&
-                (
-                    target.url.startsWith("https://app.notion.com/") ||
-                    target.title === "Tab Bar"
-                )
-            ) {
-                connect(target);
-            }
-        }
-    } catch (error) {
-        console.error(`[Notion unavailable] ${error.message}`);
-    }
-}
-
-function loadCSS() {
-    try {
-        currentCSS = fs.readFileSync(CSS_PATH, "utf8");
-        console.log(`[CSS loaded] ${CSS_PATH}`);
-
-        for (const ws of connections.values()) {
-            injectCSS(ws);
-        }
-    } catch (error) {
-        console.error(`[CSS error] ${error.message}`);
-    }
-}
-
-acquireInstance(__dirname).then(instance => {
-    if (!instance) {
-        console.log("Ectoplasma loader already running for this checkout; using the existing instance.");
+async function main() {
+    const manual = process.argv.includes('--once');
+    const instance = manual ? null : await acquireInstance(__dirname);
+    if (!manual && !instance) {
+        console.log('Ectoplasma loader already running for this checkout; using the existing instance.');
         return;
     }
-
-    loadCSS();
-    scanTargets();
-
-    // Discover newly opened Notion tabs.
-    setInterval(scanTargets, 2000);
-
-    fs.watchFile(CSS_PATH, { interval: 500 }, (curr, prev) => {
-        if (curr.mtimeMs !== prev.mtimeMs) {
-            loadCSS();
+    let injector;
+    let watcher;
+    const cleanup = () => {
+        watcher?.close();
+        injector?.client.removeAllListeners('closed');
+        injector?.close();
+        instance?.close();
+    };
+    try {
+        const css = fs.readFileSync(CSS_PATH, 'utf8');
+        const client = await connect();
+        injector = new Injector(client, css, { manual });
+        client.once('closed', () => {
+            console.error('[CDP disconnected] Restart the loader to reconnect.');
+            cleanup();
+            process.exitCode = 1;
+        });
+        await injector.start();
+        if (manual) {
+            cleanup();
+            console.log(`Ectoplasma CSS reinjected into ${injector.targets.size} renderer(s).`);
+            return;
         }
-    });
+        // Watch the directory so atomic file replacement keeps triggering updates.
+        watcher = fs.watch(path.dirname(CSS_PATH), (event, filename) => {
+            if (filename && filename.toString() !== path.basename(CSS_PATH)) return;
+            try {
+                const next = fs.readFileSync(CSS_PATH, 'utf8');
+                if (next !== injector.css) void injector.update(next);
+            } catch (error) {
+                if (error.code !== 'ENOENT') console.error(`[CSS error] ${error.message}`);
+            }
+        });
+        // Close the startup gap between reading CSS and installing the watcher.
+        const latest = fs.readFileSync(CSS_PATH, 'utf8');
+        if (latest !== injector.css) await injector.update(latest);
+        console.log('Ectoplasma Notion loader running. Press Ctrl+C to stop.');
+    } catch (error) {
+        cleanup();
+        throw error;
+    }
+}
 
-    console.log("Ectoplasma Notion loader running.");
-    console.log("Press Ctrl+C to stop.");
-}).catch(error => {
-    console.error(`[Loader startup] ${error.message}`);
+main().catch(error => {
+    console.error(`[Injection startup] ${error.message}`);
     process.exitCode = 1;
 });

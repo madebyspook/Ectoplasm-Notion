@@ -22,7 +22,7 @@ Ectoplasma uses SCSS compiled to CSS and a local loader that applies the theme t
 
 4. Notion should open with Ectoplasma applied. Keep the loader process running while using the theme. Stop it with **Ctrl+C** in Terminal.
 
-The launcher starts Notion with local debugging enabled and injects the included `dist/Ectoplasma.theme.css`. It does not modify the Notion application files. If Notion was already running, quit it fully and try again.
+The launcher starts Notion with local debugging enabled and injects the included `dist/Ectoplasma.theme.css` into existing tabs and the desktop Tab Bar. The loader uses CDP target and document events to apply the theme to new tabs, reloads, and navigation without reloading pages itself. It does not modify the Notion application files. If Notion was already running, quit it fully and try again.
 
 ### Optional: Launch as a macOS app
 
@@ -53,10 +53,20 @@ Edit the SCSS files in `src/`. The watcher rebuilds `dist/Ectoplasma.theme.css`,
 
 Design tokens live in `src/abstracts/_variables.scss`. Changing `--spook-electric` updates the derived application surfaces, text palette, 10% interaction backgrounds, and 25% borders. Desktop Tab Bar effects and predefined text, background, and tag palettes remain separately configurable.
 
+To reapply the current compiled CSS to all open Notion tabs and the Tab Bar without reloading them:
+
+```sh
+npm run inject
+```
+
+Notion must already be running with CDP enabled through `start.sh`. This command also works alongside the loader, exits after injection, and does not start another watcher. Run `npm run build` first if you have uncompiled SCSS changes.
+
 Useful commands: `npm run build` (compile once), `npm run check` (validate generated CSS), and `npm test` (run automated tests).
 
 ## Troubleshooting
 
+- **One tab loses the theme:** Run `npm run inject` to reapply the compiled CSS without refreshing. After updating the injector, stop the old loader with Ctrl+C and run `start.sh` again to activate the new event handling.
+- **CDP disconnected:** Restart the loader with `start.sh`. The loader reports a lost browser connection and exits; it does not poll or automatically restart Notion.
 - **Theme does not appear:** Make sure Notion uses Dark appearance and Standard contrast. Quit Notion completely, then relaunch with `start.sh`.
 - **Node.js or WebSocket error:** Check `node --version`; Node.js 22.4 or newer is required.
 - **Changes do not appear:** Keep both `npm run watch` and the loader running, and check for Sass compilation errors.
