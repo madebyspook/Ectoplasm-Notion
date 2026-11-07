@@ -51,7 +51,7 @@ npm run watch
 
 Edit the SCSS files in `src/`. The watcher rebuilds `dist/Ectoplasma.theme.css`, and the running loader automatically reapplies changes to Notion. **Do not edit the generated CSS directly.**
 
-Design tokens live in `src/abstracts/_variables.scss`. Changing `--spook-accent` updates the derived application surfaces, text palette, 10% interaction backgrounds, and 25% borders. Desktop Tab Bar effects and predefined text, background, and tag palettes remain separately configurable.
+Design tokens live in `src/abstracts/_variables.scss`. Changing `--spook-electric` updates the derived application surfaces, text palette, 10% interaction backgrounds, and 25% borders. Desktop Tab Bar effects and predefined text, background, and tag palettes remain separately configurable.
 
 Useful commands: `npm run build` (compile once), `npm run check` (validate generated CSS), and `npm test` (run automated tests).
 

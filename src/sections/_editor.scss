@@ -144,7 +144,7 @@
 
 // Editor and database checkboxes — checked fill; preserve unchecked and disabled paint.
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled)) {
-    --c-bluBacAccPri: var(--spook-accent);
+    --c-bluBacAccPri: var(--spook-electric);
 }
 
 // Editor and database checkboxes — enabled checkmark; native SVG fill is hardcoded.
