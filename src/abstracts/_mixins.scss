@@ -1,11 +1,11 @@
 @mixin icon-glow(
     $base-filter: brightness(1.15) contrast(4),
-    $glow-color: var(--spook-accent)
+    $glow-color: var(--spook-electric)
 ) {
     filter:
         #{$base-filter}
-        drop-shadow(0 0 3px rgb(from #{$glow-color} r g b / 0.6))
-        drop-shadow(0 0 6px rgb(from #{$glow-color} r g b / 0.3))
+        drop-shadow(0 0 3px rgb(from #{$glow-color} r g b / 0.8))
+        drop-shadow(0 0 8px rgb(from #{$glow-color} r g b / 0.4))
         !important;
 }
 
