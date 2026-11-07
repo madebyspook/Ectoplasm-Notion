@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import net from 'node:net';
 import { createRequire } from 'node:module';
-import { mkdtemp, mkdir, copyFile, writeFile, readFile, rm, symlink } from 'node:fs/promises';
+import { mkdtemp, mkdir, copyFile, writeFile, readFile, rm, symlink, rename } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -69,45 +69,57 @@ const { EventEmitter } = require('node:events');
 const vm = require('node:vm');
 const root = __dirname;
 const record = event => fs.appendFileSync(path.join(root,'events.jsonl'), JSON.stringify({pid:process.pid,...event})+'\n');
-require('node:http').get = (url, callback) => {
-    record({event:'scan'});
-    const response = new EventEmitter();
-    queueMicrotask(() => {
-        callback(response);
-        response.emit('data',fs.readFileSync(path.join(root,'targets.json'),'utf8'));
-        response.emit('end');
-    });
-    return new EventEmitter();
-};
-const sockets = new Map();
-let watching = false;
+global.fetch = async () => ({ok:true,json:async()=>({webSocketDebuggerUrl:'ws://127.0.0.1:9222/devtools/browser/fixture'})});
 global.WebSocket = class extends EventEmitter {
     static OPEN = 1;
-    constructor(url) {
-        super(); this.url=url; this.readyState=0; this.styles=new Map(); sockets.set(url,this);
-        if (!watching) {
-            watching=true;
-            fs.watchFile(path.join(root,'disconnect.json'),{interval:50},() => {
-                for (const url of JSON.parse(fs.readFileSync(path.join(root,'disconnect.json')))) {
-                    const socket=sockets.get(url);
-                    if(socket?.readyState===1){socket.readyState=3;socket.emit('close');}
+    constructor() {
+        super(); this.readyState=0; this.sessions=new Map(); this.scripts=new Map(); this.sequence=0;
+        this.watcher=fs.watch(root,(event,filename)=>{
+            if(filename==='targets.json' && this.discover) {
+                for(const targetInfo of JSON.parse(fs.readFileSync(path.join(root,'targets.json')))) {
+                    this.message({method:'Target.targetInfoChanged',params:{targetInfo:{...targetInfo,targetId:targetInfo.id}}});
                 }
-            });
-        }
-        setImmediate(()=>{this.readyState=1;record({event:'open',url});this.emit('open');});
+            }
+            if(filename==='lifecycle.json') {
+                const {id,method}=JSON.parse(fs.readFileSync(path.join(root,'lifecycle.json')));
+                const session=this.sessions.get(id);
+                if(session){session.styles.clear();this.message({sessionId:id,method,params:{frame:{id:'main'}}});}
+            }
+        });
+        setImmediate(()=>{this.readyState=1;this.emit('open');});
     }
-    addEventListener(name, callback) { this.on(name,callback); }
+    addEventListener(name, callback, options) { options?.once ? this.once(name,callback) : this.on(name,callback); }
+    message(data) { this.emit('message',{data:JSON.stringify(data)}); }
+    close() { if(this.readyState===3)return;this.readyState=3;this.watcher.close();setImmediate(()=>this.emit('close')); }
     send(data) {
-        const styles=this.styles;
-        const document={
-            getElementById:id=>styles.get(id)||null,
-            createElement:()=>({}),
-            head:{appendChild:style=>styles.set(style.id,style)}
-        };
-        const value=vm.runInNewContext(JSON.parse(data).params.expression,{document});
-        const style=styles.get('ectoplasma-notion-theme');
-        record({event:'css',url:this.url,id:style?.id,css:style?.textContent,styles:styles.size});
-        this.emit('message',{data:JSON.stringify({id:1,result:{result:{value}}})});
+        const {id,method,params,sessionId}=JSON.parse(data);
+        let result={};
+        if(method==='Target.getTargets') {
+            record({event:'scan'});
+            result.targetInfos=JSON.parse(fs.readFileSync(path.join(root,'targets.json'))).map(t=>({...t,targetId:t.id}));
+        }
+        if(method==='Target.setDiscoverTargets') this.discover=true;
+        if(method==='Target.attachToTarget') {
+            const target=JSON.parse(fs.readFileSync(path.join(root,'targets.json'))).find(t=>t.id===params.targetId);
+            this.sessions.set(target.id,{target,styles:new Map()});result.sessionId=target.id;
+            record({event:'open',url:target.webSocketDebuggerUrl});
+        }
+        if(method==='Page.addScriptToEvaluateOnNewDocument') result.identifier=String(++this.sequence);
+        if(method==='Runtime.evaluate') {
+            const {styles,target}=this.sessions.get(sessionId);
+            const url=new URL(target.url);
+            const document={
+                getElementById:id=>styles.get(id)||null,
+                createElement:()=>({}),
+                head:{appendChild:style=>styles.set(style.id,style)}
+            };
+            const window={};window.top=window;
+            const value=vm.runInNewContext(params.expression,{window,document,location:{origin:url.origin,protocol:url.protocol}});
+            const style=styles.get('ectoplasma-notion-theme');
+            record({event:'css',url:target.webSocketDebuggerUrl,id:style?.id,css:style?.textContent,styles:styles.size});
+            result={result:{value}};
+        }
+        queueMicrotask(()=>this.message({id,result}));
     }
 };
 `;
@@ -117,7 +129,7 @@ async function fixture(t) {
     await mkdir(path.join(directory, 'scripts'));
     await mkdir(path.join(directory, 'dist'));
     await mkdir(path.join(directory, 'bin'));
-    for (const file of ['loader.js', 'start.sh', 'scripts/loader-instance.cjs']) {
+    for (const file of ['loader.js', 'start.sh', 'scripts/loader-instance.cjs', 'scripts/injector.cjs']) {
         await copyFile(path.join(repo, file), path.join(directory, file));
     }
     // Replace the application path as an additional safety barrier: even a
@@ -131,7 +143,6 @@ async function fixture(t) {
     await writeFile(path.join(directory, 'preload.cjs'), preload);
     // curl reports CDP ready: start.sh must not try to launch even fake Notion.
     await writeFile(path.join(directory, 'bin/curl'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
-    await writeFile(path.join(directory, 'disconnect.json'), '[]');
     const targets = [
         { id: 'main', type: 'page', url: 'https://app.notion.com/fixture', title: 'Fixture', webSocketDebuggerUrl: 'ws://fixture/main' },
         { id: 'tabs', type: 'page', url: 'file:///fixture/tabs.html', title: 'Tab Bar', webSocketDebuggerUrl: 'ws://fixture/tabs' },
@@ -144,9 +155,9 @@ async function fixture(t) {
         await Promise.all(children.map(child => child.finished));
         await rm(directory, { recursive: true, force: true });
     });
-    const launch = (shell = false) => {
+    const launch = (shell = false, manual = false) => {
         const child = spawn(shell ? '/bin/bash' : process.execPath,
-            [path.join(directory, shell ? 'start.sh' : 'loader.js')], {
+            [path.join(directory, shell ? 'start.sh' : 'loader.js'), ...(manual ? ['--once'] : [])], {
                 cwd: tmpdir(),
                 env: { ...process.env, PATH: path.join(directory, 'bin') + path.delimiter + path.dirname(process.execPath) + path.delimiter + process.env.PATH,
                     NODE_OPTIONS: '--require ' + JSON.stringify(path.join(directory, 'preload.cjs')) },
@@ -201,17 +212,21 @@ test('simultaneous cold launcher invocations start only one owner', { timeout: 1
     assert.deepEqual([...new Set((await f.events()).map(e => e.pid))], pids);
 });
 
-test('the real loader still hot reloads, discovers new targets and reconnects in isolated fixtures', { timeout: 15000 }, async t => {
+test('the real loader still hot reloads, discovers new targets and restores replaced documents in isolated fixtures', { timeout: 15000 }, async t => {
     const f = await fixture(t);
     f.launch();
     await f.wait(data => data.filter(e => e.event === 'css').length === 2);
     await writeFile(path.join(f.directory, 'dist/Ectoplasma.theme.css'), '.fixture { color: blue; }');
     await f.wait(data => data.filter(e => e.event === 'css' && e.css.includes('blue')).length >= 2);
+    await writeFile(path.join(f.directory, 'dist/replacement.css'), '.fixture { color: green; }');
+    await rename(path.join(f.directory, 'dist/replacement.css'), path.join(f.directory, 'dist/Ectoplasma.theme.css'));
+    await f.wait(data => data.filter(e => e.event === 'css' && e.css.includes('green')).length >= 2);
     f.targets.push({ id: 'new', type: 'page', url: 'https://app.notion.com/new', title: 'Fixture new', webSocketDebuggerUrl: 'ws://fixture/new' });
     await writeFile(path.join(f.directory, 'targets.json'), JSON.stringify(f.targets));
-    await f.wait(data => data.some(e => e.event === 'css' && e.url === 'ws://fixture/new' && e.css.includes('blue')));
-    await writeFile(path.join(f.directory, 'disconnect.json'), '["ws://fixture/main"]');
-    await f.wait(data => data.filter(e => e.event === 'open' && e.url === 'ws://fixture/main').length >= 2);
+    await f.wait(data => data.some(e => e.event === 'css' && e.url === 'ws://fixture/new' && e.css.includes('green')));
+    const before = (await f.events()).filter(e => e.event === 'css' && e.url === 'ws://fixture/main').length;
+    await writeFile(path.join(f.directory, 'lifecycle.json'), JSON.stringify({id:'main',method:'Page.domContentEventFired'}));
+    await f.wait(data => data.filter(e => e.event === 'css' && e.url === 'ws://fixture/main').length > before);
 });
 
 test('normal exit and a crashed fixture release ownership without PID-file cleanup', { timeout: 15000 }, async t => {
@@ -226,4 +241,18 @@ test('normal exit and a crashed fixture release ownership without PID-file clean
     await second.finished;
     const third = f.launch();
     await f.wait(data => data.some(e => e.pid === third.pid && e.event === 'css'));
+});
+
+
+test('manual injection works alongside the owner, exits, and leaves one style per renderer', { timeout: 15000 }, async t => {
+    const f = await fixture(t);
+    const owner = f.launch();
+    await f.wait(data => data.some(e => e.event === 'css' && e.pid === owner.pid));
+    const manual = f.launch(false, true);
+    assert.deepEqual(await manual.finished, { code: 0, signal: null });
+    assert.match(manual.output, /reinjected into 2 renderer/);
+    const data = await f.events();
+    assert.equal(data.filter(e => e.event === 'css' && e.pid === manual.pid).length, 2);
+    assert(data.filter(e => e.event === 'css').every(e => e.styles === 1));
+    assert.equal(owner.exitCode, null);
 });
