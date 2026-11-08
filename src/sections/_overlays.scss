@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
@@ -15,4 +17,22 @@
 // Page side peek and center peek — background.
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
     --c-bacEle: var(--spook-bg-secondary);
+}
+
+// Native confirmation dialogs — retain shadow geometry and red destructive semantics.
+.notion-app-inner.notion-dark-theme :where(.notion-dialog[role="dialog"]) {
+    --c-bacEle: var(--spook-bg-secondary);
+    --c-shaOutScr:
+        0 0 0 1px var(--spook-border),
+        0 24px 48px rgb(from var(--spook-bg-primary) r g b / 0.64),
+        0 4px 12px rgb(from var(--spook-bg-primary) r g b / 0.56);
+    --c-redTexAccPri: var(--spook-red);
+    --ca-redBorPriTra: rgb(from var(--spook-red) r g b / 0.4);
+    --ca-redBacIntTra: rgb(from var(--spook-red) r g b / 0.16);
+}
+
+// Database button automation — raised cards and inputs inside the shared dialog shell.
+.notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) {
+    @include mixins.button-editor-palette;
+    --cl-palGra100: var(--spook-bg-secondary); // Save footer.
 }

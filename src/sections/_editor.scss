@@ -13,7 +13,8 @@
 
 // Page title — populated text glow; :empty also matches the generated placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
-    @include mixins.text-glow(1);
+    color: var(--spook-text-neon);
+    @include mixins.text-glow(1, var(--spook-text-glow-color));
 }
 
 // --- Rich-text typography ---
@@ -27,12 +28,12 @@
         [style*="font-weight:bold"], [style*="font-weight: bold"]
     )):not(:where(
         h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
-        .notion-header-block *, .notion-sub_header-block *, .notion-sub_sub_header-block *,
-        .notion-code-block *, .katex *
+        .notion-code-block *, .notion-inline-code-container *, .katex *
     ))
 ) {
     font-weight: 700 !important;
-    @include mixins.text-glow(0.75);
+    color: var(--spook-text-neon);
+    @include mixins.text-glow(0.75, var(--spook-text-glow-color));
 }
 
 // Headings — subtle text glow for populated content.
@@ -44,7 +45,65 @@
     .notion-page-content h5:not(:empty),
     .notion-page-content h6:not(:empty)
 ) {
-    @include mixins.text-glow();
+    color: var(--spook-text-neon);
+    @include mixins.text-glow(1, var(--spook-text-glow-color));
+}
+
+// Explicit rich-text colors keep their own halo instead of the default electric one.
+@each $native in "gra", "bro", "ora", "yel", "gre", "blu", "pur", "pin", "red" {
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-page-content :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])
+    ) {
+        --spook-text-glow-color: currentColor;
+    }
+
+    // Notion puts whole-heading colors on a wrapper; retain that inheritance.
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-page-content :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"]) :is(h1, h2, h3, h4, h5, h6)
+    ) {
+        color: inherit;
+    }
+
+    // A colored span must recompute the heading's inherited shadow in its own color.
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])
+    ) {
+        @include mixins.text-glow();
+    }
+}
+
+// Keep the native caret, including selection, IME positioning and blink timing.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-block h1[contenteditable="true"],
+    .notion-page-content [contenteditable="true"]
+) {
+    caret-color: var(--spook-neon) !important;
+}
+
+// The divider paints a background on its separator, not a border on the block.
+// Optional divider neon/glow - uncomment this block and rebuild to enable.
+// .notion-app-inner.notion-dark-theme :where(.notion-divider-block [role="separator"]) {
+//     background-color: var(--spook-neon) !important;
+//     @include mixins.frame-glow(2px); //Thin lines need spread so their halo remains visible after blurring.
+// }
+
+// Quote line — keep the native stroke with a stronger electric halo.
+.notion-app-inner.notion-dark-theme :where(.notion-quote-block > blockquote > div[style*="border-inline-start: 3px solid"]) {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: -3px;
+        inline-size: 0;
+        border-inline-start: inherit;
+        pointer-events: none;
+        box-shadow:
+            0 0 3px 1px rgb(from var(--spook-electric) r g b / 0.8),
+            0 0 8px 0.5px rgb(from var(--spook-electric) r g b / 0.5),
+            0 0 14px rgb(from var(--spook-electric) r g b / 0.25);
+    }
 }
 
 // --- Empty-block placeholders ---
@@ -96,9 +155,14 @@
 
 // --- Code blocks ---
 
-// Code block background
-.notion-code-block div[style*="--ca-graBacPriTra"] {
+// Inline code shares the existing block background without changing its spacing.
+.notion-code-block div[style*="--ca-graBacPriTra"],
+.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
     background: rgb(from var(--spook-bg-gray) r g b / 0.5) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+    color: var(--spook-electric) !important;
 }
 
 // Code actions — surface and hover background.
@@ -138,6 +202,13 @@
 // Custom button blocks — text color.
 .notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]) > div[style*="--c-texTer"] {
     color: var(--spook-text-secondary) !important;
+}
+
+// Inline button editor — condition card, icon picker and outline-action hover.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-button-block [style*="--c-bacPri"][style*="--ca-borSecTra"]
+) {
+    @include mixins.button-editor-palette;
 }
 
 // --- Shared checkbox widgets ---

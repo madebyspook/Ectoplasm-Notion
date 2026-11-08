@@ -4,14 +4,44 @@
 ) {
     filter:
         #{$base-filter}
+        drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b / 0.3))
         drop-shadow(0 0 3px rgb(from #{$glow-color} r g b / 0.8))
         drop-shadow(0 0 8px rgb(from #{$glow-color} r g b / 0.4))
         !important;
 }
 
-@mixin text-glow($strength: 1) {
+@mixin text-glow($strength: 1, $color: currentColor) {
     text-shadow:
-        0 0 3px rgb(from currentColor r g b / calc(0.6 * #{$strength})),
-        0 0 8px rgb(from currentColor r g b / calc(0.3 * #{$strength}));
+        0 0 3px rgb(from #{$color} r g b / calc(0.6 * #{$strength})),
+        0 0 8px rgb(from #{$color} r g b / calc(0.3 * #{$strength}));
+}
+
+// Medium electric halo; each component keeps its own stroke paint.
+@mixin frame-glow($halo-spread: 0) {
+    box-shadow:
+        0 0 6px $halo-spread rgb(from var(--spook-electric) r g b / 0.65),
+        0 0 12px $halo-spread rgb(from var(--spook-electric) r g b / 0.35);
+}
+
+// Shared by the inline page-button editor and the database automation modal.
+@mixin button-editor-palette {
+    --c-bacEle: var(--spook-bg-tertiary);
+    --c-bacInt: var(--spook-bg-interact);
+    --ca-bacSecTra: var(--spook-bg-secondary);
+    --ca-bacTerTra: var(--spook-bg-interact);
+    --ca-bluBacSecTra: rgb(from var(--spook-electric) r g b / 0.18);
+    --c-bluIcoAccPri: var(--spook-electric);
+    --ca-outButHovBac: var(--spook-bg-interact);
+    --ca-butHovBac: var(--spook-bg-interact);
+    --c-shaOutSm:
+        0 0 0 1px var(--spook-border),
+        0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
+    --c-bluBacAccPri: var(--spook-electric);
+    --c-bluTexInvPri: var(--spook-text-neon);
+
+    // Stronger feedback than hover, without changing the resting surface.
+    :where([role="button"]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
+        background-color: rgb(from var(--spook-electric) r g b / 0.18) !important;
+    }
 }
 

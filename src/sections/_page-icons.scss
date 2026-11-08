@@ -26,3 +26,14 @@
 ) {
     @include mixins.icon-glow(var(--spook-icon-filter-lightgray));
 }
+
+// Heading mentions — native gray icons and their link indicators share the gray treatment.
+// Uploaded icons, emoji and native icons with other color suffixes stay unchanged.
+.notion-app-inner.notion-dark-theme :where(
+    :is(h1, h2, h3, h4, h5, h6) .notion-page-mention-token :is(
+        img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"]),
+        svg.arrowDiagonalUpRightSmall
+    )
+) {
+    @include mixins.icon-glow(var(--spook-icon-filter-gray), var(--spook-icon-glow-gray));
+}
