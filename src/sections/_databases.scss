@@ -4,6 +4,11 @@
 
 // --- Shared database controls ---
 
+// Inline database expand control keeps native hover/pressed behavior with a blue fill.
+.notion-app-inner.notion-dark-theme :where(.notion-collection_view-block [role="button"]:has(svg.arrowChevronDoubleBackwardSmall)) {
+    --ca-bacIntTra: var(--spook-bg-interact);
+}
+
 // Databases — Filter/Sort button hover/pressed backgrounds.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
     --ca-bacIntTra: var(--spook-bg-interact);
@@ -40,6 +45,18 @@
     --c-bluTexInvPri: var(--spook-text-primary);
 }
 
+// Pinned page properties — headers and value buttons retain native hover/pressed behavior.
+.notion-app-inner.notion-dark-theme :where([data-pinned-property]) {
+    --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+// Pinned button property — resting fill; native hover/pressed surfaces stay intact.
+.notion-app-inner.notion-dark-theme :where(
+    [data-pinned-property] .notion-page-block [role="button"][style*="--ca-borPriTra"]:not(:hover, :active, :disabled, [aria-disabled="true"])
+) {
+    background-color: var(--spook-bg-gray) !important;
+}
+
 // --- Table view ---
 
 // Column-header triggers and the footer's New page control.
@@ -67,9 +84,37 @@
     --ca-graBacTerTra: var(--spook-tag-bg-gray);
 }
 
-// Table-cell comment control — raised surface.
-.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell:has([role="button"][aria-label*="comment" i])) {
+// Status dots use native icon channels independently of the tag text/background.
+@each $native, $color in (
+    "gra": "gray", "bro": "brown", "ora": "orange", "yel": "yellow",
+    "gre": "green", "blu": "blue", "pur": "purple", "pin": "pink", "red": "red"
+) {
+    .notion-app-inner.notion-dark-theme :where(
+        [style*="--ca-#{$native}BacTerTra"][style*="--c-#{$native}TexPri"] div[style*="--c-#{$native}IcoAccPri"]
+    ) {
+        --c-#{$native}IcoAccPri: oklch(from var(--spook-tag-bg-#{$color}) calc(l * 0.5) calc(c * 0.65) h / 1);
+    }
+}
+
+// The default status has a much fainter chip, but shares the gray dot channel.
+.notion-app-inner.notion-dark-theme :where(
+    [style*="--ca-bacTerTra"][style*="--c-texPri"] div[style*="--c-graIcoAccPri"]
+) {
+    --c-graIcoAccPri: oklch(from var(--spook-tag-bg-default) calc(l * 0.3) calc(c * 0.65) h / 1);
+}
+
+// Unchecked database frames — brighten only the edge; native hover/fill stay intact.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-collection_view-block div:has(> input[type="checkbox"]:enabled:not(:checked))
+) {
+    --ca-borStrTra: rgb(from var(--spook-electric) r g b / 0.45);
+}
+
+// Table Open/comment controls — raised wrappers own the outlines; inner buttons own hover.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, [role="button"][aria-label*="comment" i])) {
     --c-bacEle: var(--spook-bg-tertiary);
+    --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
+    --ca-bacIntTra: var(--spook-bg-interact);
 }
 
 // Table-cell comment button — hover/pressed surface and icon.
@@ -107,6 +152,11 @@
 
 // --- Gallery view ---
 
+// One opaque hover surface for the native card face and its separate content regions.
+.notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item) {
+    --cl-carHovBac: color-mix(in srgb, var(--spook-bg-tertiary) 85%, var(--spook-electric));
+}
+
 // Gallery placeholders use the same WebKit text-fill channel as list titles.
 .notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item [data-content-editable-leaf][placeholder]:empty) {
     --ca-texDisTra: var(--spook-text-muted);
@@ -132,9 +182,9 @@
     background-color: var(--spook-bg-secondary) !important;
 }
 
-// Hover only the content siblings, leaving the preview and card face on their existing backgrounds.
+// Match every title/property sibling to the hovered card face; preview media stays intact.
 .notion-app-inner.notion-dark-theme :where(.notion-gallery-view .notion-collection-item:hover > [role="presentation"] > a[role="link"] > div ~ div) {
-    background-color: var(--spook-bg-interact) !important;
+    background-color: var(--cl-carHovBac) !important;
 }
 
 // Gallery footer controls; card actions keep their existing behavior.
@@ -143,6 +193,16 @@
 }
 
 // --- Board view ---
+
+// Default-column add-card hover derives its fill from the elevated native surface.
+.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-board-group [role="button"][style*="--c-texAccPri"]:has(svg.plusSmall)) {
+    --c-bacEle: var(--spook-bg-tertiary);
+}
+
+// Gray-column hover uses its own elevated surface channel.
+.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-board-group [role="button"][style*="--c-graTexAccPri"]:has(svg.plusSmall)) {
+    --c-graBacEle: var(--spook-bg-gray);
+}
 
 // Default and gray card faces use separate channels; other column colors stay native.
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
