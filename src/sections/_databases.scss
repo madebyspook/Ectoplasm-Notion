@@ -142,6 +142,7 @@
 // List Edit control — raised outline surface; zero-specificity app guard preserves priority.
 :where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
     --c-bacEle: var(--spook-bg-tertiary);
+    --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
 }
 
 // List Edit control — hover/pressed surface and label/icon.
