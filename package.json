@@ -1,6 +1,6 @@
 {
   "name": "ectoplasm-notion",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "description": "Ectoplasma theme for macOS Notion Desktop, injected through Chrome DevTools Protocol.",
   "themeName": "Ectoplasma",
