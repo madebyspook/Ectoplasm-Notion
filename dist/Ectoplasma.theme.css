@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.1.1
+ * @version 1.2.0
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -9,7 +9,7 @@
    ======================================== */
 :root {
   /* Accents */
-  --spook-electric: #3C86FF;
+  --spook-electric: #3C86ff;
   --spook-cosmic: #4545D9;
   --spook-ice: #00d9f5;
   --spook-plasma: #F044C8;

@@ -40,6 +40,45 @@ To avoid entering the command each time, create an Automator application:
 
 If Node.js is installed outside the directories listed in `PATH`, add its directory to the script.
 
+### Loader diagnostics and recovery
+
+Startup, shutdown, connection attempts, disconnects, and errors are recorded as timestamped JSON lines in `.logs/loader.log` inside this checkout. Each entry includes the process ID; failures include error codes and stack locations, and disconnects include available WebSocket close codes. The file rotates at 1 MiB with one backup (`loader.log.1`); both are Git-ignored. Logs exclude page content, target titles, URLs, and CDP payloads. If logging fails, check the directory permissions shown in stderr. Very early failures (such as a missing Node executable) appear in the launching Terminal or Automator's error output.
+
+```sh
+tail -n 50 .logs/loader.log
+```
+
+Transient disconnections keep the same loader and single-instance guard alive. CSS still updates through filesystem events; targets and documents still use CDP events. Reconnection attempts happen only while disconnected, with no periodic CSS verification. SIGINT, SIGTERM, and SIGHUP are logged and shut down cleanly. Unexpected JavaScript errors and watcher/guard failures log diagnostics and exit with status 1; restarting a fresh process is safer than continuing in unknown state. There are no macOS notifications.
+
+**Investigation:** The previous loader explicitly exited on every CDP close/error, which explains how existing tabs could stay styled while newly opened tabs received no injection. This is a confirmed code path, not proof of the trigger behind a past incident. Notion restarts, transport failures, terminal/session shutdown, and unexpected errors remain possible triggers; the previous version left no persistent evidence to distinguish them. A SIGKILL or machine shutdown cannot produce a final log entry.
+
+### Optional: supervise the loader with launchd
+
+For automatic recovery after a process crash, use a per-user macOS LaunchAgent. Apple's [launchd documentation](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html) describes this native supervision mechanism; its [plist reference](https://github.com/apple-oss-distributions/launchd/blob/main/man/launchd.plist.5) documents `SuccessfulExit` and restart throttling. No additional dependency is needed.
+
+This is opt-in. The existing startup behavior and Automator application are unchanged. The agent runs **only the loader**, so it will wait for CDP without opening Notion at login. Continue opening Notion through `start.sh` or your themed Automator application. The generator embeds absolute paths to this checkout and your current Node executable.
+
+1. Stop any existing loader with Ctrl+C (or quit its Automator application) before transferring ownership to launchd. Do not kill Notion. This matters: a duplicate loader exits successfully, so launchd would consider its job finished while the original loader kept running.
+2. From the repository directory, create and load the agent:
+
+   ```sh
+   mkdir -p "$HOME/Library/LaunchAgents"
+   node scripts/launchagent.cjs > "$HOME/Library/LaunchAgents/com.ectoplasma.notion-loader.plist"
+   plutil -lint "$HOME/Library/LaunchAgents/com.ectoplasma.notion-loader.plist"
+   launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.ectoplasma.notion-loader.plist"
+   ```
+
+The job starts at login and restarts after unsuccessful exits, throttled to avoid rapid crash loops. Intentional clean shutdowns do not trigger a restart. The existing per-checkout OS socket guard prevents duplicate watchers/CDP connections, including concurrent direct and Automator launches. Separate checkouts have separate guards; install only one agent. Routine stdout/stderr goes to `/dev/null`; use the rotating log for diagnostics and `launchctl print "gui/$(id -u)/com.ectoplasma.notion-loader"` for process/exit status (including failures before logging initializes).
+
+To stop supervision and remove the agent:
+
+```sh
+launchctl bootout "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.ectoplasma.notion-loader.plist"
+rm "$HOME/Library/LaunchAgents/com.ectoplasma.notion-loader.plist"
+```
+
+After moving the checkout or changing the Node installation, boot out the old agent, regenerate the plist, and bootstrap it again. After loader code updates, boot out and bootstrap the agent to run the new code. Supervision does not repair invalid CSS, missing files, or a broken Node installation; resolve the logged error first.
+
 ## Customize the theme
 
 To change the theme's styling, install its development dependencies and start the SCSS watcher from the repository directory:
@@ -66,7 +105,7 @@ Useful commands: `npm run build` (compile once), `npm run check` (validate gener
 ## Troubleshooting
 
 - **One tab loses the theme:** Run `npm run inject` to reapply the compiled CSS without refreshing. After updating the injector, stop the old loader with Ctrl+C and run `start.sh` again to activate the new event handling.
-- **CDP disconnected:** Restart the loader with `start.sh`. The loader reports a lost browser connection and exits; it does not poll or automatically restart Notion.
+- **CDP disconnected / new tabs stop receiving CSS:** The loader reconnects automatically with delays of 1, 2, 4, 8, 16, 32, then 60 seconds, capped at one attempt per minute. It rediscovers renderers and reads the latest CSS after reconnecting. If CDP stays unavailable, fully quit Notion and relaunch through `start.sh`. The loader never restarts Notion itself. `npm run inject` remains a one-shot command and reports failure immediately.
 - **Theme does not appear:** Make sure Notion uses Dark appearance and Standard contrast. Quit Notion completely, then relaunch with `start.sh`.
 - **Node.js or WebSocket error:** Check `node --version`; Node.js 22.4 or newer is required.
 - **Changes do not appear:** Keep both `npm run watch` and the loader running, and check for Sass compilation errors.

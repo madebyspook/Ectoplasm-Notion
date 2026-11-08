@@ -169,3 +169,26 @@ test('a destroyed initial context retains its document hook and recovers without
     await tick();
     assert.equal(browser.calls.filter(c => c.method === 'Target.attachToTarget').length, 3);
 });
+
+test('WebSocket errors close transport and reject pending work exactly once despite a later close event', async () => {
+    class Socket extends EventEmitter {
+        readyState = WebSocket.OPEN;
+        closes = 0;
+        addEventListener(name, callback) { this.on(name, callback); }
+        send() {}
+        close() { this.closes++; this.readyState = 3; this.emit('close', { code: 1006 }); }
+    }
+    const socket = new Socket();
+    const cdp = new CDP(socket, 100);
+    const events = [];
+    cdp.on('closed', info => events.push(info));
+    const pending = cdp.send('Page.enable');
+    socket.emit('error');
+    socket.emit('close');
+    cdp.close();
+    await assert.rejects(pending, /closed/);
+    await assert.rejects(cdp.send('Page.enable'), /closed/);
+    assert.equal(socket.closes, 1);
+    assert.deepEqual(events, [{ kind: 'WebSocket error' }]);
+    assert.equal(cdp.pending.size, 0);
+});
