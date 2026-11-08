@@ -37,6 +37,7 @@ class CDP extends EventEmitter {
         this.timeout = timeout;
         this.pending = new Map();
         this.sequence = 0;
+        this.closed = false;
         socket.addEventListener('message', event => {
             let message;
             try { message = JSON.parse(event.data); } catch { return; }
@@ -45,25 +46,31 @@ class CDP extends EventEmitter {
                 if (!request) return;
                 clearTimeout(request.timer);
                 this.pending.delete(message.id);
-                message.error ? request.reject(Error(`CDP ${request.method} failed`)) : request.resolve(message.result);
+                message.error ? request.reject(Error(`CDP ${request.method} failed (code ${message.error.code ?? 'unknown'})`)) : request.resolve(message.result);
             } else {
                 this.emit('event', message);
             }
         });
-        const closed = () => {
-            for (const request of this.pending.values()) {
-                clearTimeout(request.timer);
-                request.reject(Error('CDP connection closed'));
-            }
-            this.pending.clear();
-            this.emit('closed');
-        };
-        socket.addEventListener('close', closed);
-        socket.addEventListener('error', closed);
+        socket.addEventListener('close', event => this.disconnect({
+            kind: 'close', code: event?.code, clean: event?.wasClean,
+        }));
+        socket.addEventListener('error', () => this.disconnect({ kind: 'WebSocket error' }));
+    }
+
+    disconnect(info = { kind: 'local close' }) {
+        if (this.closed) return;
+        this.closed = true;
+        for (const request of this.pending.values()) {
+            clearTimeout(request.timer);
+            request.reject(Error('CDP connection closed'));
+        }
+        this.pending.clear();
+        this.socket.close();
+        this.emit('closed', info);
     }
 
     send(method, params = {}, sessionId) {
-        if (this.socket.readyState !== WebSocket.OPEN) return Promise.reject(Error('CDP connection closed'));
+        if (this.closed || this.socket.readyState !== WebSocket.OPEN) return Promise.reject(Error('CDP connection closed'));
         return new Promise((resolve, reject) => {
             const id = ++this.sequence;
             const timer = setTimeout(() => {
@@ -81,29 +88,48 @@ class CDP extends EventEmitter {
         });
     }
 
-    close() { this.socket.close(); }
+    close() { this.disconnect(); }
 }
 
 async function connect() {
-    const response = await fetch('http://127.0.0.1:9222/json/version', {
-        signal: AbortSignal.timeout(5000), redirect: 'error',
-    });
-    if (!response.ok) throw Error('Notion CDP is unavailable');
-    const { webSocketDebuggerUrl } = await response.json();
-    const url = new URL(webSocketDebuggerUrl);
-    if (url.protocol !== 'ws:' || !['127.0.0.1', 'localhost'].includes(url.hostname) || url.port !== '9222') {
-        throw Error('Notion CDP must use localhost:9222');
+    let operation = 'CDP version request';
+    try {
+        const response = await fetch('http://127.0.0.1:9222/json/version', {
+            signal: AbortSignal.timeout(5000), redirect: 'error',
+        });
+        if (!response.ok) throw Object.assign(Error('Notion CDP is unavailable'), { code: 'CDP_HTTP_UNAVAILABLE', status: response.status });
+        const { webSocketDebuggerUrl } = await response.json();
+        const url = new URL(webSocketDebuggerUrl);
+        if (url.protocol !== 'ws:' || !['127.0.0.1', 'localhost'].includes(url.hostname) || url.port !== '9222') {
+            throw Object.assign(Error('Notion CDP must use localhost:9222'), { code: 'CDP_ENDPOINT_INVALID' });
+        }
+        operation = 'WebSocket handshake';
+        const socket = new WebSocket(url);
+        const client = new CDP(socket);
+        try {
+            await new Promise((resolve, reject) => {
+                const timer = setTimeout(() => finish(Object.assign(Error('CDP connection timed out'), { code: 'CDP_HANDSHAKE_TIMEOUT' })), 5000);
+                const opened = () => finish();
+                const closed = () => finish(Object.assign(Error('CDP connection failed or closed'), { code: 'CDP_HANDSHAKE_CLOSED' }));
+                const finish = error => {
+                    clearTimeout(timer);
+                    socket.removeEventListener('open', opened);
+                    client.off('closed', closed);
+                    error ? reject(error) : resolve();
+                };
+                socket.addEventListener('open', opened, { once: true });
+                client.once('closed', closed);
+                if (client.closed) closed();
+            });
+        } catch (error) {
+            client.close();
+            throw error;
+        }
+        return client;
+    } catch (error) {
+        error.operation = operation;
+        throw error;
     }
-    const socket = new WebSocket(url);
-    const client = new CDP(socket);
-    await new Promise((resolve, reject) => {
-        const timer = setTimeout(() => { socket.close(); reject(Error('CDP connection timed out')); }, 5000);
-        const finish = error => { clearTimeout(timer); error ? reject(error) : resolve(); };
-        socket.addEventListener('open', () => finish(), { once: true });
-        socket.addEventListener('error', () => finish(Error('CDP connection failed')), { once: true });
-        socket.addEventListener('close', () => finish(Error('CDP connection closed')), { once: true });
-    });
-    return client;
 }
 
 class Injector {

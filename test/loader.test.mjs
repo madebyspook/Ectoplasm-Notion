@@ -80,6 +80,7 @@ global.WebSocket = class extends EventEmitter {
                     this.message({method:'Target.targetInfoChanged',params:{targetInfo:{...targetInfo,targetId:targetInfo.id}}});
                 }
             }
+            if(filename==='disconnect') { this.emit('error'); this.emit('close',{code:1006,wasClean:false}); }
             if(filename==='lifecycle.json') {
                 const {id,method}=JSON.parse(fs.readFileSync(path.join(root,'lifecycle.json')));
                 const session=this.sessions.get(id);
@@ -88,6 +89,7 @@ global.WebSocket = class extends EventEmitter {
         });
         setImmediate(()=>{this.readyState=1;this.emit('open');});
     }
+    removeEventListener(name, callback) { this.off(name,callback); }
     addEventListener(name, callback, options) { options?.once ? this.once(name,callback) : this.on(name,callback); }
     message(data) { this.emit('message',{data:JSON.stringify(data)}); }
     close() { if(this.readyState===3)return;this.readyState=3;this.watcher.close();setImmediate(()=>this.emit('close')); }
@@ -129,7 +131,7 @@ async function fixture(t) {
     await mkdir(path.join(directory, 'scripts'));
     await mkdir(path.join(directory, 'dist'));
     await mkdir(path.join(directory, 'bin'));
-    for (const file of ['loader.js', 'start.sh', 'scripts/loader-instance.cjs', 'scripts/injector.cjs']) {
+    for (const file of ['loader.js', 'start.sh', 'scripts/loader-instance.cjs', 'scripts/injector.cjs', 'scripts/loader-log.cjs']) {
         await copyFile(path.join(repo, file), path.join(directory, file));
     }
     // Replace the application path as an additional safety barrier: even a
@@ -255,4 +257,109 @@ test('manual injection works alongside the owner, exits, and leaves one style pe
     assert.equal(data.filter(e => e.event === 'css' && e.pid === manual.pid).length, 2);
     assert(data.filter(e => e.event === 'css').every(e => e.styles === 1));
     assert.equal(owner.exitCode, null);
+});
+
+test('WebSocket failure reconnects once, keeps the owner, and injects new targets with latest CSS', { timeout: 15000 }, async t => {
+    const f = await fixture(t);
+    const owner = f.launch();
+    await f.wait(data => data.filter(e => e.event === 'css').length === 2);
+    await writeFile(path.join(f.directory, 'disconnect'), 'fail');
+    await writeFile(path.join(f.directory, 'dist/Ectoplasma.theme.css'), '.fixture { color: purple; }');
+    f.targets.push({ id: 'recovered', type: 'page', url: 'https://app.notion.com/new', title: 'Fixture', webSocketDebuggerUrl: 'ws://fixture/recovered' });
+    await writeFile(path.join(f.directory, 'targets.json'), JSON.stringify(f.targets));
+    const data = await f.wait(data => data.some(e => e.url === 'ws://fixture/recovered' && e.css?.includes('purple')));
+    assert.deepEqual([...new Set(data.map(e => e.pid))], [owner.pid]);
+    assert.equal(data.filter(e => e.event === 'scan').length, 2);
+    const logs = (await readFile(path.join(f.directory, '.logs/loader.log'), 'utf8')).trim().split('\n').map(JSON.parse);
+    assert.equal(logs.filter(e => e.event === 'reconnect scheduled').length, 1);
+    assert(logs.some(e => e.event === 'CDP disconnected' && e.kind === 'WebSocket error'));
+    assert(logs.every(e => !Number.isNaN(Date.parse(e.time))));
+    assert(!JSON.stringify(logs).includes('https://app.notion.com'));
+    owner.kill('SIGTERM');
+    assert.deepEqual(await owner.finished, { code: 0, signal: null });
+    assert.match(await readFile(path.join(f.directory, '.logs/loader.log'), 'utf8'), /shutdown.*SIGTERM/);
+});
+
+test('initial CDP outage backs off, can be stopped during retry, and manual mode fails promptly', { timeout: 15000 }, async t => {
+    const f = await fixture(t);
+    await writeFile(path.join(f.directory, 'preload.cjs'), preload + '\nglobal.fetch = async () => { throw Object.assign(Error("fixture offline"), { code: "ECONNREFUSED" }); };\n');
+    const owner = f.launch();
+    const deadline = Date.now() + 5000;
+    while (!owner.output.includes('Retrying automatically') && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 20));
+    assert.match(owner.output, /Retrying automatically/);
+    const duplicate = f.launch();
+    assert.deepEqual(await duplicate.finished, { code: 0, signal: null });
+    assert.match(duplicate.output, /already running/);
+    owner.kill('SIGTERM');
+    assert.deepEqual(await owner.finished, { code: 0, signal: null });
+    const manual = f.launch(false, true);
+    assert.deepEqual(await manual.finished, { code: 1, signal: null });
+    assert.match(manual.output, /fully quit Notion/);
+    const logs = await readFile(path.join(f.directory, '.logs/loader.log'), 'utf8');
+    assert.match(logs, /ECONNREFUSED/);
+    assert.match(logs, /reconnect scheduled/);
+});
+
+test('log rotation bounds persistent diagnostics and logging failures stay nonfatal', async t => {
+    const f = await fixture(t);
+    const logModule = require(path.join(f.directory, 'scripts/loader-log.cjs'));
+    await mkdir(path.join(f.directory, '.logs'));
+    await writeFile(logModule.LOG_PATH, 'x'.repeat(1024 * 1024));
+    logModule.log('fixture rotation');
+    assert.equal((await readFile(logModule.LOG_PATH + '.1')).length, 1024 * 1024);
+    assert.equal(JSON.parse(await readFile(logModule.LOG_PATH, 'utf8')).event, 'fixture rotation');
+    await rm(path.join(f.directory, '.logs'), { recursive: true });
+    await writeFile(path.join(f.directory, '.logs'), 'blocked');
+    const errors = [];
+    const original = console.error;
+    console.error = line => errors.push(line);
+    try { assert.doesNotThrow(() => logModule.log('blocked')); }
+    finally { console.error = original; }
+    assert.match(errors.join('\n'), /check directory permissions/);
+});
+
+test('fatal watcher and unexpected promise errors log diagnostics, exit, and release ownership', { timeout: 15000 }, async t => {
+    for (const failure of ['watcher', 'rejection']) {
+        const f = await fixture(t);
+        await writeFile(path.join(f.directory, 'preload.cjs'), preload + `
+const originalWatch = fs.watch;
+fs.watch = function(directory, ...args) {
+    const watcher = originalWatch.call(this, directory, ...args);
+    if (path.basename(directory) === 'dist') setTimeout(() => {
+        ${failure === 'watcher' ? "watcher.emit('error', Object.assign(Error('fixture watcher failure'), {code:'ENOSPC'}));" : "Promise.reject(Object.assign(Error('fixture rejection'), {code:'FIXTURE'}));"}
+    }, 150);
+    return watcher;
+};
+`);
+        const child = f.launch();
+        assert.deepEqual(await child.finished, { code: 1, signal: null });
+        const logs = await readFile(path.join(f.directory, '.logs/loader.log'), 'utf8');
+        assert.match(logs, /fatal/);
+        assert.match(logs, failure === 'watcher' ? /ENOSPC/ : /FIXTURE/);
+        assert.match(child.output, /Stopped.*rerun start.sh/);
+        const guard = await acquireInstance(f.directory);
+        assert(guard);
+        await close(guard);
+    }
+});
+
+test('failed WebSocket handshakes are cleaned up before automatic retry', { timeout: 15000 }, async t => {
+    const f = await fixture(t);
+    await writeFile(path.join(f.directory, 'preload.cjs'), preload.replace(
+        "setImmediate(()=>{this.readyState=1;this.emit('open');});",
+        "setImmediate(()=>{this.emit('error');});"));
+    const child = f.launch();
+    const deadline = Date.now() + 5000;
+    let logs = '';
+    while (Date.now() < deadline) {
+        try { logs = await readFile(path.join(f.directory, '.logs/loader.log'), 'utf8'); } catch {}
+        if ((logs.match(/reconnect scheduled/g) || []).length >= 2) break;
+        await new Promise(resolve => setTimeout(resolve, 30));
+    }
+    assert.equal((logs.match(/reconnect scheduled/g) || []).length, 2);
+    assert.match(logs, /WebSocket handshake/);
+    assert.match(logs, /"delayMs":1000/);
+    assert.match(logs, /"delayMs":2000/);
+    child.kill('SIGTERM');
+    assert.deepEqual(await child.finished, { code: 0, signal: null });
 });
