@@ -1,76 +1,115 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    DATABASE CONTROLS
    ======================================== */
 
 // --- Shared database controls ---
 
-// Inline database expand control keeps native hover/pressed behavior with a blue fill.
-.notion-app-inner.notion-dark-theme :where(.notion-collection_view-block [role="button"]:has(svg.arrowChevronDoubleBackwardSmall)) {
-    --ca-bacIntTra: var(--spook-bg-interact);
-}
-
-// Databases — Filter/Sort button hover/pressed backgrounds.
-.notion-app-inner.notion-dark-theme :where(.notion-collection-filter, .notion-collection-sort) {
-    --ca-bacIntTra: var(--spook-bg-interact);
-}
-
-// View tabs — hover and selected surfaces; preserve native text and indicators.
-// Compact active-view switcher — resting surface only; keep native interaction states.
+// Neutral controls: transparent at rest, with one shared hover surface.
 .notion-app-inner.notion-dark-theme :where(
-    .notion-collection-view-tab:is(:hover, [aria-selected="true"]),
-    .notion-collection_view-block [role="tablist"] [role="button"][aria-haspopup="dialog"]:has(> svg.arrowChevronSingleDownSmall):not(:hover, :active, :focus-visible)
+    .notion-collection-filter,
+    .notion-collection-sort,
+    .notion-collection-automation-edit-view,
+    .notion-collection-edit-view,
+    .notion-collection-add-view,
+    .notion-collection-view-tab,
+    .notion-collection_view-block [role="button"]:has(svg.arrowChevronDoubleBackwardSmall),
+    .notion-collection_view-block [role="button"]:is([aria-label="Search"], [aria-label="Minimize"]),
+    .notion-collection_view-block a[role="link"][aria-label="Open as full page"],
+    .notion-collection_view-block [role="tablist"] [role="button"][aria-haspopup="dialog"],
+    .notion-frame div:has(> a[role="link"] svg.arrowDiagonalUpRight) > div [role="button"][aria-haspopup="dialog"]:has(svg.ellipsisSmall),
+    .notion-collection_view-block > [role="button"][aria-expanded]:has(svg.arrowCaretDownFillSmall),
+    .notion-collection_view-block:has(> [role="button"][aria-expanded] svg.arrowCaretDownFillSmall) > div > [role="button"]:has(svg.arrowTriangleRightCircle, svg.ellipsisSmall, svg.plusSmall),
+    .notion-view-settings-sidebar [role="menuitem"],
+    .notion-view-settings-sidebar [role="button"]:is([aria-label="Back"], [aria-label="Close"]),
+    .notion-table-view-header-cell [role="button"][aria-haspopup="dialog"],
+    .notion-table-view-add-column,
+    .notion-table-view-add-row,
+    .notion-table-view-cell [role="button"]:has(svg.arrowCaretDownFillSmall, svg.commentFilledSmall),
+    .notion-table-view div[style*="--ca-borSecTra"] > [role="button"]:has(svg.plusSmall),
+    .notion-list-view .notion-collection-item [role="button"][aria-expanded]:has(> svg.arrowCaretDownFillSmall),
+    .notion-list-view > .notion-collection_view-block > [role="button"],
+    .notion-gallery-view [role="button"]:not(.notion-collection-item *),
+    .notion-board-view [role="button"]:has(> svg.ellipsisSmall, > svg.plusSmall):not(.notion-collection-item *),
+    .notion-board-view .notion-board-group [role="button"]:has(svg.plusSmall):not(.notion-collection-item *),
+    .notion-collection_view-block:has(.notion-collection-view-tab[aria-selected="true"] svg.viewTimeline) [role="button"][aria-haspopup="dialog"][style*="--ca-graBacIntTra"],
+    .notion-timeline-view div:has(> [role="button"] > svg.arrowChevronSingleLeftSmall):has(> [role="button"] > svg.arrowChevronSingleRightSmall) [role="button"]
 ) {
+    @include mixins.database-hover-button;
+}
+
+// Framed action groups: the native wrapper owns the edge and each action owns hover.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, svg.arrowExpandDiagonal, [role="button"][aria-label*="comment" i]),
+    .notion-list-view .notion-collection-item [style*="--c-shaOutMd"]:has([role="button"][style*="--c-bacInt"]),
+    :is(.notion-gallery-view, .notion-board-view) .notion-collection-item [style*="--c-shaOutMd"]:has(svg.pencilLineSmall, svg.ellipsisSmall),
+    .notion-collection-view-body .notion-page-block [style*="--c-butGroBac"]:has([role="button"][aria-haspopup="dialog"] svg.ellipsisSmall)
+) {
+    @include mixins.database-frame-button($group: true);
+}
+
+// Framed standalone controls keep their existing border and focus-ring geometry.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-gallery-view .notion-collection-item [role="button"][style*="--ca-borPriTra"],
+    [data-pinned-property] .notion-page-block [role="button"][style*="--ca-borPriTra"],
+    .notion-view-settings-sidebar div:has(> [role="button"] svg.viewTable):has(> [role="button"] svg.viewBoard) > [role="button"],
+    .notion-timeline-view div:has(> [role="button"] > svg.arrowChevronSingleLeftSmall):has(> [role="button"] > svg.arrowChevronSingleRightSmall) [role="button"][style*="--ca-borPriTra"]
+) {
+    @include mixins.database-frame-button;
+}
+
+// View selection remains distinct from the shared hover paint.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab[aria-selected="true"]) {
     background-color: var(--spook-bg-interact) !important;
 }
 
-// Database toolbar — leave the accent New/split control on its own native palette.
-.notion-app-inner.notion-dark-theme :where(
-    .notion-collection-filter:hover,
-    .notion-collection-sort:hover,
-    .notion-collection-automation-edit-view:hover,
-    .notion-collection-edit-view:hover,
-    .notion-collection_view-block [role="button"][aria-label="Search"]:hover,
-    :is(
-        .notion-collection-add-view,
-        .notion-collection_view-block [role="button"][aria-label="Minimize"],
-        .notion-collection_view-block a[role="link"][aria-label="Open as full page"]
-    ):hover:not(:active, :disabled, [aria-disabled="true"], [aria-pressed="true"])
-) {
-    background-color: var(--spook-bg-interact) !important;
-}
-
-// Databases — New button and split control; native HSL adjustments retain hover/pressed states.
+// The accented New/split control retains its native palette and interaction states.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-item-add) {
     --c-bluBacAccPri: var(--spook-electric);
     --c-bluTexInvPri: var(--spook-text-primary);
 }
 
-// Pinned page properties — headers and value buttons retain native hover/pressed behavior.
+// Settings view-name field is a recessed input, not a button.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-view-settings-sidebar [style*="--ca-bacSecTra"]:has(> input[type="text"])
+) {
+    --ca-bacSecTra: var(--spook-bg-secondary);
+}
+
+// Pinned property headers and values retain their native interaction logic.
 .notion-app-inner.notion-dark-theme :where([data-pinned-property]) {
     --ca-bacIntTra: var(--spook-bg-interact);
 }
 
-// Pinned button property — resting fill; native hover/pressed surfaces stay intact.
-.notion-app-inner.notion-dark-theme :where(
-    [data-pinned-property] .notion-page-block [role="button"][style*="--ca-borPriTra"]:not(:hover, :active, :disabled, [aria-disabled="true"])
-) {
-    background-color: var(--spook-bg-gray) !important;
-}
-
 // --- Table view ---
 
-// Column-header triggers and the footer's New page control.
+// Row actions need an opaque base so the hovered row cannot show through.
 .notion-app-inner.notion-dark-theme :where(
-    .notion-table-view-header-cell > div > [role="button"]:hover,
-    .notion-table-view-add-column:hover,
-    .notion-table-view-add-row:hover
+    .notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, svg.arrowExpandDiagonal, [role="button"][aria-label*="comment" i])
 ) {
-    background-color: var(--spook-bg-interact) !important;
+    background-color: var(--spook-bg-tertiary) !important;
+}
+
+// Paint the row below native cell selection and editing surfaces in both layouts.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view .notion-table-view-row:hover) {
+    background-color: var(--spook-bg-interact);
 }
 
 // Default Select/Status tags — keep the shared neutral channel local to tables.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
     --ca-bacTerTra: var(--spook-tag-bg-default);
+}
+
+// Text-cell editors are portaled outside the table; match their minimal editable shell.
+.notion-app-inner.notion-dark-theme:has(.notion-table-view) :where(
+    .notion-overlay-container [role="dialog"]:has(> div:only-child > div:only-child > [role="textbox"][data-content-editable-leaf][contenteditable="true"]:only-child)
+) {
+    background-color: var(--spook-db-button-hover) !important;
+    --c-shaOutLg:
+        0 0 0 1px var(--spook-border),
+        0 14px 28px -6px rgb(from var(--spook-bg-primary) r g b / 0.2),
+        0 2px 4px -1px rgb(from var(--spook-bg-primary) r g b / 0.12);
 }
 
 // Default Select/Status chips — native foreground/background pair across database views and properties.
@@ -110,18 +149,6 @@
     --ca-borStrTra: rgb(from var(--spook-electric) r g b / 0.45);
 }
 
-// Table Open/comment controls — raised wrappers own the outlines; inner buttons own hover.
-.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, [role="button"][aria-label*="comment" i])) {
-    --c-bacEle: var(--spook-bg-tertiary);
-    --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
-    --ca-bacIntTra: var(--spook-bg-interact);
-}
-
-// Table-cell comment button — hover/pressed surface and icon.
-.notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [role="button"][aria-label*="comment" i]) {
-    --ca-bacIntTra: var(--spook-bg-interact); // Comment button Hover
-}
-
 // --- List view ---
 
 // Notion writes the row's hover surface inline on its page-link anchor.
@@ -134,21 +161,9 @@
     --ca-texDisTra: var(--spook-text-muted);
 }
 
-// New page sits beside the list items, directly inside the view's block wrapper.
-.notion-app-inner.notion-dark-theme :where(.notion-list-view > .notion-collection_view-block > [role="button"]:hover) {
-    background-color: var(--spook-bg-interact) !important;
-}
-
-// List Edit control — raised outline surface; zero-specificity app guard preserves priority.
-:where(.notion-app-inner.notion-dark-theme) .notion-list-view .notion-collection-item:has([role="button"][style*="--c-bacInt"]) {
-    --c-bacEle: var(--spook-bg-tertiary);
-    --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
-}
-
-// List Edit control — hover/pressed surface and label/icon.
+// Keep the existing Edit label color while its wrapper uses the shared frame.
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role="button"][style*="--c-bacInt"]) {
-    --c-bacInt: var(--spook-bg-interact); // Hover background
-    --c-texSec: var(--spook-text-primary); // Button text
+    --c-texSec: var(--spook-text-primary);
 }
 
 // --- Gallery view ---
@@ -188,27 +203,20 @@
     background-color: var(--cl-carHovBac) !important;
 }
 
-// Gallery footer controls; card actions keep their existing behavior.
-.notion-app-inner.notion-dark-theme :where(.notion-gallery-view [role="button"]:not(.notion-collection-item *):hover) {
-    background-color: var(--spook-bg-interact) !important;
-}
-
 // --- Board view ---
-
-// Default-column add-card hover derives its fill from the elevated native surface.
-.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-board-group [role="button"][style*="--c-texAccPri"]:has(svg.plusSmall)) {
-    --c-bacEle: var(--spook-bg-tertiary);
-}
-
-// Gray-column hover uses its own elevated surface channel.
-.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-board-group [role="button"][style*="--c-graTexAccPri"]:has(svg.plusSmall)) {
-    --c-graBacEle: var(--spook-bg-gray);
-}
 
 // Default and gray card faces use separate channels; other column colors stay native.
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
     --c-bacEle: var(--spook-bg-tertiary);
     --c-graBacEle: var(--spook-bg-gray);
+}
+
+// --- Timeline view ---
+
+// Timeline uses dedicated paint channels instead of the ordinary editor surface.
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view) {
+    --c-timBac: var(--spook-bg-primary);
+    --cd-timDarBac: rgb(from var(--spook-electric) r g b / 0.03);
 }
 
 // --- Template Editor ---

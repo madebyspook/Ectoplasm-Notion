@@ -133,6 +133,11 @@
     background-color: var(--spook-bg-interact) !important;
 }
 
+// Page mentions have a separate native hover ring outside their fill.
+.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover:not(:active, :focus-visible)) {
+    box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
+}
+
 // --- Tab blocks ---
 
 // Embedded tabs; the desktop Tab Bar is a separate renderer.
