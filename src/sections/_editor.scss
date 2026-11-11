@@ -6,20 +6,20 @@
 
 // --- Page title ---
 
-// Page title — placeholder.
+// Page title — placeholder text
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
     --cl-pagTitPlaTexCol: var(--spook-text-muted);
 }
 
 // Page title — populated text glow; :empty also matches the generated placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
-    color: var(--spook-text-neon);
+    color: var(--spook-neon);
     @include mixins.text-glow(1, var(--spook-text-glow-color));
 }
 
 // --- Rich-text typography ---
 
-// Editor rich-text bold — retain heading/code weights; override Notion's inline formatting.
+// Bold text
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-content [contenteditable="true"]
     :is(strong, b, span.notion-enable-hover:is(
@@ -32,11 +32,11 @@
     ))
 ) {
     font-weight: 700 !important;
-    color: var(--spook-text-neon);
+    color: var(--spook-neon);
     @include mixins.text-glow(0.75, var(--spook-text-glow-color));
 }
 
-// Headings — subtle text glow for populated content.
+// Headings
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-content h1:not(:empty),
     .notion-page-content h2:not(:empty),
@@ -45,7 +45,7 @@
     .notion-page-content h5:not(:empty),
     .notion-page-content h6:not(:empty)
 ) {
-    color: var(--spook-text-neon);
+    color: var(--spook-neon);
     @include mixins.text-glow(1, var(--spook-text-glow-color));
 }
 

@@ -87,7 +87,7 @@
         0 0 0 1px var(--spook-border),
         0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
     --c-bluBacAccPri: var(--spook-electric);
-    --c-bluTexInvPri: var(--spook-text-neon);
+    --c-bluTexInvPri: var(--spook-neon);
 
     // Stronger feedback than hover, without changing the resting surface.
     :where([role="button"]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {

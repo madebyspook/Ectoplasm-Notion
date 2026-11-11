@@ -1,14 +1,14 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.3
+ * @version 1.2.4
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
    ECTOPLASMA DESIGN TOKENS
    ======================================== */
 :root {
-  /* Accents */
+  /* Colors */
   --spook-electric: #3C86ff;
   --spook-cosmic: #4545D9;
   --spook-ice: #00d9f5;
@@ -210,7 +210,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
-  color: var(--spook-text-neon);
+  color: var(--spook-neon);
   text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 1));
 }
 
@@ -219,7 +219,7 @@
 [style*="font-weight:bold"], [style*="font-weight: bold"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
 .notion-code-block *, .notion-inline-code-container *, .katex *))) {
   font-weight: 700 !important;
-  color: var(--spook-text-neon);
+  color: var(--spook-neon);
   text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 0.75));
 }
 
@@ -229,7 +229,7 @@
 .notion-page-content h4:not(:empty),
 .notion-page-content h5:not(:empty),
 .notion-page-content h6:not(:empty)) {
-  color: var(--spook-text-neon);
+  color: var(--spook-neon);
   text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 1));
 }
 
@@ -446,7 +446,7 @@
       0 0 0 1px var(--spook-border),
       0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
   --c-bluBacAccPri: var(--spook-electric);
-  --c-bluTexInvPri: var(--spook-text-neon);
+  --c-bluTexInvPri: var(--spook-neon);
 }
 .notion-app-inner.notion-dark-theme :where(.notion-button-block [style*="--c-bacPri"][style*="--ca-borSecTra"]) :where([role=button]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
   background-color: rgb(from var(--spook-electric) r g b/0.18) !important;
@@ -510,7 +510,7 @@
       0 0 0 1px var(--spook-border),
       0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
   --c-bluBacAccPri: var(--spook-electric);
-  --c-bluTexInvPri: var(--spook-text-neon);
+  --c-bluTexInvPri: var(--spook-neon);
 }
 .notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) :where([role=button]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
   background-color: rgb(from var(--spook-electric) r g b/0.18) !important;
@@ -939,7 +939,7 @@ svg.arrowDiagonalUpRightSmall)) {
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby] * {
-  color: var(--spook-text-neon) !important;
+  color: var(--spook-neon) !important;
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 

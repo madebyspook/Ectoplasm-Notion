@@ -84,7 +84,7 @@
 
 // Tab Bar — title-group text and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
-    color: var(--spook-text-neon) !important;
+    color: var(--spook-neon) !important;
     @include mixins.text-glow();
 }
 
