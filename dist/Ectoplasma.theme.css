@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.4
+ * @version 1.2.5
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -25,8 +25,6 @@
   /* Borders */
   --spook-border: rgba(from var(--spook-electric) r g b / 0.25);
   /* Text palette */
-  --spook-text-neon: var(--spook-neon);
-  --spook-text-glow-color: var(--spook-electric);
   --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black);
   --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black);
   --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black);
@@ -211,7 +209,7 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
   color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 1));
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"],
@@ -220,7 +218,7 @@
 .notion-code-block *, .notion-inline-code-container *, .katex *))) {
   font-weight: 700 !important;
   color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 0.75));
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content h1:not(:empty),
@@ -230,114 +228,168 @@
 .notion-page-content h5:not(:empty),
 .notion-page-content h6:not(:empty)) {
   color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-text-glow-color) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-text-glow-color) r g b/calc(0.3 * 1));
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]), :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]), :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]), :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]), :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]), :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]), :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]), :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]), :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])) {
-  --spook-text-glow-color: currentColor;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  color: inherit;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]), :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6)) {
   color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]):not(:empty),
+.notion-page-content :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])) {
   text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
 }
 

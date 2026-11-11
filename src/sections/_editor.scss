@@ -14,7 +14,7 @@
 // Page title — populated text glow; :empty also matches the generated placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
     color: var(--spook-neon);
-    @include mixins.text-glow(1, var(--spook-text-glow-color));
+    @include mixins.text-glow(1, var(--spook-electric));
 }
 
 // --- Rich-text typography ---
@@ -33,7 +33,7 @@
 ) {
     font-weight: 700 !important;
     color: var(--spook-neon);
-    @include mixins.text-glow(0.75, var(--spook-text-glow-color));
+    @include mixins.text-glow(0.75, var(--spook-electric));
 }
 
 // Headings
@@ -46,29 +46,42 @@
     .notion-page-content h6:not(:empty)
 ) {
     color: var(--spook-neon);
-    @include mixins.text-glow(1, var(--spook-text-glow-color));
+    @include mixins.text-glow(1, var(--spook-electric));
 }
 
-// Explicit rich-text colors keep their own halo instead of the default electric one.
+// Apply colored halos on their consumers; keep the global accent unchanged.
 @each $native in "gra", "bro", "ora", "yel", "gre", "blu", "pur", "pin", "red" {
-    .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])
-    ) {
-        --spook-text-glow-color: currentColor;
-    }
+    $colored: ':is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])';
+    $bold: ':is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"]))';
 
-    // Notion puts whole-heading colors on a wrapper; retain that inheritance.
+    // A colored wrapper supplies the foreground for nested bold text.
     .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"]) :is(h1, h2, h3, h4, h5, h6)
+        .notion-page-content [contenteditable="true"] #{$bold}:is(#{$colored} *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))
     ) {
         color: inherit;
     }
 
-    // A colored span must recompute the heading's inherited shadow in its own color.
+    // Cover color on the bold element, its wrapper, or a nested colored span.
     .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])
+        .notion-page-content [contenteditable="true"] :is(#{$bold}#{$colored}, #{$colored} #{$bold}, #{$bold} #{$colored}):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))
     ) {
-        @include mixins.text-glow();
+        @include mixins.text-glow(0.75, currentColor);
+    }
+
+    // Notion puts whole-heading colors on a wrapper; retain that inheritance.
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-page-content #{$colored} :is(h1, h2, h3, h4, h5, h6)
+    ) {
+        color: inherit;
+    }
+
+    // Recompute each heading or colored span's shadow in its own foreground.
+    .notion-app-inner.notion-dark-theme :where(
+        .notion-page-content :is(h1, h2, h3, h4, h5, h6)#{$colored}:not(:empty),
+        .notion-page-content #{$colored} :is(h1, h2, h3, h4, h5, h6):not(:empty),
+        .notion-page-content :is(h1, h2, h3, h4, h5, h6) #{$colored}
+    ) {
+        @include mixins.text-glow(1, currentColor);
     }
 }
 
