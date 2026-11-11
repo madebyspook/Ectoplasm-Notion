@@ -19,6 +19,11 @@
     --c-bacEle: var(--spook-bg-secondary);
 }
 
+// Center peek paints its frame with a shadow on the direct panel child.
+.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer > div[style*="--c-shaOutMd"]) {
+    @include mixins.raised-outline;
+}
+
 // Native confirmation dialogs — retain shadow geometry and red destructive semantics.
 .notion-app-inner.notion-dark-theme :where(.notion-dialog[role="dialog"]) {
     --c-bacEle: var(--spook-bg-secondary);
