@@ -1,7 +1,4 @@
-@mixin icon-glow(
-    $base-filter: brightness(1.15) contrast(4),
-    $glow-color: var(--spook-electric)
-) {
+@mixin icon-glow($base-filter: brightness(1.15) contrast(4), $glow-color: var(--spook-electric)) {
     filter:
         #{$base-filter}
         drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b / 0.3))
@@ -16,17 +13,16 @@
         0 0 8px rgb(from #{$color} r g b / calc(0.3 * #{$strength}));
 }
 
-// Medium electric halo; each component keeps its own stroke paint.
-@mixin frame-glow($halo-spread: 0) {
+@mixin box-shadow-glow($strength: 1, $color: var(--spook-electric)) {
     box-shadow:
-        0 0 6px $halo-spread rgb(from var(--spook-electric) r g b / 0.65),
-        0 0 12px $halo-spread rgb(from var(--spook-electric) r g b / 0.35);
+        0 0 3px 1px rgb(from #{$color} r g b / calc(0.8 * #{$strength})),
+        0 0 8px 0.5px rgb(from #{$color} r g b / calc(0.5 * #{$strength})),
+        0 0 14px rgb(from #{$color} r g b / calc(0.25 * #{$strength}));
 }
 
-// Raised native outlines share geometry across database actions and center peek.
-@mixin raised-outline {
-    --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
-}
+
+
+
 
 // Native state channels remain available for pressed, open and focused controls.
 @mixin -database-button-states($background) {
@@ -60,7 +56,6 @@
     --ca-borPriTra: var(--spook-border);
     --ca-borSecTra: var(--spook-border);
     border-color: var(--spook-border) !important;
-    @include raised-outline;
 
     @if $group {
         background-color: var(--spook-bg-interact) !important;

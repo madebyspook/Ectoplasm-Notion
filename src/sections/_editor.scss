@@ -1,10 +1,13 @@
+@use 'sass:string';
+@use '../abstracts/colors';
 @use '../abstracts/mixins';
 
-/* ========================================
-   MAIN EDITOR
-   ======================================== */
+$bold: 'span.notion-enable-hover[style*="font-weight:600"]';
+$headings: ':is(h1, h2, h3, h4, h5, h6)';
 
-// --- Page title ---
+/* ========================================
+   PAGE TITLE
+   ======================================== */
 
 // Page title — placeholder text
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
@@ -14,78 +17,14 @@
 // Page title — populated text glow; :empty also matches the generated placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
     color: var(--spook-neon);
-    @include mixins.text-glow(1, var(--spook-electric));
+    @include mixins.text-glow(2, var(--spook-electric));
 }
 
-// --- Rich-text typography ---
+/* ========================================
+   PAGE OTHER
+   ======================================== */
 
-// Bold text
-.notion-app-inner.notion-dark-theme :where(
-    .notion-page-content [contenteditable="true"]
-    :is(strong, b, span.notion-enable-hover:is(
-        [style*="font-weight:600"], [style*="font-weight: 600"],
-        [style*="font-weight:700"], [style*="font-weight: 700"],
-        [style*="font-weight:bold"], [style*="font-weight: bold"]
-    )):not(:where(
-        h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
-        .notion-code-block *, .notion-inline-code-container *, .katex *
-    ))
-) {
-    font-weight: 700 !important;
-    color: var(--spook-neon);
-    @include mixins.text-glow(0.75, var(--spook-electric));
-}
-
-// Headings
-.notion-app-inner.notion-dark-theme :where(
-    .notion-page-content h1:not(:empty),
-    .notion-page-content h2:not(:empty),
-    .notion-page-content h3:not(:empty),
-    .notion-page-content h4:not(:empty),
-    .notion-page-content h5:not(:empty),
-    .notion-page-content h6:not(:empty)
-) {
-    color: var(--spook-neon);
-    @include mixins.text-glow(1, var(--spook-electric));
-}
-
-// Apply colored halos on their consumers; keep the global accent unchanged.
-@each $native in "gra", "bro", "ora", "yel", "gre", "blu", "pur", "pin", "red" {
-    $colored: ':is([style*="color: var(--c-#{$native}Tex"], [style*="color:var(--c-#{$native}Tex"])';
-    $bold: ':is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"]))';
-
-    // A colored wrapper supplies the foreground for nested bold text.
-    .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content [contenteditable="true"] #{$bold}:is(#{$colored} *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))
-    ) {
-        color: inherit;
-    }
-
-    // Cover color on the bold element, its wrapper, or a nested colored span.
-    .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content [contenteditable="true"] :is(#{$bold}#{$colored}, #{$colored} #{$bold}, #{$bold} #{$colored}):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))
-    ) {
-        @include mixins.text-glow(0.75, currentColor);
-    }
-
-    // Notion puts whole-heading colors on a wrapper; retain that inheritance.
-    .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content #{$colored} :is(h1, h2, h3, h4, h5, h6)
-    ) {
-        color: inherit;
-    }
-
-    // Recompute each heading or colored span's shadow in its own foreground.
-    .notion-app-inner.notion-dark-theme :where(
-        .notion-page-content :is(h1, h2, h3, h4, h5, h6)#{$colored}:not(:empty),
-        .notion-page-content #{$colored} :is(h1, h2, h3, h4, h5, h6):not(:empty),
-        .notion-page-content :is(h1, h2, h3, h4, h5, h6) #{$colored}
-    ) {
-        @include mixins.text-glow(1, currentColor);
-    }
-}
-
-// Keep the native caret, including selection, IME positioning and blink timing.
+// Caret - Color
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-block h1[contenteditable="true"],
     .notion-page-content [contenteditable="true"]
@@ -93,52 +32,90 @@
     caret-color: var(--spook-neon) !important;
 }
 
-// The divider paints a background on its separator, not a border on the block.
-// Optional divider neon/glow - uncomment this block and rebuild to enable.
-// .notion-app-inner.notion-dark-theme :where(.notion-divider-block [role="separator"]) {
-//     background-color: var(--spook-neon) !important;
-//     @include mixins.frame-glow(2px); //Thin lines need spread so their halo remains visible after blurring.
-// }
+// TODO: Should be Button fill blue
+// New Page - Get started with pills (Buttom of Page)
+.notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role="menu"]:has(svg.notionTemplate)) {
+    --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+}
 
-// Quote line — keep the native stroke with a stronger electric halo.
+// Comment input — placeholder.
+.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+    --ca-texDisTra: var(--spook-text-muted);
+}
+
+
+/* ========================================
+   PAGE BLOCKS
+   ======================================== */
+
+// text
+
+// Bold text, but not Headers
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable="true"]
+#{$bold}:not(:where(#{$headings} *))) {
+    font-weight: 700 !important;
+    color: var(--spook-neon);
+    @include mixins.text-glow(1, var(--spook-electric));
+}
+
+// Code Highlight - Color
+.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+    color: var(--spook-electric) !important;
+}
+
+// quote
+
+// Quote - line glow
 .notion-app-inner.notion-dark-theme :where(.notion-quote-block > blockquote > div[style*="border-inline-start: 3px solid"]) {
     position: relative;
-
     &::before {
-        content: '';
-        position: absolute;
-        inset-block: 0;
-        inset-inline-start: -3px;
-        inline-size: 0;
-        border-inline-start: inherit;
-        pointer-events: none;
-        box-shadow:
-            0 0 3px 1px rgb(from var(--spook-electric) r g b / 0.8),
-            0 0 8px 0.5px rgb(from var(--spook-electric) r g b / 0.5),
-            0 0 14px rgb(from var(--spook-electric) r g b / 0.25);
+        // Position a non-interactive pseudo-element over the native quote border to keep the glow confined to the vertical line.
+        content: ''; position: absolute; inset-block: 0; inset-inline-start: -3px; inline-size: 0; border-inline-start: inherit; pointer-events: none;
+        // Glow effect
+        @include mixins.box-shadow-glow();
     }
 }
 
-// --- Empty-block placeholders ---
-
-// Empty text and quote blocks — placeholder.
+// Empty Block  — Placeholder: Empty block, quote, list, toggle, headers
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable="true"][placeholder]:empty) {
     --ca-texDisTra: var(--spook-text-muted);
 }
 
-// Empty toggle — placeholder.
-.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
-    --ca-texDisTra: var(--spook-text-muted);
+// Colored Blocks
+// Colored Text
+// Colored Background
+
+// Button - Colored Hover Color
+.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
+    @each $color in colors.$colors {
+        @if $color == "gra" {
+            --cl-palGra400: var(--spook-button-hover-gra);
+        } @else {
+            $native: string.to-upper-case(string.slice($color, 1, 1)) + string.slice($color, 2);
+            --ca-pal#{$native}400: var(--spook-button-hover-#{$color});
+        }
+    }
 }
 
-// --- Page-link blocks ---
-
-// Page links — hover background.
-.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"]) {
-    --ca-bacIntTra: var(--spook-bg-interact);
+// Button - Default Hover Color
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]:is([style*="--c-whiButHovBac"],[style*="hsl(from var(--c-bacPri)"]):hover) {
+    background-color: var(--spook-button-hover-default) !important;
 }
 
-// Page and database-page links share the same interactive anchor in different block wrappers.
+// Callout
+
+// Code Block - Background
+.notion-code-block div[style*="--ca-graBacPriTra"],.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+    background: rgb(from var(--spook-bg-gra) r g b / 0.6) !important;
+}
+// TODO: Use Button Mixin
+// Code Block - Action Buttons: surface and hover background. (Button Frame style)
+.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
+    --c-bacEle: var(--spook-bg-tertiary); // background
+    --ca-graBacIntTra: var(--spook-bg-interact); // hover
+}
+
+// Page - Row hover
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role="link"]:hover,
     .notion-page-content a.notion-page-mention-token:hover
@@ -146,111 +123,72 @@
     background-color: var(--spook-bg-interact) !important;
 }
 
-// Page mentions have a separate native hover ring outside their fill.
-.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover:not(:active, :focus-visible)) {
-    box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
+// Page link
+
+// Headers & Toggle Headers
+.notion-app-inner.notion-dark-theme :where(.notion-page-content #{$headings}:not(:empty)) {
+    color: var(--spook-neon);
+    @include mixins.text-glow(1, var(--spook-electric));
 }
 
-// --- Tab blocks ---
-
-// Embedded tabs; the desktop Tab Bar is a separate renderer.
-.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tablist"] [role="tab"]:is(:hover, [aria-selected="true"])) {
-    background-color: var(--spook-bg-interact) !important;
+// Keep color for Headers
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content [contenteditable="true"] #{$bold}:is(#{colors.$colored-text} *):not(:where(#{$headings} *)),
+    .notion-page-content #{colors.$colored-text} #{$headings}
+) {
+    color: inherit;
 }
 
-// Empty tab panels expose a separate content button, outside the tab header list.
-.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tabpanel"] .notion-text-block > [role="button"][style*="--ca-bacIntTra"]:hover) {
-    background-color: var(--spook-bg-interact) !important;
+// Glow for colored Headers and Bold text
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content [contenteditable="true"] :is(#{$bold}#{colors.$colored-text}, #{colors.$colored-text} #{$bold}, #{$bold} #{colors.$colored-text}):not(:where(#{$headings} *)),
+    .notion-page-content :is(#{$headings}#{colors.$colored-text}, #{colors.$colored-text} #{$headings}):not(:empty),
+    .notion-page-content #{$headings} #{colors.$colored-text}
+) {
+    @include mixins.text-glow(1, currentColor);
 }
 
-// --- Checkbox blocks ---
+// Bullet List
+// Numbered List
 
-// Completed to-do blocks
+// Checklist - Completed Text
 .notion-app-inner.notion-dark-theme .notion-to_do-block .notion-strikethrough-container {
     color: var(--spook-text-secondary) !important;
-    text-decoration-color: rgba(from var(--spook-text-secondary) r g b / 0.5) !important;
 }
 
-// --- Code blocks ---
-
-// Inline code shares the existing block background without changing its spacing.
-.notion-code-block div[style*="--ca-graBacPriTra"],
-.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
-    background: rgb(from var(--spook-bg-gray) r g b / 0.5) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
-    color: var(--spook-electric) !important;
-}
-
-// Code actions — surface and hover background.
-.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-    --c-bacEle: var(--spook-bg-tertiary); // background
-    --ca-graBacIntTra: var(--spook-bg-interact); // hover
-}
-
-// Code actions — label color.
-.notion-app-inner.notion-dark-theme :where(.notion-code-block [role="button"][style*="--ca-graBacIntTra"]) {
-    --c-graTexAccPri: var(--spook-text-secondary);
-}
-
-// --- Custom button blocks ---
-
-// Custom button blocks — native per-color hover palette.
-.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
-    --cl-palGra400: var(--spook-button-hover-gray);
-    --ca-palBro400: var(--spook-button-hover-brown);
-    --ca-palOra400: var(--spook-button-hover-orange);
-    --ca-palYel400: var(--spook-button-hover-yellow);
-    --ca-palGre400: var(--spook-button-hover-green);
-    --ca-palBlu400: var(--spook-button-hover-blue);
-    --ca-palPur400: var(--spook-button-hover-purple);
-    --ca-palPin400: var(--spook-button-hover-pink);
-    --ca-palRed400: var(--spook-button-hover-red);
-}
-
-// Default buttons use either the native white-button token or a relative HSL hover color.
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]:is(
-    [style*="--c-whiButHovBac"],
-    [style*="hsl(from var(--c-bacPri)"]
-):hover) {
-    background-color: var(--spook-button-hover-default) !important;
-}
-
-// Custom button blocks — text color.
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]) > div[style*="--c-texTer"] {
-    color: var(--spook-text-secondary) !important;
-}
-
-// Inline button editor — condition card, icon picker and outline-action hover.
-.notion-app-inner.notion-dark-theme :where(
-    .notion-button-block [style*="--c-bacPri"][style*="--ca-borSecTra"]
-) {
-    @include mixins.button-editor-palette;
-}
-
-// --- Shared checkbox widgets ---
-
-// Editor and database checkboxes — checked fill; preserve unchecked and disabled paint.
+// Checklist & Database - Checked Fill Color
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled)) {
     --c-bluBacAccPri: var(--spook-electric);
 }
 
-// Editor and database checkboxes — enabled checkmark; native SVG fill is hardcoded.
+// Checklist & Database - Checkmark color
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type="checkbox"]:enabled:checked) svg) {
     fill: var(--spook-text-primary);
 }
 
-// --- Page comments ---
-
-// Comment input — placeholder.
-.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+// Toggle Content Text — Placeholder.
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
     --ca-texDisTra: var(--spook-text-muted);
 }
 
-// --- Starter pills ---
+// Divider - Glow
+// .notion-app-inner.notion-dark-theme :where(.notion-divider-block [role="separator"]) {
+//     background-color: var(--spook-neon) !important;
+//     @include mixins.box-shadow-glow(2);
+// }
 
-// Get started with — Database, Form, Templates and more pills; native hover increases alpha.
-.notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role="menu"]:has(svg.notionTemplate)) {
-    --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+// Table
+
+// Tabs - Active and Hover Background
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tablist"] [role="tab"]:is(:hover, [aria-selected="true"])) {
+    background-color: var(--spook-bg-interact) !important;
 }
+
+// Tabs - Empty block hover
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tabpanel"] .notion-text-block > [role="button"][style*="--ca-bacIntTra"]:hover) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Synced block
+
+// Table of content

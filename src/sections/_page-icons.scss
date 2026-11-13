@@ -1,14 +1,14 @@
 @use '../abstracts/mixins';
+@use '../abstracts/colors';
 
 /* ========================================
    NATIVE SVG PAGE ICONS
    ======================================== */
 
-// Record icons — shared native color suffix, with or without a mode query.
-// Excludes uploaded images, emoji, inline SVG controls and rasterized desktop-tab icons.
-@each $color in "gray", "lightgray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red" {
+// Page Icon - Normal & Colored Icons
+   @each $color, $filename in colors.$icon-colors {
     .notion-app-inner.notion-dark-theme :where(
-        .notion-record-icon img[src^="/icons/"]:is([src$="_#{$color}.svg"], [src*="_#{$color}.svg?"])
+        .notion-record-icon img[src^="/icons/"]:is([src$="_#{$filename}.svg"], [src*="_#{$filename}.svg?"])
     ) {
         @include mixins.icon-glow(
             var(--spook-icon-filter-#{$color}),
@@ -17,24 +17,21 @@
     }
 }
 
-// Referenced links, sidebar defaults and page-block defaults share the light-gray tint.
-// Default record icons are inline SVGs; custom image icons and emoji keep their own colors.
+// Page Icon Glow - Grey Default Page Icon, Linked Grey Icon, DB Default Page Icon
 .notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"],
 .notion-app-inner.notion-dark-theme :where(
     .notion-sidebar-container .notion-record-icon svg:is(.page, .pageEmpty),
+    .notion-collection-item .notion-record-icon svg:is(.page, .pageEmpty),
     .notion-page-content a.notion-page-mention-token svg.page,
     .notion-page-content .notion-page-block .content-editable-void-no-select > a[role="link"] .notion-record-icon svg:is(.page, .pageEmpty)
 ) {
-    @include mixins.icon-glow(var(--spook-icon-filter-lightgray));
+    @include mixins.icon-glow(var(--spook-icon-filter-lgr));
 }
 
-// Heading mentions — native gray icons and their link indicators share the gray treatment.
-// Uploaded icons, emoji and native icons with other color suffixes stay unchanged.
+// Linkd Icon in Page Titles
 .notion-app-inner.notion-dark-theme :where(
-    :is(h1, h2, h3, h4, h5, h6) .notion-page-mention-token :is(
-        img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"]),
-        svg.arrowDiagonalUpRightSmall
-    )
+    :is(h1, h2, h3, h4, h5, h6) .notion-page-mention-token
+    img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"])
 ) {
-    @include mixins.icon-glow(var(--spook-icon-filter-gray), var(--spook-icon-glow-gray));
+    @include mixins.icon-glow(var(--spook-icon-filter-gra), var(--spook-icon-glow-gra));
 }

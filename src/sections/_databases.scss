@@ -1,4 +1,5 @@
 @use '../abstracts/mixins';
+@use '../abstracts/colors';
 
 /* ========================================
    DATABASE CONTROLS
@@ -98,7 +99,7 @@
 
 // Default Select/Status tags — keep the shared neutral channel local to tables.
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
-    --ca-bacTerTra: var(--spook-tag-bg-default);
+    --ca-bacTerTra: var(--spook-tag-bg-def);
 }
 
 // Text-cell editors are portaled outside the table; match their minimal editable shell.
@@ -115,23 +116,20 @@
 // Default Select/Status chips — native foreground/background pair across database views and properties.
 .notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"]) {
     --c-texPri: var(--spook-tag-text-default);
-    --ca-bacTerTra: var(--spook-tag-bg-default);
+    --ca-bacTerTra: var(--spook-tag-bg-def);
 }
 
 // Gray Select/Status chips — leave the shared table-of-contents surface unchanged.
 .notion-app-inner.notion-dark-theme :where([style*="--ca-graBacTerTra"][style*="--c-graTexPri"]) {
-    --ca-graBacTerTra: var(--spook-tag-bg-gray);
+    --ca-graBacTerTra: var(--spook-tag-bg-gra);
 }
 
 // Status dots use native icon channels independently of the tag text/background.
-@each $native, $color in (
-    "gra": "gray", "bro": "brown", "ora": "orange", "yel": "yellow",
-    "gre": "green", "blu": "blue", "pur": "purple", "pin": "pink", "red": "red"
-) {
+@each $color in colors.$colors {
     .notion-app-inner.notion-dark-theme :where(
-        [style*="--ca-#{$native}BacTerTra"][style*="--c-#{$native}TexPri"] div[style*="--c-#{$native}IcoAccPri"]
+        [style*="--ca-#{$color}BacTerTra"][style*="--c-#{$color}TexPri"] div[style*="--c-#{$color}IcoAccPri"]
     ) {
-        --c-#{$native}IcoAccPri: oklch(from var(--spook-tag-bg-#{$color}) calc(l * 0.5) calc(c * 0.65) h / 1);
+        --c-#{$color}IcoAccPri: oklch(from var(--spook-tag-bg-#{$color}) calc(l * 0.5) calc(c * 0.65) h / 1);
     }
 }
 
@@ -139,7 +137,7 @@
 .notion-app-inner.notion-dark-theme :where(
     [style*="--ca-bacTerTra"][style*="--c-texPri"] div[style*="--c-graIcoAccPri"]
 ) {
-    --c-graIcoAccPri: oklch(from var(--spook-tag-bg-default) calc(l * 0.3) calc(c * 0.65) h / 1);
+    --c-graIcoAccPri: oklch(from var(--spook-tag-bg-def) calc(l * 0.3) calc(c * 0.65) h / 1);
 }
 
 // Unchecked database frames — brighten only the edge; native hover/fill stay intact.
@@ -208,7 +206,7 @@
 // Default and gray card faces use separate channels; other column colors stay native.
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
     --c-bacEle: var(--spook-bg-tertiary);
-    --c-graBacEle: var(--spook-bg-gray);
+    --c-graBacEle: var(--spook-bg-gra);
 }
 
 // --- Timeline view ---
@@ -228,7 +226,7 @@
     // Template information, database link, repeat label and chevron.
     --c-yelTexSec: var(--spook-text-primary);
     // Learn more icon.
-    --c-yelIcoSec: var(--spook-text-blue);
+    --c-yelIcoSec: var(--spook-text-blu);
     // Duplicate every… button border.
     --ca-yelBorStrTra: var(--spook-border);
     // Banner links and controls — native hover, pressed and focus-visible backgrounds.

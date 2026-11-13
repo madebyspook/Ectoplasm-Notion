@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.5
+ * @version 1.2.6
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -23,94 +23,97 @@
   --spook-bg-interact: rgba(from var(--spook-electric) r g b / 0.1);
   --spook-db-button-hover: color-mix(in srgb, var(--spook-bg-tertiary) 80%, var(--spook-electric));
   /* Borders */
-  --spook-border: rgba(from var(--spook-electric) r g b / 0.25);
+  --spook-border: rgba(from var(--spook-electric) r g b / 0.3);
+  --spook-shadow-raised:
+      0 0 0 1px var(--spook-border),
+      0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 1);
   /* Text palette */
   --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black);
   --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black);
   --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black);
   /* Colors */
-  --spook-gray: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);
-  --spook-brown: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-orange: oklch(from color-mix(in oklch shorter hue, #d2802d 85%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-yellow: oklch(from color-mix(in oklch shorter hue, #cb9e34 85%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-green: oklch(from color-mix(in oklch shorter hue, #509467 85%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-blue: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-purple: oklch(from color-mix(in oklch shorter hue, #a040d4 85%, var(--spook-electric)) calc(l * 1.1) c h);
-  --spook-pink: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-gra: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);
+  --spook-bro: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-ora: oklch(from color-mix(in oklch shorter hue, #d2802d 85%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-yel: oklch(from color-mix(in oklch shorter hue, #cb9e34 85%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-gre: oklch(from color-mix(in oklch shorter hue, #509467 85%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-blu: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-pur: oklch(from color-mix(in oklch shorter hue, #a040d4 85%, var(--spook-electric)) calc(l * 1.1) c h);
+  --spook-pin: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-electric)) calc(l * 1.1) c h);
   --spook-red: oklch(from color-mix(in oklch shorter hue, #cf4848 90%, var(--spook-electric)) calc(l * 1.1) c h);
   /* Colored text */
-  --spook-text-gray: var(--spook-gray);
-  --spook-text-brown: var(--spook-brown);
-  --spook-text-orange: var(--spook-orange);
-  --spook-text-yellow: var(--spook-yellow);
-  --spook-text-green: var(--spook-green);
-  --spook-text-blue: var(--spook-blue);
-  --spook-text-purple: var(--spook-purple);
-  --spook-text-pink: var(--spook-pink);
+  --spook-text-gra: var(--spook-gra);
+  --spook-text-bro: var(--spook-bro);
+  --spook-text-ora: var(--spook-ora);
+  --spook-text-yel: var(--spook-yel);
+  --spook-text-gre: var(--spook-gre);
+  --spook-text-blu: var(--spook-blu);
+  --spook-text-pur: var(--spook-pur);
+  --spook-text-pin: var(--spook-pin);
   --spook-text-red: var(--spook-red);
   /* Background colors for text, callout and button */
-  --spook-bg-gray: oklch(from var(--spook-gray) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-brown: oklch(from var(--spook-brown) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-orange: oklch(from var(--spook-orange) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-yellow: oklch(from var(--spook-yellow) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-green: oklch(from var(--spook-green) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-blue: oklch(from var(--spook-blue) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-purple: oklch(from var(--spook-purple) calc(l * 0.5) calc(c * 0.45) h);
-  --spook-bg-pink: oklch(from var(--spook-pink) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-gra: oklch(from var(--spook-gra) calc(l * 0.425) calc(c * 0.35) h);
+  --spook-bg-bro: oklch(from var(--spook-bro) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-ora: oklch(from var(--spook-ora) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-yel: oklch(from var(--spook-yel) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-gre: oklch(from var(--spook-gre) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-blu: oklch(from var(--spook-blu) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-pur: oklch(from var(--spook-pur) calc(l * 0.5) calc(c * 0.45) h);
+  --spook-bg-pin: oklch(from var(--spook-pin) calc(l * 0.5) calc(c * 0.45) h);
   --spook-bg-red: oklch(from var(--spook-red) calc(l * 0.5) calc(c * 0.45) h);
   /* Button hover Backgrounds */
-  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gray) 20%, var(--spook-bg-secondary));
-  --spook-button-hover-gray: color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-brown: color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-orange: color-mix(in srgb, var(--spook-bg-orange) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-yellow: color-mix(in srgb, var(--spook-bg-yellow) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-green: color-mix(in srgb, var(--spook-bg-green) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-blue: color-mix(in srgb, var(--spook-bg-blue) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-purple: color-mix(in srgb, var(--spook-bg-purple) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-pink: color-mix(in srgb, var(--spook-bg-pink) 80%, var(--spook-bg-secondary));
-  --spook-button-hover-red: color-mix(in srgb, var(--spook-bg-red) 80%, var(--spook-bg-secondary));
+  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gra) 50%, var(--spook-bg-secondary));
+  --spook-button-hover-gra: color-mix(in srgb, var(--spook-bg-gra) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-bro: color-mix(in srgb, var(--spook-bg-bro) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-ora: color-mix(in srgb, var(--spook-bg-ora) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-yel: color-mix(in srgb, var(--spook-bg-yel) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-gre: color-mix(in srgb, var(--spook-bg-gre) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-blu: color-mix(in srgb, var(--spook-bg-blu) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-pur: color-mix(in srgb, var(--spook-bg-pur) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-pin: color-mix(in srgb, var(--spook-bg-pin) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-red: color-mix(in srgb, var(--spook-bg-red) 70%, var(--spook-bg-secondary));
   /* Select/Status tag text */
-  --spook-tag-text-default: color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
-  --spook-tag-text-gray: color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
-  --spook-tag-text-brown: color-mix(in srgb, var(--spook-text-brown) 20%, var(--spook-text-primary));
-  --spook-tag-text-orange: color-mix(in srgb, var(--spook-text-organge) 20%, var(--spook-text-primary));
-  --spook-tag-text-yellow: color-mix(in srgb, var(--spook-text-yellow) 20%, var(--spook-text-primary));
-  --spook-tag-text-green: color-mix(in srgb, var(--spook-text-green) 20%, var(--spook-text-primary));
-  --spook-tag-text-blue: color-mix(in srgb, var(--spook-text-blue) 20%, var(--spook-text-primary));
-  --spook-tag-text-purple: color-mix(in srgb, var(--spook-text-purple) 20%, var(--spook-text-primary));
-  --spook-tag-text-pink: color-mix(in srgb, var(--spook-text-pink) 20%, var(--spook-text-primary));
+  --spook-tag-text-default: color-mix(in srgb, var(--spook-text-gra) 20%, var(--spook-text-primary));
+  --spook-tag-text-gra: color-mix(in srgb, var(--spook-text-gra) 20%, var(--spook-text-primary));
+  --spook-tag-text-bro: color-mix(in srgb, var(--spook-text-bro) 20%, var(--spook-text-primary));
+  --spook-tag-text-ora: color-mix(in srgb, var(--spook-text-ora) 20%, var(--spook-text-primary));
+  --spook-tag-text-yel: color-mix(in srgb, var(--spook-text-yel) 20%, var(--spook-text-primary));
+  --spook-tag-text-gre: color-mix(in srgb, var(--spook-text-gre) 20%, var(--spook-text-primary));
+  --spook-tag-text-blu: color-mix(in srgb, var(--spook-text-blu) 20%, var(--spook-text-primary));
+  --spook-tag-text-pur: color-mix(in srgb, var(--spook-text-pur) 20%, var(--spook-text-primary));
+  --spook-tag-text-pin: color-mix(in srgb, var(--spook-text-pin) 20%, var(--spook-text-primary));
   --spook-tag-text-red: color-mix(in srgb, var(--spook-text-red) 20%, var(--spook-text-primary));
   /* Select/Status tag backgrounds */
-  --spook-tag-bg-default: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 0%, var(--spook-electric)) calc(l * 1.2) c h) r g b / 12.24%);
-  --spook-tag-bg-gray: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-electric)) calc(l * 0.9) calc(c * 0.4) h) r g b / 60.59%);
-  --spook-tag-bg-brown: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-electric)) calc(l * 0.9) c h) r g b / 36.47%);
-  --spook-tag-bg-orange: rgb(from oklch(from color-mix(in oklch shorter hue, #ffa047 95%, var(--spook-electric)) calc(l * 1) c h) r g b / 48.24%);
-  --spook-tag-bg-yellow: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 45.88%);
-  --spook-tag-bg-green: rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 33.73%);
-  --spook-tag-bg-blue: rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-electric)) calc(l * 1) c h) r g b / 49.41%);
-  --spook-tag-bg-purple: rgb(from oklch(from color-mix(in oklch shorter hue, #d093ff 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
-  --spook-tag-bg-pink: rgb(from oklch(from color-mix(in oklch shorter hue, #ff85c0 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
+  --spook-tag-bg-def: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 0%, var(--spook-electric)) calc(l * 1.2) c h) r g b / 12.24%);
+  --spook-tag-bg-gra: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 0%, var(--spook-electric)) calc(l * 0.8) calc(c * 0.4) h) r g b / 60.59%);
+  --spook-tag-bg-bro: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-electric)) calc(l * 0.9) c h) r g b / 36.47%);
+  --spook-tag-bg-ora: rgb(from oklch(from color-mix(in oklch shorter hue, #ffa047 95%, var(--spook-electric)) calc(l * 1) c h) r g b / 48.24%);
+  --spook-tag-bg-yel: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 45.88%);
+  --spook-tag-bg-gre: rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 33.73%);
+  --spook-tag-bg-blu: rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-electric)) calc(l * 1) c h) r g b / 49.41%);
+  --spook-tag-bg-pur: rgb(from oklch(from color-mix(in oklch shorter hue, #d093ff 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
+  --spook-tag-bg-pin: rgb(from oklch(from color-mix(in oklch shorter hue, #ff85c0 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
   --spook-tag-bg-red: rgb(from oklch(from color-mix(in oklch shorter hue, #ff7469 90%, var(--spook-electric)) calc(l * 1) c h) r g b / 52.55%);
   /* Native SVG icon colors */
-  --spook-icon-filter-gray: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
-  --spook-icon-filter-lightgray: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
-  --spook-icon-filter-brown: saturate(100%) hue-rotate(0deg) brightness(110%);
-  --spook-icon-filter-orange: saturate(100%) hue-rotate(0deg) brightness(110%);
-  --spook-icon-filter-yellow: saturate(100%) hue-rotate(20deg) brightness(120%);
-  --spook-icon-filter-green: saturate(100%) hue-rotate(0deg) brightness(110%);
-  --spook-icon-filter-blue: saturate(100%) hue-rotate(0deg) brightness(110%);
-  --spook-icon-filter-purple: saturate(120%) hue-rotate(-5deg) brightness(110%);
-  --spook-icon-filter-pink: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-gra: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
+  --spook-icon-filter-lgr: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
+  --spook-icon-filter-bro: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-ora: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-yel: saturate(100%) hue-rotate(20deg) brightness(120%);
+  --spook-icon-filter-gre: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-blu: saturate(100%) hue-rotate(0deg) brightness(110%);
+  --spook-icon-filter-pur: saturate(120%) hue-rotate(-5deg) brightness(110%);
+  --spook-icon-filter-pin: saturate(100%) hue-rotate(0deg) brightness(110%);
   --spook-icon-filter-red: saturate(100%) hue-rotate(0deg) brightness(110%);
-  --spook-icon-glow-gray: var(--spook-electric);
-  --spook-icon-glow-lightgray: var(--spook-gray);
-  --spook-icon-glow-brown: var(--spook-brown);
-  --spook-icon-glow-orange: var(--spook-orange);
-  --spook-icon-glow-yellow: var(--spook-yellow);
-  --spook-icon-glow-green: var(--spook-green);
-  --spook-icon-glow-blue: var(--spook-blue);
-  --spook-icon-glow-purple: var(--spook-purple);
-  --spook-icon-glow-pink: var(--spook-pink);
+  --spook-icon-glow-gra: var(--spook-electric);
+  --spook-icon-glow-lgr: var(--spook-gra);
+  --spook-icon-glow-bro: var(--spook-bro);
+  --spook-icon-glow-ora: var(--spook-ora);
+  --spook-icon-glow-yel: var(--spook-yel);
+  --spook-icon-glow-gre: var(--spook-gre);
+  --spook-icon-glow-blu: var(--spook-blu);
+  --spook-icon-glow-pur: var(--spook-pur);
+  --spook-icon-glow-pin: var(--spook-pin);
   --spook-icon-glow-red: var(--spook-red);
   /* Desktop Tab Bar */
   --spook-tab-button-hover: rgba(57, 168, 255, 0.16);
@@ -123,68 +126,57 @@
    NOTION PAGE RENDERERS — NATIVE VARIABLE BRIDGE
    ======================================== */
 .notion-app-inner.notion-dark-theme {
-  /* Neutral surfaces */
   --c-bacPri: var(--spook-bg-primary);
   --c-bacSec: var(--spook-bg-secondary);
-  --c-whiButBac: var(--spook-bg-tertiary);
-  /* Elevated surfaces */
   --c-popBac: var(--spook-bg-tertiary);
-  /* Neutral text */
+  --c-whiButBac: var(--spook-bg-tertiary);
   --c-texPri: var(--spook-text-primary);
+  --c-texAccPri: var(--spook-text-primary);
   --c-texSec: var(--spook-text-secondary);
   --c-texTer: var(--spook-text-muted);
-  --c-texAccPri: var(--spook-text-primary);
   --c-graTexAccPri: var(--spook-text-muted);
-  /* Neutral icons */
   --c-icoPri: var(--spook-text-primary);
   --c-icoSec: var(--spook-text-secondary);
   --c-icoTer: var(--spook-text-muted);
-  /* Translucent neutral edges */
   --ca-borPriTra: var(--spook-border);
   --ca-borSecTra: var(--spook-border);
-  /* Additional edges */
   --c-borSec: var(--spook-border);
-  --ca-borStrTra: var(--spook-border);
   --c-borPri: var(--spook-border);
-  /* Predefined text colors */
-  --c-graTexSec: var(--spook-text-gray);
-  --c-broTexSec: var(--spook-text-brown);
-  --c-oraTexSec: var(--spook-text-orange);
-  --c-yelTexSec: var(--spook-text-yellow);
-  --c-greTexSec: var(--spook-text-green);
-  --c-bluTexSec: var(--spook-text-blue);
-  --c-purTexSec: var(--spook-text-purple);
-  --c-pinTexSec: var(--spook-text-pink);
+  --c-graTexSec: var(--spook-text-gra);
+  --c-graTexPri: var(--spook-tag-text-gra);
+  --c-graBacSec: var(--spook-bg-gra);
+  --ca-graBacTerTra: var(--spook-tag-bg-gra);
+  --c-broTexSec: var(--spook-text-bro);
+  --c-broTexPri: var(--spook-tag-text-bro);
+  --c-broBacSec: var(--spook-bg-bro);
+  --ca-broBacTerTra: var(--spook-tag-bg-bro);
+  --c-oraTexSec: var(--spook-text-ora);
+  --c-oraTexPri: var(--spook-tag-text-ora);
+  --c-oraBacSec: var(--spook-bg-ora);
+  --ca-oraBacTerTra: var(--spook-tag-bg-ora);
+  --c-yelTexSec: var(--spook-text-yel);
+  --c-yelTexPri: var(--spook-tag-text-yel);
+  --c-yelBacSec: var(--spook-bg-yel);
+  --ca-yelBacTerTra: var(--spook-tag-bg-yel);
+  --c-greTexSec: var(--spook-text-gre);
+  --c-greTexPri: var(--spook-tag-text-gre);
+  --c-greBacSec: var(--spook-bg-gre);
+  --ca-greBacTerTra: var(--spook-tag-bg-gre);
+  --c-bluTexSec: var(--spook-text-blu);
+  --c-bluTexPri: var(--spook-tag-text-blu);
+  --c-bluBacSec: var(--spook-bg-blu);
+  --ca-bluBacTerTra: var(--spook-tag-bg-blu);
+  --c-purTexSec: var(--spook-text-pur);
+  --c-purTexPri: var(--spook-tag-text-pur);
+  --c-purBacSec: var(--spook-bg-pur);
+  --ca-purBacTerTra: var(--spook-tag-bg-pur);
+  --c-pinTexSec: var(--spook-text-pin);
+  --c-pinTexPri: var(--spook-tag-text-pin);
+  --c-pinBacSec: var(--spook-bg-pin);
+  --ca-pinBacTerTra: var(--spook-tag-bg-pin);
   --c-redTexSec: var(--spook-text-red);
-  /* Database tag text */
-  --c-graTexPri: var(--spook-tag-text-gray);
-  --c-broTexPri: var(--spook-tag-text-brown);
-  --c-oraTexPri: var(--spook-tag-text-orange);
-  --c-yelTexPri: var(--spook-tag-text-yellow);
-  --c-greTexPri: var(--spook-tag-text-green);
-  --c-bluTexPri: var(--spook-tag-text-blue);
-  --c-purTexPri: var(--spook-tag-text-purple);
-  --c-pinTexPri: var(--spook-tag-text-pink);
   --c-redTexPri: var(--spook-tag-text-red);
-  /* Predefined background colors */
-  --c-graBacSec: var(--spook-bg-gray);
-  --c-broBacSec: var(--spook-bg-brown);
-  --c-oraBacSec: var(--spook-bg-orange);
-  --c-yelBacSec: var(--spook-bg-yellow);
-  --c-greBacSec: var(--spook-bg-green);
-  --c-bluBacSec: var(--spook-bg-blue);
-  --c-purBacSec: var(--spook-bg-purple);
-  --c-pinBacSec: var(--spook-bg-pink);
   --c-redBacSec: var(--spook-bg-red);
-  /* Select/Status tag backgrounds */
-  --ca-graBacTerTra: rgb(from var(--spook-bg-gray) r g b / 0.25);
-  --ca-broBacTerTra: var(--spook-tag-bg-brown);
-  --ca-oraBacTerTra: var(--spook-tag-bg-orange);
-  --ca-yelBacTerTra: var(--spook-tag-bg-yellow);
-  --ca-greBacTerTra: var(--spook-tag-bg-green);
-  --ca-bluBacTerTra: var(--spook-tag-bg-blue);
-  --ca-purBacTerTra: var(--spook-tag-bg-purple);
-  --ca-pinBacTerTra: var(--spook-tag-bg-pink);
   --ca-redBacTerTra: var(--spook-tag-bg-red);
 }
 
@@ -196,12 +188,8 @@
   --c-bacEle: var(--spook-bg-secondary);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-sidebar-switcher .notion-record-icon) {
-  --ca-bacTerTra: var(--spook-bg-tertiary);
-}
-
 /* ========================================
-   MAIN EDITOR
+   PAGE TITLE
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1[placeholder]) {
   --cl-pagTitPlaTexCol: var(--spook-text-muted);
@@ -209,193 +197,36 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1:not(:empty)) {
   color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 2)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 2));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"],
-[style*="font-weight:700"], [style*="font-weight: 700"],
-[style*="font-weight:bold"], [style*="font-weight: bold"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
-.notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  font-weight: 700 !important;
-  color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content h1:not(:empty),
-.notion-page-content h2:not(:empty),
-.notion-page-content h3:not(:empty),
-.notion-page-content h4:not(:empty),
-.notion-page-content h5:not(:empty),
-.notion-page-content h6:not(:empty)) {
-  color: var(--spook-neon);
-  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]), :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]), :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]), :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]), :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]), :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]), :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]), :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]), :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is(:is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) *):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(:is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])):is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]), :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])), :is(strong, b, span.notion-enable-hover:is([style*="font-weight:600"], [style*="font-weight: 600"], [style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:bold"], [style*="font-weight: bold"])) :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])):not(:where(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .notion-code-block *, .notion-inline-code-container *, .katex *))) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 0.75)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 0.75));
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6)) {
-  color: inherit;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]):not(:empty),
-.notion-page-content :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6):not(:empty),
-.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])) {
-  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
-}
-
+/* ========================================
+   PAGE OTHER
+   ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-page-block h1[contenteditable=true],
 .notion-page-content [contenteditable=true]) {
   caret-color: var(--spook-neon) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role=menu]:has(svg.notionTemplate)) {
+  --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+}
+
+.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+  --ca-texDisTra: var(--spook-text-muted);
+}
+
+/* ========================================
+   PAGE BLOCKS
+   ======================================== */
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] span.notion-enable-hover[style*="font-weight:600"]:not(:where(:is(h1, h2, h3, h4, h5, h6) *))) {
+  font-weight: 700 !important;
+  color: var(--spook-neon);
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+  color: var(--spook-electric) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-quote-block > blockquote > div[style*="border-inline-start: 3px solid"]) {
@@ -409,50 +240,31 @@
   inline-size: 0;
   border-inline-start: inherit;
   pointer-events: none;
-  box-shadow: 0 0 3px 1px rgb(from var(--spook-electric) r g b/0.8), 0 0 8px 0.5px rgb(from var(--spook-electric) r g b/0.5), 0 0 14px rgb(from var(--spook-electric) r g b/0.25);
+  box-shadow: 0 0 3px 1px rgb(from var(--spook-electric) r g b/calc(0.8 * 1)), 0 0 8px 0.5px rgb(from var(--spook-electric) r g b/calc(0.5 * 1)), 0 0 14px rgb(from var(--spook-electric) r g b/calc(0.25 * 1));
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true][placeholder]:empty) {
   --ca-texDisTra: var(--spook-text-muted);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
-  --ca-texDisTra: var(--spook-text-muted);
+.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
+  --cl-palGra400: var(--spook-button-hover-gra);
+  --ca-palBro400: var(--spook-button-hover-bro);
+  --ca-palOra400: var(--spook-button-hover-ora);
+  --ca-palYel400: var(--spook-button-hover-yel);
+  --ca-palGre400: var(--spook-button-hover-gre);
+  --ca-palBlu400: var(--spook-button-hover-blu);
+  --ca-palPur400: var(--spook-button-hover-pur);
+  --ca-palPin400: var(--spook-button-hover-pin);
+  --ca-palRed400: var(--spook-button-hover-red);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link]) {
-  --ca-bacIntTra: var(--spook-bg-interact);
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]:is([style*="--c-whiButHovBac"], [style*="hsl(from var(--c-bacPri)"]):hover) {
+  background-color: var(--spook-button-hover-default) !important;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role=link]:hover,
-.notion-page-content a.notion-page-mention-token:hover) {
-  background-color: var(--spook-bg-interact) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover:not(:active, :focus-visible)) {
-  box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tablist] [role=tab]:is(:hover, [aria-selected=true])) {
-  background-color: var(--spook-bg-interact) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tabpanel] .notion-text-block > [role=button][style*="--ca-bacIntTra"]:hover) {
-  background-color: var(--spook-bg-interact) !important;
-}
-
-.notion-app-inner.notion-dark-theme .notion-to_do-block .notion-strikethrough-container {
-  color: var(--spook-text-secondary) !important;
-  text-decoration-color: rgba(from var(--spook-text-secondary) r g b/0.5) !important;
-}
-
-.notion-code-block div[style*="--ca-graBacPriTra"],
-.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
-  background: rgb(from var(--spook-bg-gray) r g b/0.5) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
-  color: var(--spook-electric) !important;
+.notion-code-block div[style*="--ca-graBacPriTra"], .notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+  background: rgb(from var(--spook-bg-gra) r g b/0.6) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block) {
@@ -460,48 +272,29 @@
   --ca-graBacIntTra: var(--spook-bg-interact);
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-code-block [role=button][style*="--ca-graBacIntTra"]) {
-  --c-graTexAccPri: var(--spook-text-secondary);
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role=link]:hover,
+.notion-page-content a.notion-page-mention-token:hover) {
+  background-color: var(--spook-bg-interact) !important;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-button-block) {
-  --cl-palGra400: var(--spook-button-hover-gray);
-  --ca-palBro400: var(--spook-button-hover-brown);
-  --ca-palOra400: var(--spook-button-hover-orange);
-  --ca-palYel400: var(--spook-button-hover-yellow);
-  --ca-palGre400: var(--spook-button-hover-green);
-  --ca-palBlu400: var(--spook-button-hover-blue);
-  --ca-palPur400: var(--spook-button-hover-purple);
-  --ca-palPin400: var(--spook-button-hover-pink);
-  --ca-palRed400: var(--spook-button-hover-red);
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):not(:empty)) {
+  color: var(--spook-neon);
+  text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]:is([style*="--c-whiButHovBac"],
-[style*="hsl(from var(--c-bacPri)"]):hover) {
-  background-color: var(--spook-button-hover-default) !important;
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] span.notion-enable-hover[style*="font-weight:600"]:is(:is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) *):not(:where(:is(h1, h2, h3, h4, h5, h6) *)),
+.notion-page-content :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6)) {
+  color: inherit;
 }
 
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]) > div[style*="--c-texTer"] {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content [contenteditable=true] :is(span.notion-enable-hover[style*="font-weight:600"]:is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]), :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) span.notion-enable-hover[style*="font-weight:600"], span.notion-enable-hover[style*="font-weight:600"] :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])):not(:where(:is(h1, h2, h3, h4, h5, h6) *)),
+.notion-page-content :is(:is(h1, h2, h3, h4, h5, h6):is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]), :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"]) :is(h1, h2, h3, h4, h5, h6)):not(:empty),
+.notion-page-content :is(h1, h2, h3, h4, h5, h6) :is([style*="color: var(--c-graTex"], [style*="color:var(--c-graTex"], [style*="color: var(--c-broTex"], [style*="color:var(--c-broTex"], [style*="color: var(--c-oraTex"], [style*="color:var(--c-oraTex"], [style*="color: var(--c-yelTex"], [style*="color:var(--c-yelTex"], [style*="color: var(--c-greTex"], [style*="color:var(--c-greTex"], [style*="color: var(--c-bluTex"], [style*="color:var(--c-bluTex"], [style*="color: var(--c-purTex"], [style*="color:var(--c-purTex"], [style*="color: var(--c-pinTex"], [style*="color:var(--c-pinTex"], [style*="color: var(--c-redTex"], [style*="color:var(--c-redTex"])) {
+  text-shadow: 0 0 3px rgb(from currentColor r g b/calc(0.6 * 1)), 0 0 8px rgb(from currentColor r g b/calc(0.3 * 1));
+}
+
+.notion-app-inner.notion-dark-theme .notion-to_do-block .notion-strikethrough-container {
   color: var(--spook-text-secondary) !important;
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [style*="--c-bacPri"][style*="--ca-borSecTra"]) {
-  --c-bacEle: var(--spook-bg-tertiary);
-  --c-bacInt: var(--spook-bg-interact);
-  --ca-bacSecTra: var(--spook-bg-secondary);
-  --ca-bacTerTra: var(--spook-bg-interact);
-  --ca-bluBacSecTra: rgb(from var(--spook-electric) r g b / 0.18);
-  --c-bluIcoAccPri: var(--spook-electric);
-  --ca-outButHovBac: var(--spook-bg-interact);
-  --ca-butHovBac: var(--spook-bg-interact);
-  --c-shaOutSm:
-      0 0 0 1px var(--spook-border),
-      0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
-  --c-bluBacAccPri: var(--spook-electric);
-  --c-bluTexInvPri: var(--spook-neon);
-}
-.notion-app-inner.notion-dark-theme :where(.notion-button-block [style*="--c-bacPri"][style*="--ca-borSecTra"]) :where([role=button]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
-  background-color: rgb(from var(--spook-electric) r g b/0.18) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(div:has(> input[type=checkbox]:enabled)) {
@@ -512,12 +305,16 @@
   fill: var(--spook-text-primary);
 }
 
-.notion-app-inner.notion-dark-theme :where(.discussion-input-text-block[placeholder="Add a comment…"]) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
   --ca-texDisTra: var(--spook-text-muted);
 }
 
-.notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role=menu]:has(svg.notionTemplate)) {
-  --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tablist] [role=tab]:is(:hover, [aria-selected=true])) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tabpanel] .notion-text-block > [role=button][style*="--ca-bacIntTra"]:hover) {
+  background-color: var(--spook-bg-interact) !important;
 }
 
 /* ========================================
@@ -532,43 +329,15 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
   --c-bacEle: var(--spook-bg-secondary);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer > div[style*="--c-shaOutMd"]) {
-  --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
+  --c-shaOutMd: var(--spook-shadow-raised);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-dialog[role=dialog]) {
   --c-bacEle: var(--spook-bg-secondary);
-  --c-shaOutScr:
-      0 0 0 1px var(--spook-border),
-      0 24px 48px rgb(from var(--spook-bg-primary) r g b / 0.64),
-      0 4px 12px rgb(from var(--spook-bg-primary) r g b / 0.56);
-  --c-redTexAccPri: var(--spook-red);
-  --ca-redBorPriTra: rgb(from var(--spook-red) r g b / 0.4);
-  --ca-redBacIntTra: rgb(from var(--spook-red) r g b / 0.16);
-}
-
-.notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) {
-  --c-bacEle: var(--spook-bg-tertiary);
-  --c-bacInt: var(--spook-bg-interact);
-  --ca-bacSecTra: var(--spook-bg-secondary);
-  --ca-bacTerTra: var(--spook-bg-interact);
-  --ca-bluBacSecTra: rgb(from var(--spook-electric) r g b / 0.18);
-  --c-bluIcoAccPri: var(--spook-electric);
-  --ca-outButHovBac: var(--spook-bg-interact);
-  --ca-butHovBac: var(--spook-bg-interact);
-  --c-shaOutSm:
-      0 0 0 1px var(--spook-border),
-      0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
-  --c-bluBacAccPri: var(--spook-electric);
-  --c-bluTexInvPri: var(--spook-neon);
-}
-.notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) :where([role=button]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
-  background-color: rgb(from var(--spook-electric) r g b/0.18) !important;
-}
-.notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) {
-  --cl-palGra100: var(--spook-bg-secondary);
+  --c-shaOutScr: var(--spook-shadow-raised);
+  --c-redTexAccPri: var(--spook-plasma);
+  --ca-redBorPriTra: rgb(from var(--spook-plasma) r g b / 0.4);
+  --ca-redBacIntTra: rgb(from var(--spook-plasma) r g b / 0.16);
 }
 
 /* ========================================
@@ -679,7 +448,6 @@
   --ca-borPriTra: var(--spook-border);
   --ca-borSecTra: var(--spook-border);
   border-color: var(--spook-border) !important;
-  --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, svg.arrowExpandDiagonal, [role=button][aria-label*=comment i]),
@@ -718,7 +486,6 @@
   --ca-borPriTra: var(--spook-border);
   --ca-borSecTra: var(--spook-border);
   border-color: var(--spook-border) !important;
-  --c-shaOutMd: 0 0 0 1px var(--spook-border), 0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 0.08);
   --ca-bacIntTra: var(--spook-bg-interact);
   --ca-graBacIntTra: var(--spook-bg-interact);
   --ca-graBacSecTra: var(--spook-bg-interact);
@@ -765,7 +532,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view) {
-  --ca-bacTerTra: var(--spook-tag-bg-default);
+  --ca-bacTerTra: var(--spook-tag-bg-def);
 }
 
 .notion-app-inner.notion-dark-theme:has(.notion-table-view) :where(.notion-overlay-container [role=dialog]:has(> div:only-child > div:only-child > [role=textbox][data-content-editable-leaf][contenteditable=true]:only-child)) {
@@ -778,43 +545,43 @@
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"]) {
   --c-texPri: var(--spook-tag-text-default);
-  --ca-bacTerTra: var(--spook-tag-bg-default);
+  --ca-bacTerTra: var(--spook-tag-bg-def);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-graBacTerTra"][style*="--c-graTexPri"]) {
-  --ca-graBacTerTra: var(--spook-tag-bg-gray);
+  --ca-graBacTerTra: var(--spook-tag-bg-gra);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-graBacTerTra"][style*="--c-graTexPri"] div[style*="--c-graIcoAccPri"]) {
-  --c-graIcoAccPri: oklch(from var(--spook-tag-bg-gray) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-graIcoAccPri: oklch(from var(--spook-tag-bg-gra) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-broBacTerTra"][style*="--c-broTexPri"] div[style*="--c-broIcoAccPri"]) {
-  --c-broIcoAccPri: oklch(from var(--spook-tag-bg-brown) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-broIcoAccPri: oklch(from var(--spook-tag-bg-bro) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-oraBacTerTra"][style*="--c-oraTexPri"] div[style*="--c-oraIcoAccPri"]) {
-  --c-oraIcoAccPri: oklch(from var(--spook-tag-bg-orange) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-oraIcoAccPri: oklch(from var(--spook-tag-bg-ora) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-yelBacTerTra"][style*="--c-yelTexPri"] div[style*="--c-yelIcoAccPri"]) {
-  --c-yelIcoAccPri: oklch(from var(--spook-tag-bg-yellow) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-yelIcoAccPri: oklch(from var(--spook-tag-bg-yel) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-greBacTerTra"][style*="--c-greTexPri"] div[style*="--c-greIcoAccPri"]) {
-  --c-greIcoAccPri: oklch(from var(--spook-tag-bg-green) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-greIcoAccPri: oklch(from var(--spook-tag-bg-gre) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-bluBacTerTra"][style*="--c-bluTexPri"] div[style*="--c-bluIcoAccPri"]) {
-  --c-bluIcoAccPri: oklch(from var(--spook-tag-bg-blue) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-bluIcoAccPri: oklch(from var(--spook-tag-bg-blu) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-purBacTerTra"][style*="--c-purTexPri"] div[style*="--c-purIcoAccPri"]) {
-  --c-purIcoAccPri: oklch(from var(--spook-tag-bg-purple) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-purIcoAccPri: oklch(from var(--spook-tag-bg-pur) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-pinBacTerTra"][style*="--c-pinTexPri"] div[style*="--c-pinIcoAccPri"]) {
-  --c-pinIcoAccPri: oklch(from var(--spook-tag-bg-pink) calc(l * 0.5) calc(c * 0.65) h / 1);
+  --c-pinIcoAccPri: oklch(from var(--spook-tag-bg-pin) calc(l * 0.5) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-redBacTerTra"][style*="--c-redTexPri"] div[style*="--c-redIcoAccPri"]) {
@@ -822,7 +589,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"] div[style*="--c-graIcoAccPri"]) {
-  --c-graIcoAccPri: oklch(from var(--spook-tag-bg-default) calc(l * 0.3) calc(c * 0.65) h / 1);
+  --c-graIcoAccPri: oklch(from var(--spook-tag-bg-def) calc(l * 0.3) calc(c * 0.65) h / 1);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection_view-block div:has(> input[type=checkbox]:enabled:not(:checked))) {
@@ -869,7 +636,7 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-collection-item) {
   --c-bacEle: var(--spook-bg-tertiary);
-  --c-graBacEle: var(--spook-bg-gray);
+  --c-graBacEle: var(--spook-bg-gra);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-timeline-view) {
@@ -880,7 +647,7 @@
 .notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {
   --c-yelBacSec: var(--spook-bg-tertiary);
   --c-yelTexSec: var(--spook-text-primary);
-  --c-yelIcoSec: var(--spook-text-blue);
+  --c-yelIcoSec: var(--spook-text-blu);
   --ca-yelBorStrTra: var(--spook-border);
   --ca-bacIntTra: var(--spook-bg-interact);
 }
@@ -889,39 +656,39 @@
    NATIVE SVG PAGE ICONS
    ======================================== */
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"])) {
-  filter: var(--spook-icon-filter-gray) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-gray) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-gray) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-gra) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-gra) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-gra) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_lightgray.svg"], [src*="_lightgray.svg?"])) {
-  filter: var(--spook-icon-filter-lightgray) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-lightgray) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-lightgray) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-lgr) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-lgr) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-lgr) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_brown.svg"], [src*="_brown.svg?"])) {
-  filter: var(--spook-icon-filter-brown) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-brown) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-brown) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-bro) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-bro) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-bro) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_orange.svg"], [src*="_orange.svg?"])) {
-  filter: var(--spook-icon-filter-orange) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-orange) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-orange) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-ora) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-ora) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-ora) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_yellow.svg"], [src*="_yellow.svg?"])) {
-  filter: var(--spook-icon-filter-yellow) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-yellow) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-yellow) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-yel) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-yel) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-yel) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_green.svg"], [src*="_green.svg?"])) {
-  filter: var(--spook-icon-filter-green) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-green) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-green) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-gre) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-gre) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-gre) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_blue.svg"], [src*="_blue.svg?"])) {
-  filter: var(--spook-icon-filter-blue) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-blue) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-blue) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-blu) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-blu) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-blu) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_purple.svg"], [src*="_purple.svg?"])) {
-  filter: var(--spook-icon-filter-purple) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-purple) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-purple) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-pur) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-pur) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-pur) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_pink.svg"], [src*="_pink.svg?"])) {
-  filter: var(--spook-icon-filter-pink) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-pink) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-pink) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-pin) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-pin) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-pin) r g b/0.4)) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-record-icon img[src^="/icons/"]:is([src$="_red.svg"], [src*="_red.svg?"])) {
@@ -930,14 +697,14 @@
 
 .notion-app-inner.notion-dark-theme .notion-page-content span[style*="vertical-align:text-top"][style*="width:1.25em"] > img[src^="/icons/"],
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container .notion-record-icon svg:is(.page, .pageEmpty),
+.notion-collection-item .notion-record-icon svg:is(.page, .pageEmpty),
 .notion-page-content a.notion-page-mention-token svg.page,
 .notion-page-content .notion-page-block .content-editable-void-no-select > a[role=link] .notion-record-icon svg:is(.page, .pageEmpty)) {
-  filter: var(--spook-icon-filter-lightgray) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-electric) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-electric) r g b/0.4)) !important;
+  filter: var(--spook-icon-filter-lgr) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-electric) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-electric) r g b/0.4)) !important;
 }
 
-.notion-app-inner.notion-dark-theme :where(:is(h1, h2, h3, h4, h5, h6) .notion-page-mention-token :is(img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"]),
-svg.arrowDiagonalUpRightSmall)) {
-  filter: var(--spook-icon-filter-gray) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-gray) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-gray) r g b/0.4)) !important;
+.notion-app-inner.notion-dark-theme :where(:is(h1, h2, h3, h4, h5, h6) .notion-page-mention-token img[src^="/icons/"]:is([src$="_gray.svg"], [src*="_gray.svg?"])) {
+  filter: var(--spook-icon-filter-gra) drop-shadow(0 0 1px rgb(from var(--spook-bg-primary) r g b/0.3)) drop-shadow(0 0 3px rgb(from var(--spook-icon-glow-gra) r g b/0.8)) drop-shadow(0 0 8px rgb(from var(--spook-icon-glow-gra) r g b/0.4)) !important;
 }
 
 /* ========================================
@@ -960,6 +727,7 @@ svg.arrowDiagonalUpRightSmall)) {
 }
 
 :where(.root) .hide-scrollbar [role=button][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
+  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 

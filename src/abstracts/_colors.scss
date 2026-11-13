@@ -1,0 +1,24 @@
+@use 'sass:list';
+
+$colors: "gra", "bro", "ora", "yel", "gre", "blu", "pur", "pin", "red";
+
+// Native icon filenames retain their full color names.
+$icon-colors: (
+    "gra": "gray",
+    "lgr": "lightgray",
+    "bro": "brown",
+    "ora": "orange",
+    "yel": "yellow",
+    "gre": "green",
+    "blu": "blue",
+    "pur": "purple",
+    "pin": "pink",
+    "red": "red"
+);
+
+$color-selectors: ();
+@each $color in $colors {
+    $color-selectors: list.append($color-selectors,
+        '[style*="color: var(--c-#{$color}Tex"], [style*="color:var(--c-#{$color}Tex"]', comma);
+}
+$colored-text: ':is(#{$color-selectors})';
