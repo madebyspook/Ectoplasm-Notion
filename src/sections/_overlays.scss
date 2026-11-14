@@ -1,5 +1,9 @@
 @use '../abstracts/mixins';
 
+$button-editor: '.notion-overlay-container [role="dialog"]:has(header[role="button"] svg.dragHandle)';
+$sub-page-picker: '.notion-overlay-container [role="dialog"]:has([style*="--ca-bacSecTra"] svg.collection)';
+$workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(svg.envelope)';
+
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
@@ -12,11 +16,145 @@
     --ca-bacIntTra: var(--spook-bg-interact);
 }
 
+// Context menus — Raised frame and search surface.
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="dialog"]) {
+    --c-shaOutLg: var(--spook-shadow-raised);
+}
+
+// Search field - Background
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="dialog"] [style*="--ca-bacSecTra"]:has(> input[role="combobox"])) {
+    --ca-bacSecTra: var(--spook-bg-secondary);
+}
+
+// Add tag — Token-input search surface and text.
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="combobox"][style*="--ca-tokInpMenIteBac"]) {
+    --ca-tokInpMenIteBac: var(--spook-bg-primary);
+
+    input {
+        color: var(--spook-text-secondary);
+        &::placeholder { color: var(--spook-text-secondary); }
+    }
+}
+
+// Add sub-page — Search surface and text.
+.notion-app-inner.notion-dark-theme :where(#{$sub-page-picker} [style*="--ca-bacSecTra"]:has(input)) {
+    --ca-bacSecTra: var(--spook-bg-primary);
+
+    input {
+        color: var(--spook-text-secondary);
+        &::placeholder { color: var(--spook-text-secondary); }
+    }
+}
+
+// Result rows use this native channel for their highlighted background.
+.notion-app-inner.notion-dark-theme :where(#{$sub-page-picker} [role="menu"]) {
+    --ca-butHovBac: var(--spook-bg-interact);
+}
+
+// Property editor — Name, description, and Add option fields.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-overlay-container [role="presentation"] > [style*="--ca-bacSecTra"]:has(> input[type="text"]):has(svg.infoCircleFill),
+    .notion-overlay-container [role="presentation"] > [style*="--ca-bacSecTra"]:has(> input[placeholder="Type a new option…"]),
+    .notion-overlay-container [role="presentation"] > [style*="--ca-bacSecTra"]:has(> div > textarea)
+) {
+    --ca-bacSecTra: var(--spook-bg-primary);
+}
+
+// Icon picker — Header tabs and Remove action.
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container .notion-media-menu .hide-scrollbar:has(> [role="tablist"]) :is([role="tab"], [role="button"])) {
+    @include mixins.db-hover-button();
+}
+
+// Workspace menu — Panel surface and account-email hover.
+.notion-app-inner.notion-dark-theme :where(#{$workspace-menu}) {
+    --c-bacEle: var(--spook-bg-tertiary);
+}
+
+.notion-app-inner.notion-dark-theme :where(#{$workspace-menu} [style*="--c-texSec"]:has(svg.ellipsisSmall)):hover {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+/* ========================================
+   BUTTON ACTION EDITOR
+   ======================================== */
+
+// When and action cards share the elevated surface channel.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor}) {
+    --c-bacEle: var(--spook-bg-tertiary);
+}
+
+// Action hover toolbar — The frame uses an inline shadow rather than a shadow token.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} [style*="box-shadow"][style*="--c-borSec"]:has(> [data-popup-origin] > [role="button"])) {
+    --c-bacEle: var(--spook-db-button);
+    box-shadow: var(--spook-shadow-raised) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} [style*="box-shadow"][style*="--c-borSec"]:has(> [data-popup-origin] > [role="button"]) [role="button"]) {
+    @include mixins.db-frame-button();
+}
+
+// Action type-icon badges.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} header[role="button"] > div:first-child [style*="background"]:has(> svg)) {
+    --c-icoSec: var(--spook-electric);
+    --c-bluIcoAccPri: var(--spook-electric);
+    --ca-bacTerTra: var(--spook-tag-bg-def);
+    --ca-bluBacSecTra: var(--spook-tag-bg-def);
+}
+
+// Action dropdowns share the existing blue pill treatment.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} [role="button"][aria-haspopup="dialog"]:has(svg.arrowChevronSingleDownSmall)) {
+    --ca-bacTerTra: var(--spook-tag-bg-def);
+    --c-texPri: var(--spook-tag-text-default);
+    --c-texSec: var(--spook-tag-text-default);
+    --c-icoSec: var(--spook-tag-text-default);
+    background-color: var(--spook-tag-bg-def) !important;
+    @include mixins.db-hover-button();
+}
+
+// Add action.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} footer [role="button"][aria-haspopup="dialog"]:has(svg.plusSmall)) {
+    @include mixins.db-hover-button();
+}
+
+// Confirmation and variable editors match Insert block's native dark field surface.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} .notion-focusable-within[style*="--ca-bacSecTra"]) {
+    --ca-bacSecTra: var(--spook-bg-primary);
+}
+
+// Insert block placeholders use generated text and may inherit a text-fill color.
+.notion-app-inner.notion-dark-theme :where(#{$button-editor} .notion-focusable-within [data-content-editable-leaf][placeholder]:empty)::after {
+    color: var(--spook-text-muted);
+    -webkit-text-fill-color: var(--spook-text-muted);
+}
+
 // Page Side Peek & Center Peek
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
     --c-bacEle: var(--spook-bg-secondary); // background
     --c-shaOutMd: var(--spook-shadow-raised); //Border & Shadow
 }
+
+// Peek header — Page actions, peek mode, and enabled Previous/Next controls.
+.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer :is(
+    .notion-peek-close,
+    a[role="link"]:has(svg.arrowExpandDiagonalSmall),
+    [role="button"]:not([aria-disabled="true"]):has(svg:is(.peekSide, .arrowChevronSingleUp, .arrowChevronSingleDown)),
+    .notion-topbar-share-menu,
+    [role="button"][aria-label="Copy link"],
+    .notion-topbar-favorite-button,
+    .notion-topbar-more-button
+)) {
+    @include mixins.db-hover-button();
+}
+
+// Peek property names, editable values, and Add property.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-peek-renderer [role="table"] [role="row"] :is([role="cell"][aria-haspopup="dialog"], [role="button"]),
+    .notion-peek-renderer [role="button"][aria-haspopup="dialog"]:has(svg.plusFillSmall)
+) {
+    @include mixins.db-hover-button();
+}
+
+
 
 // Confirmation Dialog
 .notion-app-inner.notion-dark-theme :where(.notion-dialog[role="dialog"]) {

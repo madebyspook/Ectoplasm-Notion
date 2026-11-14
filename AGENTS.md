@@ -28,7 +28,11 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - Keep `.inspections/` reports local and Git-ignored. Never save page text, input values, URLs, page titles, opaque IDs, unrestricted labels, or native CSS source.
 - Distinguish verified observations from heuristics and no-match results.
 - Automated tooling tests must use mocks or isolated fixtures, never the live Notion instance or fallback installation.
-- Run `npm run build`, `npm run check`, and `npm test` for relevant changes. Visually verify affected components when feasible; automated tests do not establish visual correctness.
+- For styling changes and SCSS refactoring, run only `npm run build` to verify successful compilation.
+- Skip automated tests, linting, and additional checks for styling-only changes unless explicitly requested.
+- For functional changes, including the loader, injector, build tooling, or inspection scripts, run relevant automated tests and checks.
+- Run validation once after completing changes, rather than repeatedly during development.
+- Leave visual verification to the user; automated tests do not establish visual correctness.
 - For appearance-preserving refactors, compare compiled CSS before and after, including selectors, specificity, declarations, priorities, and cascade order.
 
 ## Documentation & Handoff

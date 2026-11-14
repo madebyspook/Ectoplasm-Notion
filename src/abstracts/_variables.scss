@@ -17,7 +17,7 @@
     /* Surfaces */
     --spook-bg-primary:   oklch(from var(--spook-electric) var(--spook-bg-brightness) var(--spook-bg-chroma) h); // Application/editor and tooltip backgrounds; Default-button hover base.
     --spook-bg-secondary: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.1) calc(var(--spook-bg-chroma)*1.75) h); // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
-    --spook-bg-tertiary:  oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*2.5) h); // Menus, help, code/database controls, template banner, starter pills and workspace badge.
+    --spook-bg-tertiary:  oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.2) calc(var(--spook-bg-chroma)*3) h); // Menus, help, code/database controls, template banner, starter pills and workspace badge.
     --spook-bg-interact:   rgba(from var(--spook-electric) r g b / 0.1); // Used for hover and select backgrounds
     --spook-db-button:    oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*4) h);
 
