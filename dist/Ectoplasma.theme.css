@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.10
+ * @version 1.2.11
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -18,7 +18,7 @@
   --spook-bg-primary: #15171c;
   --spook-bg-secondary: #171b24;
   --spook-bg-tertiary: #1c222e;
-  --spook-bg-interact: #192438;
+  --spook-bg-interact: #202b40;
   /* Borders */
   --spook-border: #243659;
   --spook-shadow-raised:
@@ -225,7 +225,8 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-block-add-button,
-.notion-selectable-drag-handle [role=button]):hover {
+.notion-selectable-drag-handle [role=button],
+.notion-selectable-hover-menu-item [role=button]):hover {
   background-color: var(--spook-bg-interact) !important;
 }
 
@@ -235,7 +236,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role=menu]:has(svg.notionTemplate)) {
-  --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+  --ca-bacTerTra: var(--spook-bg-tertiary);
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer [role=menu]:has(svg.plus) [role=button]) {
@@ -321,6 +322,15 @@
   background-color: var(--spook-bg-interact) !important;
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover) {
+  box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-equation-block [role=button][aria-expanded=true],
+.notion-equation-block:has([role=button][aria-expanded=true]) > .notion-selectable-halo) {
+  background-color: var(--spook-bg-tertiary) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is(h1, h2, h3, h4, h5, h6):not(:empty)) {
   color: var(--spook-neon);
   text-shadow: 0 0 3px rgb(from var(--spook-electric) r g b/calc(0.6 * 1)), 0 0 8px rgb(from var(--spook-electric) r g b/calc(0.3 * 1));
@@ -349,6 +359,10 @@
   fill: var(--spook-text-primary);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-page-content :is(.notion-toggle-block, .notion-header-block, .notion-sub_header-block, .notion-sub_sub_header-block, .notion-header_4-block) .notion-list-item-box-left > [role=button][aria-expanded]):hover {
+  background-color: var(--spook-bg-interact) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role=button][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
   --ca-texDisTra: var(--spook-text-muted);
 }
@@ -367,14 +381,18 @@
   box-shadow: 0 0 3px 1px rgb(from var(--spook-electric) r g b/calc(0.8 * 2)), 0 0 8px 0.5px rgb(from var(--spook-electric) r g b/calc(0.5 * 2)), 0 0 14px rgb(from var(--spook-electric) r g b/calc(0.25 * 2));
 }
 .notion-app-inner.notion-dark-theme :where(.notion-selectable > div:is([style*="height: 4px"], [style*="width: 4px"])[style*="z-index: 88"][style*="pointer-events: none"])[style*="height: 4px"] {
-  height: 2px !important;
+  height: 1px !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-selectable > div:is([style*="height: 4px"], [style*="width: 4px"])[style*="z-index: 88"][style*="pointer-events: none"])[style*="width: 4px"] {
-  width: 2px !important;
+  width: 1px !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-block th) {
   background-color: var(--spook-bg-tertiary) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table-block [role=button]:has(> div > svg.plusFillSmall)):hover {
+  background-color: var(--spook-bg-interact) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tablist] [role=tab]:is(:hover, [aria-selected=true])) {
@@ -386,6 +404,10 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-tab-block [role=tabpanel] .notion-text-block > [role=button][style*="--ca-bacIntTra"]:hover) {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-table_of_contents-block a[role=link]):hover {
   background-color: var(--spook-bg-interact) !important;
 }
 

@@ -30,10 +30,11 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     @include mixins.db-hover-button();
 }
 
-// Block actions — Add block and the painted button inside the drag handle.
+// Block actions — Add block, drag handle, and the floating comment button.
 .notion-app-inner.notion-dark-theme :where(
     .notion-block-add-button,
-    .notion-selectable-drag-handle [role="button"]
+    .notion-selectable-drag-handle [role="button"],
+    .notion-selectable-hover-menu-item [role="button"]
 ) {
     @include mixins.db-hover-button();
 }
@@ -46,10 +47,9 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     caret-color: var(--spook-neon) !important;
 }
 
-// TODO: Should be Button fill blue
 // New Page - Get started with pills (Buttom of Page)
 .notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role="menu"]:has(svg.notionTemplate)) {
-    --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+    --ca-bacTerTra: var(--spook-bg-tertiary);
 }
 
 // Peek new-page actions — Empty page, templates, and New template.
@@ -153,7 +153,20 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     background-color: var(--spook-bg-interact) !important;
 }
 
+// Page mentions extend their hover surface with a native 3px shadow.
+.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover) {
+    box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
+}
+
 // Page link
+
+// Equation — The open editor paints both its trigger and a block selection halo.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-equation-block [role="button"][aria-expanded="true"],
+    .notion-equation-block:has([role="button"][aria-expanded="true"]) > .notion-selectable-halo
+) {
+    background-color: var(--spook-bg-tertiary) !important;
+}
 
 // Headers & Toggle Headers
 .notion-app-inner.notion-dark-theme :where(.notion-page-content #{$headings}:not(:empty)) {
@@ -196,6 +209,11 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     fill: var(--spook-text-primary);
 }
 
+// Toggle and toggle headings — Expand/collapse arrow.
+.notion-app-inner.notion-dark-theme :where(.notion-page-content #{$toggle-blocks} .notion-list-item-box-left > [role="button"][aria-expanded]) {
+    @include mixins.db-hover-button();
+}
+
 // Toggle Content Text — Placeholder.
 .notion-app-inner.notion-dark-theme :where(.notion-page-content .notion-toggle-block [role="button"][style*="--c-texTer"] span[style*="--ca-texDisTra"]) {
     --ca-texDisTra: var(--spook-text-muted);
@@ -219,8 +237,8 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     background-color: var(--spook-neon) !important;
     @include mixins.box-shadow-glow(2, var(--spook-electric));
 
-    &[style*="height: 4px"] { height: 2px !important; }
-    &[style*="width: 4px"] { width: 2px !important; }
+    &[style*="height: 4px"] { height: 1px !important; }
+    &[style*="width: 4px"] { width: 1px !important; }
 }
 
 // Divider - Glow
@@ -232,6 +250,11 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 // Table — Header row and column cells.
 .notion-app-inner.notion-dark-theme :where(.notion-table-block th) {
     background-color: var(--spook-bg-tertiary) !important;
+}
+
+// Table — Add row/column controls, including the combined corner control.
+.notion-app-inner.notion-dark-theme :where(.notion-table-block [role="button"]:has(> div > svg.plusFillSmall)):hover {
+    background-color: var(--spook-bg-interact) !important;
 }
 
 // Tabs - Active and Hover Background
@@ -251,4 +274,7 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 
 // Synced block
 
-// Table of content
+// Table of contents — Entry hover.
+.notion-app-inner.notion-dark-theme :where(.notion-table_of_contents-block a[role="link"]):hover {
+    background-color: var(--spook-bg-interact) !important;
+}
