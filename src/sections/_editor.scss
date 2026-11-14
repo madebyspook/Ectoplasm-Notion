@@ -4,6 +4,7 @@
 
 $bold: 'span.notion-enable-hover[style*="font-weight:600"]';
 $headings: ':is(h1, h2, h3, h4, h5, h6)';
+$toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_header-block, .notion-sub_sub_header-block, .notion-header_4-block)';
 
 /* ========================================
    PAGE TITLE
@@ -24,6 +25,19 @@ $headings: ':is(h1, h2, h3, h4, h5, h6)';
    PAGE OTHER
    ======================================== */
 
+// Page controls — Backlinks, Add cover, and Customize layout.
+.notion-app-inner.notion-dark-theme :where(.notion-page-controls [role="button"]) {
+    @include mixins.db-hover-button();
+}
+
+// Block actions — Add block and the painted button inside the drag handle.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-block-add-button,
+    .notion-selectable-drag-handle [role="button"]
+) {
+    @include mixins.db-hover-button();
+}
+
 // Caret - Color
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-block h1[contenteditable="true"],
@@ -36,6 +50,13 @@ $headings: ':is(h1, h2, h3, h4, h5, h6)';
 // New Page - Get started with pills (Buttom of Page)
 .notion-app-inner.notion-dark-theme :where([data-content-editable-root] .content-editable-void-no-select > [role="menu"]:has(svg.notionTemplate)) {
     --ca-bacTerTra: rgb(from var(--spook-bg-tertiary) r g b / 0.5);
+}
+
+// Peek new-page actions — Empty page, templates, and New template.
+.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer [role="menu"]:has(svg.plus) [role="button"]) {
+    // Native menu highlighting can persist after the pointer leaves the button.
+    --ca-butHovBac: var(--spook-bg-interact);
+    @include mixins.db-hover-button();
 }
 
 // Comment input — placeholder.
@@ -97,6 +118,11 @@ $headings: ':is(h1, h2, h3, h4, h5, h6)';
     }
 }
 
+// Button — Edit action.
+.notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]:has(svg.gear)) {
+    @include mixins.db-hover-button();
+}
+
 // Button - Default Hover Color
 .notion-app-inner.notion-dark-theme :where(.notion-button-block [role="button"]:is([style*="--c-whiButHovBac"],[style*="hsl(from var(--c-bacPri)"]):hover) {
     background-color: var(--spook-button-hover-default) !important;
@@ -108,11 +134,15 @@ $headings: ':is(h1, h2, h3, h4, h5, h6)';
 .notion-code-block div[style*="--ca-graBacPriTra"],.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
     background: rgb(from var(--spook-bg-gra) r g b / 0.6) !important;
 }
-// TODO: Use Button Mixin
-// Code Block - Action Buttons: surface and hover background. (Button Frame style)
-.notion-app-inner.notion-dark-theme :where(.notion-code-block) {
-    --c-bacEle: var(--spook-bg-tertiary); // background
-    --ca-graBacIntTra: var(--spook-bg-interact); // hover
+// Code block — Action toolbar frame.
+.notion-app-inner.notion-dark-theme :where(.notion-code-block [style*="--c-shaOutMd"]:has([role="button"])) {
+    --c-bacEle: var(--spook-db-button);
+    --c-shaOutMd: var(--spook-shadow-raised);
+}
+
+// Code block — Language, Copy, Wrap, and More actions.
+.notion-app-inner.notion-dark-theme :where(.notion-code-block [style*="--c-shaOutMd"] [role="button"]) {
+    @include mixins.db-frame-button();
 }
 
 // Page - Row hover
@@ -171,17 +201,47 @@ $headings: ':is(h1, h2, h3, h4, h5, h6)';
     --ca-texDisTra: var(--spook-text-muted);
 }
 
+// Toggle & Toggle Heading - Empty Block Hover Background
+.notion-app-inner.notion-dark-theme :where(
+    .notion-page-content #{$toggle-blocks}:has(+ [role="button"]) > div[style*="background"],
+    .notion-page-content #{$toggle-blocks}:has(#{$toggle-blocks} + [role="button"]) > .notion-selectable-halo
+) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Toggle & Toggle Heading - Empty Block Drop Background
+.notion-app-inner.notion-dark-theme :where(.notion-page-content #{$toggle-blocks} + [role="button"]):hover {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Block drop indicator — Native overlay has no semantic class.
+.notion-app-inner.notion-dark-theme :where(.notion-selectable > div:is([style*="height: 4px"], [style*="width: 4px"])[style*="z-index: 88"][style*="pointer-events: none"]) {
+    background-color: var(--spook-neon) !important;
+    @include mixins.box-shadow-glow(2, var(--spook-electric));
+
+    &[style*="height: 4px"] { height: 2px !important; }
+    &[style*="width: 4px"] { width: 2px !important; }
+}
+
 // Divider - Glow
 // .notion-app-inner.notion-dark-theme :where(.notion-divider-block [role="separator"]) {
 //     background-color: var(--spook-neon) !important;
 //     @include mixins.box-shadow-glow(2);
 // }
 
-// Table
+// Table — Header row and column cells.
+.notion-app-inner.notion-dark-theme :where(.notion-table-block th) {
+    background-color: var(--spook-bg-tertiary) !important;
+}
 
 // Tabs - Active and Hover Background
 .notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="tablist"] [role="tab"]:is(:hover, [aria-selected="true"])) {
     background-color: var(--spook-bg-interact) !important;
+}
+
+// Tabs — Add tab button.
+.notion-app-inner.notion-dark-theme :where(.notion-tab-block [role="button"]:has(svg.plus):not([role="tabpanel"] *)) {
+    @include mixins.db-hover-button();
 }
 
 // Tabs - Empty block hover

@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 /* ========================================
    SIDEBAR
    ======================================== */
@@ -5,4 +7,27 @@
 .notion-app-inner.notion-dark-theme :where(.notion-sidebar-container) {
     --ca-bacIntTra: var(--spook-bg-interact); // Page Hover Background
     --c-bacEle: var(--spook-bg-secondary); // Collapsed-sidebar flyout panel Background
+}
+// Fly-in sidebar — Raised frame uses the large native shadow channel.
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar > [style*="--c-shaOutLg"]) {
+    --c-shaOutLg: var(--spook-shadow-raised);
+}
+
+// Customize sidebar — Hover surface.
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container [data-sidebar-screenshot-omit-bottom] [role="button"]:has(svg.sliders)) {
+    @include mixins.db-hover-button();
+}
+
+// Search or ask — Cmd+K shortcut badge.
+.notion-app-inner.notion-dark-theme :where([role="button"][aria-label="Search or ask"] > span > div) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Home and Meeting — Filter the wrapper so the icon mask does not clip its glow.
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container [role="tab"][aria-selected] span:has(> span[role="graphics-symbol"])) {
+    @include mixins.icon-glow(var(--spook-icon-filter-lgr), var(--spook-icon-glow-lgr));
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-sidebar-container [role="tab"][aria-selected="true"] span:has(> span[role="graphics-symbol"])) {
+    @include mixins.icon-glow(var(--spook-icon-filter-gra), var(--spook-icon-glow-gra));
 }

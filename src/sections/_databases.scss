@@ -1,6 +1,34 @@
 @use '../abstracts/mixins';
 @use '../abstracts/colors';
 
+$filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller > [data-popup-origin] > [role="button"] svg.plusSmall)';
+
+/* ========================================
+   DATABASE PAGE
+   ======================================== */
+
+// Details and pinned property controls; text values have an inner button.
+.notion-app-inner.notion-dark-theme :where(
+    [role="button"][aria-label="View/hide details"],
+    [data-pinned-property] [role="cell"][aria-haspopup="dialog"],
+    [data-pinned-property] > .notion-page-block [role="button"]
+) {
+    @include mixins.db-hover-button();
+}
+
+// Keep the pinned property highlighted while its editor is open.
+.notion-app-inner.notion-dark-theme :where([data-pinned-property] [role="cell"][aria-haspopup="dialog"][aria-expanded="true"]) {
+    background-color: var(--spook-bg-interact) !important;
+}
+
+// Pinned and peek checkbox properties use the native strong-border channel.
+.notion-app-inner.notion-dark-theme :where(
+    [data-pinned-property] div:has(> input[type="checkbox"]:enabled:not(:checked)),
+    .notion-peek-renderer [role="table"] div:has(> input[type="checkbox"]:enabled:not(:checked))
+) {
+    --ca-borStrTra: var(--spook-border);
+}
+
 /* ========================================
    DATABASE CONTROLS
    ======================================== */
@@ -13,6 +41,12 @@
 // Database - View Hover
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab):where(:hover) {
     background-color: var(--spook-bg-interact) !important;
+}
+
+// Compact database view selector — Pill surface and hover.
+.notion-app-inner.notion-dark-theme :where(.notion-collection_view-block [role="tablist"] [role="button"][aria-haspopup="dialog"]:has(> svg.arrowChevronSingleDownSmall)) {
+    background-color: var(--spook-bg-secondary) !important;
+    @include mixins.db-hover-button();
 }
 
 // Database - Header New Page button
@@ -29,9 +63,22 @@
     .notion-collection-filter,
     .notion-collection-sort,
     .notion-collection-automation-edit-view,
-    .notion-collection_view-block [role="button"]:is([aria-label="Search"], [aria-label="Minimize"]),
+    .notion-collection_view-block [role="button"]:is([aria-label="Search"], [aria-label="Minimize"], [aria-label="Expand"]),
     .notion-collection_view-block a[role="link"][aria-label="Open as full page"],
     .notion-collection-edit-view
+) {
+    @include mixins.db-hover-button();
+}
+
+// View settings — The dialog is beside the backdrop, not inside it.
+.notion-app-inner.notion-dark-theme :where(.notion-view-settings-popup-background + div [role="dialog"] [role="button"][aria-label="Close"]:has(svg.xMarkSmall)) {
+    @include mixins.db-frame-button();
+}
+
+// Filter bar — Added filters, Add filter, and Reset.
+.notion-app-inner.notion-dark-theme :where(
+    #{$filter-bar} .notion-scroller [role="button"],
+    #{$filter-bar} [role="button"]:not([aria-haspopup]):not(:has([role="button"]))
 ) {
     @include mixins.db-hover-button();
 }
@@ -197,6 +244,11 @@
     --c-graBacEle: var(--spook-bg-gra); // Gray
 }
 
+// Gray columns — Card outlines and the New page button share this border channel.
+.notion-app-inner.notion-dark-theme :where(.notion-board-view .notion-board-group[style*="--ca-graBacPriTra"]) {
+    --ca-graBorSecTra: var(--spook-border);
+}
+
 // Board View - Buttons
 .notion-app-inner.notion-dark-theme :where(
     .notion-board-view [role="button"][style*="--c-texTer"]:has(> svg.plusSmall):not(.notion-collection-item *), // Board view — New page rows below each column's cards.
@@ -218,8 +270,57 @@
 }
 
 
+// Timeline view - Dependency lines, arrowheads, and the short link to each end circle.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-timeline-view svg:has(g > path[fill="transparent"]) :is(path, polyline)[style*="stroke"],
+    .notion-timeline-view .notion-timeline-item svg:has(circle[style*="stroke"]) :is(path, polyline, circle)[style*="stroke"]
+) {
+    stroke: var(--spook-electric) !important;
+}
+
+// Timeline View - Filled dependency hover icon; leave transparent hit paths untouched.
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view svg:has(g > path[fill="transparent"]) > path:not([fill]):not([style*="stroke"])) {
+    fill: var(--spook-electric) !important;
+}
+
+// Timeline items — Raised frame with the shared border color.
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view .notion-timeline-item) {
+    --c-shaOutMd: var(--spook-shadow-raised);
+}
+
+// Timeline items — Tint the full card while preserving its opaque base surface.
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view .notion-timeline-item):hover {
+    background-image: linear-gradient(var(--spook-bg-interact), var(--spook-bg-interact)) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view .notion-timeline-item > a[role="link"]) {
+    background-color: transparent !important;
+}
+
+// Timeline items — Expand/collapse control.
+.notion-app-inner.notion-dark-theme :where(.notion-timeline-view .notion-timeline-item [role="button"][aria-expanded]:has(svg.arrowCaretDownFillSmall)) {
+    @include mixins.db-hover-button();
+}
+
+
 // --- Feed view ---
 
+
+// Feed view — New page row, using the same hover treatment as Gallery.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body [role="button"][style*="box-shadow: var(--ca-borPriTra)"]:has(svg.plus):not(.notion-page-block *)) {
+    @include mixins.db-hover-button();
+}
+
+// Feed cards — Hover surface and existing inset outline.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block:has([style*="--c-butGroBac"]) [style*="background: var(--c-bacSec)"][style*="box-shadow"]):hover {
+    background-color: var(--spook-bg-tertiary) !important;
+    box-shadow: inset 0 0 0 1px var(--spook-border) !important;
+}
+
+// Feed view — Shared React and More toolbar surface.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block [style*="--c-butGroBac"]:has([role="button"][aria-haspopup="dialog"] svg.ellipsisSmall)) {
+    --c-butGroBac: var(--spook-bg-primary);
+}
 
 // Feed view — Page action buttons in the grouped toolbar.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block [style*="--c-butGroBac"]:has([role="button"][aria-haspopup="dialog"] svg.ellipsisSmall) [role="button"]) {
