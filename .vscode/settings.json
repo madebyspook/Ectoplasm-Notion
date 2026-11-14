@@ -1,8 +1,0 @@
-{
-  "files.associations": {
-    "*.scss": "scss"
-  },
-  "files.exclude": {
-    "**/node_modules": true
-  }
-}

@@ -19,20 +19,21 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - Never edit generated CSS directly. Regenerate and include compiled output with source changes.
 - Keep version and name metadata synchronized across `src/main.scss`, `package.json`, and `package-lock.json`. Rebuild and validate after version changes.
 - `start.sh` launches Notion with CDP and starts `loader.js`, which injects compiled CSS into Notion and Tab Bar renderers with hot reload. Build/watch do not launch Notion.
+- `loader.js` owns single-instance protection, logging, CSS watching, and reconnection; `scripts/injector.cjs` owns CDP target discovery and document injection. Keep these responsibilities straightforward without adding helper layers.
 - Preserve loader single-instance protection, target discovery, injection, and reload behavior.
 - Preserve the existing Automator launcher and startup behavior unless explicitly instructed otherwise. Avoid concurrent loaders; fully quit Notion before relaunching with CDP if necessary.
 
-## Inspection & Testing
+## Inspection & Validation
 
 - `npm run inspect` is read-only. It must not start or stop Notion, navigate, modify DOM/CSS, force interaction states, or call backend APIs.
 - Keep `.inspections/` reports local and Git-ignored. Never save page text, input values, URLs, page titles, opaque IDs, unrestricted labels, or native CSS source.
 - Distinguish verified observations from heuristics and no-match results.
-- Automated tooling tests must use mocks or isolated fixtures, never the live Notion instance or fallback installation.
 - For styling changes and SCSS refactoring, run only `npm run build` to verify successful compilation.
-- Skip automated tests, linting, and additional checks for styling-only changes unless explicitly requested.
-- For functional changes, including the loader, injector, build tooling, or inspection scripts, run relevant automated tests and checks.
+- For JavaScript changes, run `node --check` on modified files; for shell changes, use `bash -n`. Run `npm run build` after build-tooling changes.
+- There is no automated test suite or `npm run check`. Do not add test infrastructure or dependencies unless requested.
+- Ask before performing live Notion operations. Syntax checks and compilation do not establish runtime correctness.
 - Run validation once after completing changes, rather than repeatedly during development.
-- Leave visual verification to the user; automated tests do not establish visual correctness.
+- Leave visual verification to the user; compilation does not establish visual correctness.
 - For appearance-preserving refactors, compare compiled CSS before and after, including selectors, specificity, declarations, priorities, and cascade order.
 
 ## Documentation & Handoff

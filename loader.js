@@ -1,8 +1,84 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { acquireInstance } = require('./scripts/loader-instance.cjs');
+const net = require('node:net');
+const crypto = require('node:crypto');
 const { connect, Injector } = require('./scripts/injector.cjs');
-const { log, diagnostic, LOG_PATH } = require('./scripts/loader-log.cjs');
+
+const LOG_PATH = path.join(__dirname, '.logs', 'loader.log');
+function log(event, details = {}) {
+    const line = JSON.stringify({ time: new Date().toISOString(), pid: process.pid, event, ...details }) + '\n';
+    try {
+        fs.mkdirSync(path.dirname(LOG_PATH), { recursive: true, mode: 0o700 });
+        if (fs.existsSync(LOG_PATH) && fs.statSync(LOG_PATH).size >= 1024 * 1024) {
+            fs.renameSync(LOG_PATH, LOG_PATH + '.1');
+        }
+        fs.appendFileSync(LOG_PATH, line, { mode: 0o600 });
+    } catch (error) {
+        console.error(`[Loader logging] ${error.code || error.name}: Cannot write ${LOG_PATH}; check directory permissions.`);
+    }
+}
+// Log stacks without persisting renderer data, protocol payloads or URLs.
+function diagnostic(error) {
+    return { name: error?.name, code: error?.code, causeCode: error?.cause?.code,
+        operation: error?.operation, status: error?.status,
+        stack: String(error?.stack || '').split('\n').slice(1, 9).join('\n') };
+}
+
+function existingInstance(port, identity) {
+    return new Promise((resolve, reject) => {
+        const socket = net.connect({ host: "127.0.0.1", port });
+        let response = "";
+        const finish = (error, matches) => {
+            socket.destroy();
+            error ? reject(error) : resolve(matches);
+        };
+        socket.setTimeout(1500, () => finish(new Error("Instance check timed out")));
+        socket.on("error", error => finish(error));
+        socket.on("data", chunk => {
+            response += chunk;
+            if (response.includes("\n") || response.length > 128) {
+                finish(null, response === identity);
+            }
+        });
+        socket.on("end", () => finish(null, response === identity));
+    });
+}
+
+// The OS owns this reservation: no PID files, stale-lock deletion, or signals.
+// Canonical paths make symlinked launches share a guard; other checkouts differ.
+async function acquireInstance(directory) {
+    const key = crypto.createHash("sha256")
+        .update(`${process.getuid()}\0${fs.realpathSync(directory)}`).digest("hex");
+    const port = 30000 + (parseInt(key.slice(0, 8), 16) % 20000);
+    const identity = `Ectoplasma loader v1 ${key}\n`;
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+        const server = net.createServer(socket => {
+            socket.on("error", () => {});
+            socket.setTimeout(1500, () => socket.destroy());
+            socket.end(identity);
+        });
+        try {
+            await new Promise((resolve, reject) => {
+                server.once("error", reject);
+                server.listen({ host: "127.0.0.1", port, exclusive: true }, resolve);
+            });
+            return server;
+        } catch (error) {
+            if (error.code !== "EADDRINUSE") throw error;
+        }
+
+        try {
+            if (await existingInstance(port, identity)) return null;
+        } catch (error) {
+            // An owner may exit between bind and connect; retry the OS election.
+            if (["ECONNREFUSED", "ECONNRESET"].includes(error.code)) continue;
+            throw new Error(`Cannot verify loader on localhost:${port}: ${error.message}`);
+        }
+        throw new Error(`Localhost:${port} belongs to another service; no process was stopped.`);
+    }
+    throw new Error("Loader ownership changed during startup; retry the launcher.");
+}
 
 const CSS_PATH = path.join(__dirname, 'dist', 'Ectoplasma.theme.css');
 const manual = process.argv.includes('--once');
@@ -27,10 +103,6 @@ function fatal(reason, error) {
     // Unexpected JS errors can leave unknown handles/state; never resume them.
     process.exit(1);
 }
-for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(signal, () => shutdown(signal));
-process.on('uncaughtException', error => fatal('uncaught exception', error));
-process.on('unhandledRejection', error => fatal('unhandled rejection', error));
-process.on('exit', code => { if (!stopping) log('exit', { code }); });
 
 function readCSS() { return fs.readFileSync(CSS_PATH, 'utf8'); }
 function watchCSS() {
@@ -120,4 +192,13 @@ async function main() {
         cancelDelay = null;
     }
 }
-main().catch(error => fatal('startup', error));
+// The launcher records startup diagnostics without opening CDP or a watcher.
+if (process.argv[2] === '--log') {
+    log(process.argv[3]);
+} else {
+    for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(signal, () => shutdown(signal));
+    process.on('uncaughtException', error => fatal('uncaught exception', error));
+    process.on('unhandledRejection', error => fatal('unhandled rejection', error));
+    process.on('exit', code => { if (!stopping) log('exit', { code }); });
+    main().catch(error => fatal('startup', error));
+}
