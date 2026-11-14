@@ -29,5 +29,5 @@
 
 @mixin db-frame-button() {
     @include db-hover-button();
-    background-color: var(--spook-db-button) !important;
+    background-color: var(--spook-bg-tertiary) !important;
 }

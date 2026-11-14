@@ -136,7 +136,7 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 }
 // Code block — Action toolbar frame.
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [style*="--c-shaOutMd"]:has([role="button"])) {
-    --c-bacEle: var(--spook-db-button);
+    --c-bacEle: var(--spook-bg-tertiary);
     --c-shaOutMd: var(--spook-shadow-raised);
 }
 
