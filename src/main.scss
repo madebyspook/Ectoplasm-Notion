@@ -1,6 +1,6 @@
 /**
  * @name Ectoplasma
- * @version 1.2.6
+ * @version 1.2.7
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 
@@ -11,5 +11,6 @@
 @use "sections/editor";
 @use "sections/overlays";
 @use "sections/databases";
+@use "sections/buttons";
 @use "sections/page-icons";
 @use "sections/tab-bar";

@@ -21,72 +21,13 @@
 }
 
 
-
-
-
-// Native state channels remain available for pressed, open and focused controls.
-@mixin -database-button-states($background) {
-    --ca-bacIntTra: var(--spook-bg-interact);
-    --ca-graBacIntTra: var(--spook-bg-interact);
-    --ca-graBacSecTra: var(--spook-bg-interact);
-    --c-bacInt: var(--spook-bg-interact);
-    --c-whiButBac: #{$background};
-    --c-whiButHovBac: var(--spook-bg-interact);
-
-    &:not(:hover, :active, :focus-visible, :disabled, [aria-disabled="true"], [aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"]) {
-        background-color: #{$background} !important;
-    }
-
-    &:hover:not(:active, :focus-visible, :disabled, [aria-disabled="true"]) {
-        background-color: var(--spook-db-button-hover) !important;
-    }
-}
-
-@mixin database-hover-button {
-    @include -database-button-states(transparent);
-}
-
-// Native borders/shadows own the frame geometry; groups paint each action separately.
-@mixin database-frame-button($group: false) {
-    --c-bacEle: var(--spook-bg-interact);
-    --c-whiButBac: var(--spook-bg-interact);
-    --c-butGroBac: var(--spook-bg-interact);
-    --c-borPri: var(--spook-border);
-    --c-borSec: var(--spook-border);
-    --ca-borPriTra: var(--spook-border);
-    --ca-borSecTra: var(--spook-border);
-    border-color: var(--spook-border) !important;
-
-    @if $group {
+@mixin db-hover-button() {
+    &:hover {
         background-color: var(--spook-bg-interact) !important;
-
-        [role="button"] {
-            @include -database-button-states(transparent);
-        }
-    } @else {
-        @include -database-button-states(var(--spook-bg-interact));
     }
 }
 
-// Shared by the inline page-button editor and the database automation modal.
-@mixin button-editor-palette {
-    --c-bacEle: var(--spook-bg-tertiary);
-    --c-bacInt: var(--spook-bg-interact);
-    --ca-bacSecTra: var(--spook-bg-secondary);
-    --ca-bacTerTra: var(--spook-bg-interact);
-    --ca-bluBacSecTra: rgb(from var(--spook-electric) r g b / 0.18);
-    --c-bluIcoAccPri: var(--spook-electric);
-    --ca-outButHovBac: var(--spook-bg-interact);
-    --ca-butHovBac: var(--spook-bg-interact);
-    --c-shaOutSm:
-        0 0 0 1px var(--spook-border),
-        0 2px 4px rgb(from var(--spook-bg-primary) r g b / 0.08);
-    --c-bluBacAccPri: var(--spook-electric);
-    --c-bluTexInvPri: var(--spook-neon);
-
-    // Stronger feedback than hover, without changing the resting surface.
-    :where([role="button"]:is([style*="--c-shaOutSm"], [style*="--c-borSec"]):active) {
-        background-color: rgb(from var(--spook-electric) r g b / 0.18) !important;
-    }
+@mixin db-frame-button() {
+    @include db-hover-button();
+    background-color: var(--spook-db-button) !important;
 }
-

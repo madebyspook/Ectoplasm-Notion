@@ -9,6 +9,7 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - Prefer existing tokens, verified native Notion mappings, then narrowly scoped selectors. Keep semantically distinct tokens separate, even when their values match.
 - Shared palette IDs and the colored-text selector live in `src/abstracts/_colors.scss`. Use three-character palette suffixes; preserve native channel exceptions and full icon filenames.
 - Keep component base styles and interaction states together.
+- Database buttons use only `db-hover-button` or `db-frame-button`; apply non-button hover surfaces directly with `--spook-bg-interact`.
 - Inspect the actual DOM and computed styles via CDP before modifying unfamiliar selectors. Never guess native variable names.
 - The Tab Bar uses a separate renderer. Preserve selector specificity, declaration order, and `!important` unless a verified change requires otherwise.
 
