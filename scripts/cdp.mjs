@@ -1,7 +1,7 @@
-export const READ_METHODS = new Set(['Runtime.evaluate', 'Runtime.releaseObjectGroup', 'DOM.enable', 'DOM.disable', 'DOM.getDocument', 'DOM.requestNode', 'CSS.enable', 'CSS.disable', 'CSS.getMatchedStylesForNode']);
+const READ_METHODS = new Set(['Runtime.evaluate', 'Runtime.releaseObjectGroup', 'DOM.enable', 'DOM.disable', 'DOM.getDocument', 'DOM.requestNode', 'CSS.enable', 'CSS.disable', 'CSS.getMatchedStylesForNode']);
 
-export async function discoverTargets(port = 9222, fetchImpl = fetch) {
-  const response = await fetchImpl(`http://127.0.0.1:${port}/json/list`, { signal: AbortSignal.timeout(4000), redirect: 'error' });
+export async function discoverTargets(port = 9222) {
+  const response = await fetch(`http://127.0.0.1:${port}/json/list`, { signal: AbortSignal.timeout(4000), redirect: 'error' });
   if (!response.ok) throw Error('CDP_UNAVAILABLE');
   const text = await response.text();
   if (text.length > 1_000_000) throw Error('CDP_TARGET_LIST_TOO_LARGE');
@@ -24,8 +24,9 @@ export async function discoverTargets(port = 9222, fetchImpl = fetch) {
   });
 }
 
-export async function connect(target, { WebSocketImpl = WebSocket, timeout = 5000 } = {}) {
-  const socket = new WebSocketImpl(target.socket);
+export async function connect(target) {
+  const timeout = 5000;
+  const socket = new WebSocket(target.socket);
   const pending = new Map(); let sequence = 0;
   const rejectPending = () => {
     for (const item of pending.values()) { clearTimeout(item.timer); item.reject(Error('CDP_CONNECTION_CLOSED')); }
@@ -50,7 +51,7 @@ export async function connect(target, { WebSocketImpl = WebSocket, timeout = 500
     send(method, params = {}) {
       if (!READ_METHODS.has(method)) return Promise.reject(Error('CDP_METHOD_NOT_ALLOWED'));
       if (method === 'Runtime.evaluate' && params.allowUnsafeEvalBlockedByCSP !== false) return Promise.reject(Error('CDP_CSP_BYPASS_NOT_ALLOWED'));
-      if (socket.readyState !== WebSocketImpl.OPEN) return Promise.reject(Error('CDP_CONNECTION_CLOSED'));
+      if (socket.readyState !== WebSocket.OPEN) return Promise.reject(Error('CDP_CONNECTION_CLOSED'));
       return new Promise((resolve, reject) => {
         const id = ++sequence;
         const timer = setTimeout(() => { pending.delete(id); reject(Error('CDP_REQUEST_TIMEOUT')); }, timeout);

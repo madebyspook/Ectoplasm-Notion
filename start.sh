@@ -9,7 +9,7 @@ if [ ! -x "$NODE" ]; then
     echo "[Ectoplasma] Node.js is missing. Install Node.js 22.4+ and add it to PATH." >&2
     exit 1
 fi
-log() { "$NODE" "$SCRIPT_DIR/scripts/loader-log.cjs" "$1"; }
+log() { "$NODE" "$LOADER" --log "$1"; }
 log "launcher startup"
 
 # Start Notion with remote debugging if it isn't already running.
