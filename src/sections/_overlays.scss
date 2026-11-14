@@ -4,40 +4,25 @@
    POPUPS AND PEEK VIEWS
    ======================================== */
 
-// Tooltips — background, labels and shortcuts.
+// Tooltips — background, labels and shortcuts
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
     --c-bacAccPri: var(--spook-bg-primary);
-    // Tooltip labels and supporting shortcuts; inverse text stays local to overlays.
     --c-texInvPri: var(--spook-text-primary);
     --c-texInvSec: var(--spook-text-secondary);
-    // Overlay controls — hover and pressed backgrounds.
     --ca-bacIntTra: var(--spook-bg-interact);
 }
 
-// Page side peek and center peek — background.
+// Page Side Peek & Center Peek
 .notion-app-inner.notion-dark-theme :where(.notion-peek-renderer) {
-    --c-bacEle: var(--spook-bg-secondary);
+    --c-bacEle: var(--spook-bg-secondary); // background
+    --c-shaOutMd: var(--spook-shadow-raised); //Border & Shadow
 }
 
-// Center peek paints its frame with a shadow on the direct panel child.
-.notion-app-inner.notion-dark-theme :where(.notion-peek-renderer > div[style*="--c-shaOutMd"]) {
-    @include mixins.raised-outline;
-}
-
-// Native confirmation dialogs — retain shadow geometry and red destructive semantics.
+// Confirmation Dialog
 .notion-app-inner.notion-dark-theme :where(.notion-dialog[role="dialog"]) {
     --c-bacEle: var(--spook-bg-secondary);
-    --c-shaOutScr:
-        0 0 0 1px var(--spook-border),
-        0 24px 48px rgb(from var(--spook-bg-primary) r g b / 0.64),
-        0 4px 12px rgb(from var(--spook-bg-primary) r g b / 0.56);
-    --c-redTexAccPri: var(--spook-red);
-    --ca-redBorPriTra: rgb(from var(--spook-red) r g b / 0.4);
-    --ca-redBacIntTra: rgb(from var(--spook-red) r g b / 0.16);
-}
-
-// Database button automation — raised cards and inputs inside the shared dialog shell.
-.notion-app-inner.notion-dark-theme :where(.notion-automation-builder-modal) {
-    @include mixins.button-editor-palette;
-    --cl-palGra100: var(--spook-bg-secondary); // Save footer.
+    --c-shaOutScr: var(--spook-shadow-raised);
+    --c-redTexAccPri: var(--spook-plasma);
+    --ca-redBorPriTra: rgb(from var(--spook-plasma) r g b / 0.4);
+    --ca-redBacIntTra: rgb(from var(--spook-plasma) r g b / 0.16);
 }

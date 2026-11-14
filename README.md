@@ -92,6 +92,8 @@ Edit the SCSS files in `src/`. The watcher rebuilds `dist/Ectoplasma.theme.css`,
 
 Design tokens live in `src/abstracts/_variables.scss`. Changing `--spook-electric` updates the derived application surfaces, text palette, 10% interaction backgrounds, and 25% borders. Desktop Tab Bar effects and predefined text, background, and tag palettes remain separately configurable.
 
+Palette tokens use the suffixes `gra`, `bro`, `ora`, `yel`, `gre`, `blu`, `pur`, `pin`, and `red` (for example, `--spook-text-blu`); light-gray icon tokens use `lgr`. Semantic names such as `electric` and `primary` remain unchanged; the default tag background uses `--spook-tag-bg-def`. Shared Sass palette IDs and the inline colored-text selector live in `src/abstracts/_colors.scss`; import that module with `@use` when reusing them.
+
 To reapply the current compiled CSS to all open Notion tabs and the Tab Bar without reloading them:
 
 ```sh

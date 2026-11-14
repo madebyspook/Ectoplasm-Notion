@@ -4,14 +4,13 @@
    TAB BAR
    ======================================== */
 
-// --- Container surfaces ---
-
 // Tab Bar — inactive tabs and New Tab container.
-.notion-dark-theme.notion-standard-contrast.root > div:first-child, /* Left section */
-.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar, /* Tab strip */
-.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div, /* Right section */
-:where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(32, 32, 32)"], /* Inactive tabs */
-:where(.root) .hide-scrollbar div:has(> [aria-label="New Tab"]) /* New Tab container */ {
+.notion-dark-theme.notion-standard-contrast.root > div:first-child, // Left section
+.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar, // Tab strip
+.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div, // Right section
+:where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(32, 32, 32)"], // Inactive tabs
+:where(.root) .hide-scrollbar div:has(> [aria-label="New Tab"]) // New Tab container
+{
     background: var(--spook-bg-secondary) !important;
 }
 
@@ -20,21 +19,16 @@
     background: var(--spook-bg-secondary) !important;
 }
 
-// --- Tab states ---
-
 // Tab Bar — selected-tab background, underline and glow.
 :where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(25, 25, 25)"] {
-    // background-color: var(--spook-bg-interact) !important;
     box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
 // Tab Bar — Hovered-tab background, underline and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-    // background-color: var(--spook-bg-interact) !important;
+    background-color: var(--spook-bg-interact) !important;
     box-shadow: var(--spook-tab-box-shadow) !important;
 }
-
-// --- Title fades ---
 
 // Tab Bar — inactive title fade.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*="linear-gradient"] {
@@ -60,14 +54,10 @@
     ) !important;
 }
 
-// --- Close-button surfaces ---
-
 // Tab Bar — Close-button backplate (34px absolute overlay).
 :where(.root) .hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
     background: var(--spook-bg-interact) !important;
 }
-
-// --- Control interactions ---
 
 // Tab Bar — Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
 :where(.root) .hide-scrollbar [role="button"][aria-label^="Close Tab"]:hover,
@@ -80,11 +70,9 @@
     background-color: var(--spook-tab-button-hover) !important;
 }
 
-// --- Text and icon effects ---
-
 // Tab Bar — title-group text and glow.
 :where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
-    color: var(--spook-text-neon) !important;
+    color: var(--spook-neon) !important;
     @include mixins.text-glow();
 }
 

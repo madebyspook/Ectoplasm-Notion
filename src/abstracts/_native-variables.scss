@@ -1,3 +1,5 @@
+@use 'colors';
+
 /* ========================================
    NOTION PAGE RENDERERS — NATIVE VARIABLE BRIDGE
    ======================================== */
@@ -5,100 +7,35 @@
 // Notion page renderers — dark application palette; separate from the desktop Tab Bar.
 // Shared native mappings use Spook tokens; component exceptions live in sections/.
 .notion-app-inner.notion-dark-theme {
-    /* Neutral surfaces */
-    // Application/editor backgrounds; database shadows.
-    --c-bacPri: var(--spook-bg-primary);
-    // Sidebar background; template Default badges.
-    --c-bacSec: var(--spook-bg-secondary);
-    // Help-button background.
-    --c-whiButBac: var(--spook-bg-tertiary);
+    // Background Colors
+    --c-bacPri: var(--spook-bg-primary); // Application/editor backgrounds; database shadows.
+    --c-bacSec: var(--spook-bg-secondary); // Sidebar background; template Default badges.
+    --c-popBac: var(--spook-bg-tertiary); // Elevated surfaces: Formatting toolbar; block/type menus; database Filter/Sort popovers; desktop-tab preview.
+    --c-whiButBac: var(--spook-bg-tertiary); // Help-button background.
 
-    /* Elevated surfaces */
-    // Formatting toolbar; block/type menus; database Filter/Sort popovers; desktop-tab preview.
-    --c-popBac: var(--spook-bg-tertiary);
+    // Text Colors
+    --c-texPri: var(--spook-text-primary); // Editor text; sidebar/database labels; selected view tabs; database SVGs and masks.
+    --c-texAccPri: var(--spook-text-primary); // Sidebar tree labels.
+    --c-texSec: var(--spook-text-secondary); // Sidebar/editor/database labels; unselected view tabs; filter/sort/settings triggers; SVGs and masks.
+    --c-texTer: var(--spook-text-muted); // Sidebar, page-header and database labels.
+    --c-graTexAccPri: var(--spook-text-muted); // Search shortcut; view/control labels; View/hide details.
 
-    /* Neutral text */
-    // Editor text; sidebar/database labels; selected view tabs; database SVGs and masks.
-    --c-texPri: var(--spook-text-primary);
-    // Sidebar/editor/database labels; unselected view tabs; filter/sort/settings triggers; SVGs and masks.
-    --c-texSec: var(--spook-text-secondary);
-    // Sidebar, page-header and database labels.
-    --c-texTer: var(--spook-text-muted);
-    // Sidebar tree labels.
-    --c-texAccPri: var(--spook-text-primary);
-    // Search shortcut; view/control labels; View/hide details.
-    --c-graTexAccPri: var(--spook-text-muted);
+    // Neutral icons
+    --c-icoPri: var(--spook-text-primary); // Header/database SVGs; unchecked to-do borders.
+    --c-icoSec: var(--spook-text-secondary); // Sidebar/editor/database/control SVGs; masked icons.
+    --c-icoTer: var(--spook-text-muted); // Sidebar SVGs; database text and icons.
 
-    /* Neutral icons */
-    // Header/database SVGs; unchecked to-do borders.
-    --c-icoPri: var(--spook-text-primary);
-    // Sidebar/editor/database/control SVGs; masked icons.
-    --c-icoSec: var(--spook-text-secondary);
-    // Sidebar SVGs; database text and icons.
-    --c-icoTer: var(--spook-text-muted);
+    // Borders
+    --ca-borPriTra: var(--spook-border); // Borders: Callout, Divider, Button, Page link, New Page Db Button
+    --ca-borSecTra: var(--spook-border); // Border: Table View Grid, Board View Item, Gallery Item, Profile Icon
+    --c-borSec: var(--spook-border); // Sidebar inset divider and section border.
+    --c-borPri: var(--spook-border); // Breadcrumb spans; ordinary-table and embedded tab-block borders.
 
-    /* Translucent neutral edges */
-    // Button borders; page-link underlines; ordinary-table controls; database shadows; editor/callout paint.
-    --ca-borPriTra: var(--spook-border);
-    // Table-cell separators; gallery-card outlines and shadows.
-    --ca-borSecTra: var(--spook-border);
-
-    /* Additional edges */
-    // Hover/active border tokens are strength tiers here, not interaction-state selectors.
-    // Sidebar inset divider and section border.
-    --c-borSec: var(--spook-border);
-    // Unchecked database checkbox frames.
-    --ca-borStrTra: var(--spook-border);
-    // Breadcrumb spans; ordinary-table and embedded tab-block borders.
-    --c-borPri: var(--spook-border);
-
-    /* Predefined text colors */
-    // Editor color formatting; Default uses --c-texPri above.
-    --c-graTexSec: var(--spook-text-gray);
-    --c-broTexSec: var(--spook-text-brown);
-    --c-oraTexSec: var(--spook-text-orange);
-    --c-yelTexSec: var(--spook-text-yellow);
-    --c-greTexSec: var(--spook-text-green);
-    --c-bluTexSec: var(--spook-text-blue);
-    --c-purTexSec: var(--spook-text-purple);
-    --c-pinTexSec: var(--spook-text-pink);
-    --c-redTexSec: var(--spook-text-red);
-
-    /* Database tag text */
-    // Select/Status tag text.
-    --c-graTexPri: var(--spook-tag-text-gray);
-    --c-broTexPri: var(--spook-tag-text-brown);
-    --c-oraTexPri: var(--spook-tag-text-orange);
-    --c-yelTexPri: var(--spook-tag-text-yellow);
-    --c-greTexPri: var(--spook-tag-text-green);
-    --c-bluTexPri: var(--spook-tag-text-blue);
-    --c-purTexPri: var(--spook-tag-text-purple);
-    --c-pinTexPri: var(--spook-tag-text-pink);
-    --c-redTexPri: var(--spook-tag-text-red);
-
-    /* Predefined background colors */
-    // Editor highlights and configured custom-button backgrounds.
-    --c-graBacSec: var(--spook-bg-gray);
-    --c-broBacSec: var(--spook-bg-brown);
-    --c-oraBacSec: var(--spook-bg-orange);
-    --c-yelBacSec: var(--spook-bg-yellow);
-    --c-greBacSec: var(--spook-bg-green);
-    --c-bluBacSec: var(--spook-bg-blue);
-    --c-purBacSec: var(--spook-bg-purple);
-    --c-pinBacSec: var(--spook-bg-pink);
-    --c-redBacSec: var(--spook-bg-red);
-
-    /* Select/Status tag backgrounds */
-    // Select/Status tags; separate from tag foregrounds and editor highlights.
-    // Preserve floating table-of-contents markers; gray tags map this channel locally.
-    --ca-graBacTerTra: rgb(from var(--spook-bg-gray) r g b / 0.25);
-    --ca-broBacTerTra: var(--spook-tag-bg-brown);
-    --ca-oraBacTerTra: var(--spook-tag-bg-orange);
-    --ca-yelBacTerTra: var(--spook-tag-bg-yellow);
-    --ca-greBacTerTra: var(--spook-tag-bg-green);
-    --ca-bluBacTerTra: var(--spook-tag-bg-blue);
-    --ca-purBacTerTra: var(--spook-tag-bg-purple);
-    --ca-pinBacTerTra: var(--spook-tag-bg-pink);
-    --ca-redBacTerTra: var(--spook-tag-bg-red);
-
+    // Colored Elements
+    @each $color in colors.$colors {
+        --c-#{$color}TexSec: var(--spook-text-#{$color}); // Colored Text
+        --c-#{$color}TexPri: var(--spook-tag-text-#{$color}); // DB Select/Status tag text.
+        --c-#{$color}BacSec: var(--spook-bg-#{$color}); // Colored Backgrounds: Button, Callout, Text Background
+        --ca-#{$color}BacTerTra: var(--spook-tag-bg-#{$color}); // Select/Status tag backgrounds
+    }
 }

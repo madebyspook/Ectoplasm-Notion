@@ -1,125 +1,112 @@
+@use 'colors';
+
 /* ========================================
    ECTOPLASMA DESIGN TOKENS
    ======================================== */
 
 :root {
-    /* Accents */
+    /* Colors */
     --spook-electric: #3C86ff;
-    --spook-cosmic: #4545D9;
-    --spook-ice: #00d9f5;
-    --spook-plasma: #F044C8;
-    --spook-neon: #C5DAFF;
+    --spook-cosmic:   #4545D9;
+    --spook-ice:      #00d9f5;
+    --spook-plasma:   #F044C8;
+    --spook-neon:     #C5DAFF;
     --spook-bg-brightness: 0.2;
-    --spook-bg-chroma: 0.008;
+    --spook-bg-chroma:     0.008;
 
     /* Surfaces */
     --spook-bg-primary:   oklch(from var(--spook-electric) var(--spook-bg-brightness) var(--spook-bg-chroma) h); // Application/editor and tooltip backgrounds; Default-button hover base.
     --spook-bg-secondary: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.1) calc(var(--spook-bg-chroma)*1.75) h); // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
     --spook-bg-tertiary:  oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*2.5) h); // Menus, help, code/database controls, template banner, starter pills and workspace badge.
     --spook-bg-interact:   rgba(from var(--spook-electric) r g b / 0.1); // Used for hover and select backgrounds
-    --spook-db-button-hover: color-mix(in srgb, var(--spook-bg-tertiary) 80%, var(--spook-electric)); // Opaque so framed and transparent database controls share the same hover paint.
+    --spook-db-button:    oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*4) h);
 
     /* Borders */
-    --spook-border: rgba(from var(--spook-electric) r g b / 0.25);
+    --spook-border: rgba(from var(--spook-electric) r g b / 0.3);
+    // Border + Shadow for for elevented elements
+    --spook-shadow-raised:
+        0 0 0 1px var(--spook-border),
+        0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 1);
+
 
     /* Text palette */
-    --spook-text-neon:      var(--spook-neon); // Desktop tab titles and accented button-editor labels.
-    --spook-text-glow-color: var(--spook-electric); // Default editor bold, headings and page-title halo; colored text overrides locally.
-    --spook-text-primary:   color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black); // Primary application text, selected view tabs, icons and masks.
-    --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
-    --spook-text-muted:     color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black); // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
+    --spook-text-primary:    color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black); // Primary application text, selected view tabs, icons and masks.
+    --spook-text-secondary:  color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
+    --spook-text-muted:      color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black); // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
 
     /* Colors */
-    --spook-gray:   oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);
-    --spook-brown:  oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-orange: oklch(from color-mix(in oklch shorter hue, #d2802d 85%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-yellow: oklch(from color-mix(in oklch shorter hue, #cb9e34 85%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-green:  oklch(from color-mix(in oklch shorter hue, #509467 85%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-blue:   oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-purple: oklch(from color-mix(in oklch shorter hue, #a040d4 85%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-pink:   oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-electric)) calc(l * 1.1) c h);
-    --spook-red:    oklch(from color-mix(in oklch shorter hue, #cf4848 90%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-gra: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);
+    --spook-bro: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-ora: oklch(from color-mix(in oklch shorter hue, #d2802d 85%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-yel: oklch(from color-mix(in oklch shorter hue, #cb9e34 85%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-gre: oklch(from color-mix(in oklch shorter hue, #509467 85%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-blu: oklch(from color-mix(in oklch shorter hue, #387dc9 75%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-pur: oklch(from color-mix(in oklch shorter hue, #a040d4 85%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-pin: oklch(from color-mix(in oklch shorter hue, #c14c8a 85%, var(--spook-electric)) calc(l * 1.1) c h);
+    --spook-red: oklch(from color-mix(in oklch shorter hue, #cf4848 90%, var(--spook-electric)) calc(l * 1.1) c h);
 
     /* Colored text */
-    --spook-text-gray:   var(--spook-gray);
-    --spook-text-brown:  var(--spook-brown);
-    --spook-text-orange: var(--spook-orange);
-    --spook-text-yellow: var(--spook-yellow);
-    --spook-text-green:  var(--spook-green);
-    --spook-text-blue:   var(--spook-blue);
-    --spook-text-purple: var(--spook-purple);
-    --spook-text-pink:   var(--spook-pink);
-    --spook-text-red:    var(--spook-red);
+    @each $color in colors.$colors {
+        --spook-text-#{$color}: var(--spook-#{$color});
+    }
 
     /* Background colors for text, callout and button */
-    --spook-bg-gray:   oklch(from var(--spook-gray)   calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-brown:  oklch(from var(--spook-brown)  calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-orange: oklch(from var(--spook-orange) calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-yellow: oklch(from var(--spook-yellow) calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-green:  oklch(from var(--spook-green)  calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-blue:   oklch(from var(--spook-blue)   calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-purple: oklch(from var(--spook-purple) calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-pink:   oklch(from var(--spook-pink)   calc(l * 0.5) calc(c * 0.45) h);
-    --spook-bg-red:    oklch(from var(--spook-red)    calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-gra: oklch(from var(--spook-gra) calc(l * 0.425) calc(c * 0.35) h);
+    --spook-bg-bro: oklch(from var(--spook-bro) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-ora: oklch(from var(--spook-ora) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-yel: oklch(from var(--spook-yel) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-gre: oklch(from var(--spook-gre) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-blu: oklch(from var(--spook-blu) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-pur: oklch(from var(--spook-pur) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-pin: oklch(from var(--spook-pin) calc(l * 0.5) calc(c * 0.45) h);
+    --spook-bg-red: oklch(from var(--spook-red) calc(l * 0.5) calc(c * 0.45) h);
 
     /* Button hover Backgrounds */
-    --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gray) 20%, var(--spook-bg-secondary));
-    --spook-button-hover-gray:    color-mix(in srgb, var(--spook-bg-gray) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-brown:   color-mix(in srgb, var(--spook-bg-brown) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-orange:  color-mix(in srgb, var(--spook-bg-orange) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-yellow:  color-mix(in srgb, var(--spook-bg-yellow) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-green:   color-mix(in srgb, var(--spook-bg-green) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-blue:    color-mix(in srgb, var(--spook-bg-blue) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-purple:  color-mix(in srgb, var(--spook-bg-purple) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-pink:    color-mix(in srgb, var(--spook-bg-pink) 80%, var(--spook-bg-secondary));
-    --spook-button-hover-red:     color-mix(in srgb, var(--spook-bg-red) 80%, var(--spook-bg-secondary));
+    --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gra) 50%, var(--spook-bg-secondary));
+    @each $color in colors.$colors {
+        --spook-button-hover-#{$color}: color-mix(in srgb, var(--spook-bg-#{$color}) 70%, var(--spook-bg-secondary));
+    }
 
     /* Select/Status tag text */
-    --spook-tag-text-default: color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
-    --spook-tag-text-gray:    color-mix(in srgb, var(--spook-text-gray) 20%, var(--spook-text-primary));
-    --spook-tag-text-brown:   color-mix(in srgb, var(--spook-text-brown) 20%, var(--spook-text-primary));
-    --spook-tag-text-orange:  color-mix(in srgb, var(--spook-text-organge) 20%, var(--spook-text-primary));
-    --spook-tag-text-yellow:  color-mix(in srgb, var(--spook-text-yellow) 20%, var(--spook-text-primary));
-    --spook-tag-text-green:   color-mix(in srgb, var(--spook-text-green) 20%, var(--spook-text-primary));
-    --spook-tag-text-blue:    color-mix(in srgb, var(--spook-text-blue) 20%, var(--spook-text-primary));
-    --spook-tag-text-purple:  color-mix(in srgb, var(--spook-text-purple) 20%, var(--spook-text-primary));
-    --spook-tag-text-pink:    color-mix(in srgb, var(--spook-text-pink) 20%, var(--spook-text-primary));
-    --spook-tag-text-red:     color-mix(in srgb, var(--spook-text-red) 20%, var(--spook-text-primary));
+    --spook-tag-text-default: color-mix(in srgb, var(--spook-text-gra) 20%, var(--spook-text-primary));
+    @each $color in colors.$colors {
+        --spook-tag-text-#{$color}: color-mix(in srgb, var(--spook-text-#{$color}) 20%, var(--spook-text-primary));
+    }
 
     /* Select/Status tag backgrounds */
-    --spook-tag-bg-default: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 0%, var(--spook-electric)) calc(l * 1.2) c h) r g b / 12.24%);
-    --spook-tag-bg-gray:    rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 5%, var(--spook-electric)) calc(l * 0.9) calc(c * 0.4) h) r g b / 60.59%);
-    --spook-tag-bg-brown:   rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-electric)) calc(l * 0.9) c h) r g b / 36.47%);
-    --spook-tag-bg-orange:  rgb(from oklch(from color-mix(in oklch shorter hue, #ffa047 95%, var(--spook-electric)) calc(l * 1) c h) r g b / 48.24%);
-    --spook-tag-bg-yellow:  rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 45.88%);
-    --spook-tag-bg-green:   rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 33.73%);
-    --spook-tag-bg-blue:    rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-electric)) calc(l * 1) c h) r g b / 49.41%);
-    --spook-tag-bg-purple:  rgb(from oklch(from color-mix(in oklch shorter hue, #d093ff 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
-    --spook-tag-bg-pink:    rgb(from oklch(from color-mix(in oklch shorter hue, #ff85c0 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
-    --spook-tag-bg-red:     rgb(from oklch(from color-mix(in oklch shorter hue, #ff7469 90%, var(--spook-electric)) calc(l * 1) c h) r g b / 52.55%);
+    --spook-tag-bg-def: rgb(from oklch(from color-mix(in oklch shorter hue, #fffff3 0%, var(--spook-electric)) calc(l * 1.2) c h) r g b / 12.24%);
+    --spook-tag-bg-gra: rgb(from oklch(from color-mix(in oklch shorter hue, #fffceb 0%, var(--spook-electric)) calc(l * 0.8) calc(c * 0.4) h) r g b / 60.59%);
+    --spook-tag-bg-bro: rgb(from oklch(from color-mix(in oklch shorter hue, #ffb884 90%, var(--spook-electric)) calc(l * 0.9) c h) r g b / 36.47%);
+    --spook-tag-bg-ora: rgb(from oklch(from color-mix(in oklch shorter hue, #ffa047 95%, var(--spook-electric)) calc(l * 1) c h) r g b / 48.24%);
+    --spook-tag-bg-yel: rgb(from oklch(from color-mix(in oklch shorter hue, #ffbc35 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 45.88%);
+    --spook-tag-bg-gre: rgb(from oklch(from color-mix(in oklch shorter hue, #71ffaf 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 33.73%);
+    --spook-tag-bg-blu: rgb(from oklch(from color-mix(in oklch shorter hue, #51a6ff 75%, var(--spook-electric)) calc(l * 1) c h) r g b / 49.41%);
+    --spook-tag-bg-pur: rgb(from oklch(from color-mix(in oklch shorter hue, #d093ff 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
+    --spook-tag-bg-pin: rgb(from oklch(from color-mix(in oklch shorter hue, #ff85c0 85%, var(--spook-electric)) calc(l * 1) c h) r g b / 42.75%);
+    --spook-tag-bg-red: rgb(from oklch(from color-mix(in oklch shorter hue, #ff7469 90%, var(--spook-electric)) calc(l * 1) c h) r g b / 52.55%);
 
     /* Native SVG icon colors */
-    --spook-icon-filter-gray:      brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
-    --spook-icon-filter-lightgray: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
-    --spook-icon-filter-brown:     saturate(100%) hue-rotate(0deg) brightness(110%);
-    --spook-icon-filter-orange:    saturate(100%) hue-rotate(0deg) brightness(110%);
-    --spook-icon-filter-yellow:    saturate(100%) hue-rotate(20deg) brightness(120%);
-    --spook-icon-filter-green:     saturate(100%) hue-rotate(0deg) brightness(110%);
-    --spook-icon-filter-blue:      saturate(100%) hue-rotate(0deg) brightness(110%);
-    --spook-icon-filter-purple:    saturate(120%) hue-rotate(-5deg) brightness(110%);
-    --spook-icon-filter-pink:      saturate(100%) hue-rotate(0deg) brightness(110%);
-    --spook-icon-filter-red:       saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-gra: brightness(0) saturate(100%) invert(83%) sepia(12%) saturate(550%) hue-rotate(180deg) brightness(105%);
+    --spook-icon-filter-lgr: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(700%) hue-rotate(178deg) brightness(120%);
+    --spook-icon-filter-bro: saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-ora: saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-yel: saturate(100%) hue-rotate(20deg) brightness(120%);
+    --spook-icon-filter-gre: saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-blu: saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-pur: saturate(120%) hue-rotate(-5deg) brightness(110%);
+    --spook-icon-filter-pin: saturate(100%) hue-rotate(0deg) brightness(110%);
+    --spook-icon-filter-red: saturate(100%) hue-rotate(0deg) brightness(110%);
 
-    --spook-icon-glow-gray:      var(--spook-electric);
-    --spook-icon-glow-lightgray: var(--spook-gray);
-    --spook-icon-glow-brown:     var(--spook-brown);
-    --spook-icon-glow-orange:    var(--spook-orange);
-    --spook-icon-glow-yellow:    var(--spook-yellow);
-    --spook-icon-glow-green:     var(--spook-green);
-    --spook-icon-glow-blue:      var(--spook-blue);
-    --spook-icon-glow-purple:    var(--spook-purple);
-    --spook-icon-glow-pink:      var(--spook-pink);
-    --spook-icon-glow-red:       var(--spook-red);
+    --spook-icon-glow-gra: var(--spook-electric);
+    --spook-icon-glow-lgr: var(--spook-gra);
+    --spook-icon-glow-bro: var(--spook-bro);
+    --spook-icon-glow-ora: var(--spook-ora);
+    --spook-icon-glow-yel: var(--spook-yel);
+    --spook-icon-glow-gre: var(--spook-gre);
+    --spook-icon-glow-blu: var(--spook-blu);
+    --spook-icon-glow-pur: var(--spook-pur);
+    --spook-icon-glow-pin: var(--spook-pin);
+    --spook-icon-glow-red: var(--spook-red);
 
     /* Desktop Tab Bar */
     --spook-tab-button-hover: rgba(57, 168, 255, 0.16); // Desktop Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
