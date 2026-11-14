@@ -129,7 +129,7 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
 .notion-app-inner.notion-dark-theme:has(.notion-table-view) :where(
     .notion-overlay-container [role="dialog"]:has(> div:only-child > div:only-child > [role="textbox"][data-content-editable-leaf][contenteditable="true"]:only-child)
 ) {
-    background-color: var(--spook-db-button) !important;
+    background-color: var(--spook-bg-tertiary) !important;
     --c-shaOutLg: var(--spook-shadow-raised);
 }
 

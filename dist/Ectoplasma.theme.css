@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.8
+ * @version 1.2.9
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -14,23 +14,20 @@
   --spook-ice: #00d9f5;
   --spook-plasma: #F044C8;
   --spook-neon: #C5DAFF;
-  --spook-bg-brightness: 0.2;
-  --spook-bg-chroma: 0.008;
   /* Surfaces */
-  --spook-bg-primary: oklch(from var(--spook-electric) var(--spook-bg-brightness) var(--spook-bg-chroma) h);
-  --spook-bg-secondary: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.1) calc(var(--spook-bg-chroma)*1.75) h);
-  --spook-bg-tertiary: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.2) calc(var(--spook-bg-chroma)*3) h);
-  --spook-bg-interact: rgba(from var(--spook-electric) r g b / 0.1);
-  --spook-db-button: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*4) h);
+  --spook-bg-primary: #15171c;
+  --spook-bg-secondary: #171b24;
+  --spook-bg-tertiary: #1c222e;
+  --spook-bg-interact: #192438;
   /* Borders */
-  --spook-border: rgba(from var(--spook-electric) r g b / 0.3);
+  --spook-border: #243659;
   --spook-shadow-raised:
       0 0 0 1px var(--spook-border),
       0 4px 12px -2px rgb(from var(--spook-bg-primary) r g b / 1);
   /* Text palette */
-  --spook-text-primary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black);
-  --spook-text-secondary: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black);
-  --spook-text-muted: color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black);
+  --spook-text-primary: #BBD0F2;
+  --spook-text-secondary: #6A7C99;
+  --spook-text-muted: #4F6180;
   /* Colors */
   --spook-gra: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);
   --spook-bro: oklch(from color-mix(in oklch shorter hue, #9f765a 90%, var(--spook-electric)) calc(l * 1.1) c h);
@@ -308,7 +305,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [style*="--c-shaOutMd"]:has([role=button])) {
-  --c-bacEle: var(--spook-db-button);
+  --c-bacEle: var(--spook-bg-tertiary);
   --c-shaOutMd: var(--spook-shadow-raised);
 }
 
@@ -316,7 +313,7 @@
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-code-block [style*="--c-shaOutMd"] [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role=link]:hover,
@@ -460,7 +457,7 @@
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role=dialog]:has(header[role=button] svg.dragHandle) [style*=box-shadow][style*="--c-borSec"]:has(> [data-popup-origin] > [role=button])) {
-  --c-bacEle: var(--spook-db-button);
+  --c-bacEle: var(--spook-bg-tertiary);
   box-shadow: var(--spook-shadow-raised) !important;
 }
 
@@ -468,7 +465,7 @@
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role=dialog]:has(header[role=button] svg.dragHandle) [style*=box-shadow][style*="--c-borSec"]:has(> [data-popup-origin] > [role=button]) [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role=dialog]:has(header[role=button] svg.dragHandle) header[role=button] > div:first-child [style*=background]:has(> svg)) {
@@ -587,7 +584,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-view-settings-popup-background + div [role=dialog] [role=button][aria-label=Close]:has(svg.xMarkSmall)) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-collection_view-block [role=button]:has(.notion-scroller > [data-popup-origin] > [role=button] svg.plusSmall) .notion-scroller [role=button],
@@ -657,7 +654,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
 }
 
 .notion-app-inner.notion-dark-theme:has(.notion-table-view) :where(.notion-overlay-container [role=dialog]:has(> div:only-child > div:only-child > [role=textbox][data-content-editable-leaf][contenteditable=true]:only-child)) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
   --c-shaOutLg: var(--spook-shadow-raised);
 }
 
@@ -674,7 +671,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, svg.arrowExpandDiagonal, [role=button][aria-label*=comment i]) [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-table-view-cell [style*="--c-shaOutMd"]:has(svg.peekSide, svg.arrowExpandDiagonal, [role=button][aria-label*=comment i])) {
@@ -699,7 +696,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [style*="--c-shaOutMd"]:has([role=button][style*="--c-bacInt"]) [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [style*="--c-shaOutMd"]:has([role=button][style*="--c-bacInt"])) {
@@ -740,7 +737,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(:is(.notion-gallery-view, .notion-board-view) .notion-collection-item [style*="--c-shaOutMd"]:has(svg.pencilLineSmall, svg.ellipsisSmall) [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(:is(.notion-gallery-view, .notion-board-view) .notion-collection-item [style*="--c-shaOutMd"]:has(svg.pencilLineSmall, svg.ellipsisSmall)) {
@@ -808,7 +805,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
   background-color: var(--spook-bg-interact) !important;
 }
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block [style*="--c-butGroBac"]:has([role=button][aria-haspopup=dialog] svg.ellipsisSmall) [role=button]) {
-  background-color: var(--spook-db-button) !important;
+  background-color: var(--spook-bg-tertiary) !important;
 }
 
 .notion-app-inner.notion-dark-theme :where(.peek-top-hover-area [style*="background-color: var(--c-yelBacSec)"]) {

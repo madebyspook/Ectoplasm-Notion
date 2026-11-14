@@ -11,18 +11,15 @@
     --spook-ice:      #00d9f5;
     --spook-plasma:   #F044C8;
     --spook-neon:     #C5DAFF;
-    --spook-bg-brightness: 0.2;
-    --spook-bg-chroma:     0.008;
 
     /* Surfaces */
-    --spook-bg-primary:   oklch(from var(--spook-electric) var(--spook-bg-brightness) var(--spook-bg-chroma) h); // Application/editor and tooltip backgrounds; Default-button hover base.
-    --spook-bg-secondary: oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.1) calc(var(--spook-bg-chroma)*1.75) h); // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
-    --spook-bg-tertiary:  oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.2) calc(var(--spook-bg-chroma)*3) h); // Menus, help, code/database controls, template banner, starter pills and workspace badge.
-    --spook-bg-interact:   rgba(from var(--spook-electric) r g b / 0.1); // Used for hover and select backgrounds
-    --spook-db-button:    oklch(from var(--spook-electric) calc(var(--spook-bg-brightness)*1.3) calc(var(--spook-bg-chroma)*4) h);
+    --spook-bg-primary:   #15171c; // Application/editor and tooltip backgrounds; Default-button hover base.
+    --spook-bg-secondary: #171b24; // Sidebar, peek and desktop Tab Bar surfaces; custom-button hover darkening.
+    --spook-bg-tertiary:  #1c222e; // Menus, help, code/database controls, template banner, starter pills and workspace badge.
+    --spook-bg-interact:  #192438; // Used for hover and select backgrounds
 
     /* Borders */
-    --spook-border: rgba(from var(--spook-electric) r g b / 0.3);
+    --spook-border: #243659;
     // Border + Shadow for for elevented elements
     --spook-shadow-raised:
         0 0 0 1px var(--spook-border),
@@ -30,9 +27,9 @@
 
 
     /* Text palette */
-    --spook-text-primary:    color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 30%, white) 90%, black); // Primary application text, selected view tabs, icons and masks.
-    --spook-text-secondary:  color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 40%, white) 60%, black); // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
-    --spook-text-muted:      color-mix(in srgb, color-mix(in srgb, var(--spook-electric) 50%, white) 50%, black); // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
+    --spook-text-primary:    #BBD0F2; // Primary application text, selected view tabs, icons and masks.
+    --spook-text-secondary:  #6A7C99; // Secondary labels and icons; unselected view tabs and filter/sort/settings controls.
+    --spook-text-muted:      #4F6180; // Muted labels/icons, shortcuts, view controls and empty-block placeholders.
 
     /* Colors */
     --spook-gra: oklch(from color-mix(in oklch shorter hue, #7d7a75 65%, var(--spook-electric)) calc(l * 1) c h);

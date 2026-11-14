@@ -85,7 +85,7 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
 
 // Action hover toolbar — The frame uses an inline shadow rather than a shadow token.
 .notion-app-inner.notion-dark-theme :where(#{$button-editor} [style*="box-shadow"][style*="--c-borSec"]:has(> [data-popup-origin] > [role="button"])) {
-    --c-bacEle: var(--spook-db-button);
+    --c-bacEle: var(--spook-bg-tertiary);
     box-shadow: var(--spook-shadow-raised) !important;
 }
 
