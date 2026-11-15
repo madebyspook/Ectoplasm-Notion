@@ -31,7 +31,6 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - For styling changes and SCSS refactoring, run only `npm run build` to verify successful compilation.
 - For JavaScript changes, run `node --check` on modified files; for shell changes, use `bash -n`. Run `npm run build` after build-tooling changes.
 - There is no automated test suite or `npm run check`. Do not add test infrastructure or dependencies unless requested.
-- Ask before performing live Notion operations. Syntax checks and compilation do not establish runtime correctness.
 - Run validation once after completing changes, rather than repeatedly during development.
 - Leave visual verification to the user; compilation does not establish visual correctness.
 - For appearance-preserving refactors, compare compiled CSS before and after, including selectors, specificity, declarations, priorities, and cascade order.
