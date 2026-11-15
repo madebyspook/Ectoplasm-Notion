@@ -21,6 +21,11 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
     --c-shaOutLg: var(--spook-shadow-raised);
 }
 
+// New page modal — Background.
+.notion-app-inner.notion-dark-theme :where(.notion-dialog[role="dialog"][style*="--ca-popWaxPapBac"]) {
+    --ca-popWaxPapBac: var(--spook-bg-tertiary);
+}
+
 // Search field - Background
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="dialog"] [style*="--ca-bacSecTra"]:has(> input[role="combobox"])) {
     --ca-bacSecTra: var(--spook-bg-secondary);

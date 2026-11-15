@@ -88,6 +88,11 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
     --ca-borStrTra: rgb(from var(--spook-electric) r g b / 0.45);
 }
 
+// Checkbox group headers — Unchecked indicator border.
+.notion-app-inner.notion-dark-theme :where(.notion-collection_view-block > div > div:has(> input[type="checkbox"]:disabled:not(:checked))) {
+    --ca-borStrTra: var(--spook-border);
+}
+
 // Database - Select/Status Pills - Default
 .notion-app-inner.notion-dark-theme :where([style*="--ca-bacTerTra"][style*="--c-texPri"]) {
     --c-texPri: var(--spook-tag-text-default); // Text
