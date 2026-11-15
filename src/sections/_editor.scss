@@ -221,8 +221,7 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 
 // Toggle & Toggle Heading - Empty Block Hover Background
 .notion-app-inner.notion-dark-theme :where(
-    .notion-page-content #{$toggle-blocks}:has(+ [role="button"]) > div[style*="background"],
-    .notion-page-content #{$toggle-blocks}:has(#{$toggle-blocks} + [role="button"]) > .notion-selectable-halo
+    .notion-page-content #{$toggle-blocks}:has(+ [role="button"]) > div[style*="background"]:not(.notion-selectable-halo)
 ) {
     background-color: var(--spook-bg-interact) !important;
 }
