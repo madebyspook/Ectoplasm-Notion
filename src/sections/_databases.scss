@@ -178,7 +178,7 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
 // List View - Buttons
 .notion-app-inner.notion-dark-theme :where(
     .notion-list-view .notion-collection-item [role="button"][aria-expanded]:has(> svg.arrowCaretDownFillSmall), // List view — Expand row button.
-    .notion-list-view > .notion-collection_view-block > [role="button"], // New page row.
+    .notion-list-view > .notion-collection_view-block [role="button"]:has(> svg.plusSmall):not(.notion-collection-item *), // New page row.
     .notion-list-view > .notion-collection_view-block > div > [role="button"]:has(svg.plusSmall) //  New sub-item row.
 ) {
     @include mixins.db-hover-button();
