@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.14
+ * @version 1.2.15
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -716,7 +716,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
 }
 
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][aria-expanded]:has(> svg.arrowCaretDownFillSmall),
-.notion-list-view > .notion-collection_view-block > [role=button],
+.notion-list-view > .notion-collection_view-block [role=button]:has(> svg.plusSmall):not(.notion-collection-item *),
 .notion-list-view > .notion-collection_view-block > div > [role=button]:has(svg.plusSmall)):hover {
   background-color: var(--spook-bg-interact) !important;
 }
