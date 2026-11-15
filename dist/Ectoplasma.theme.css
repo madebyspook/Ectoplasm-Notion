@@ -916,6 +916,7 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
 }
 
 :where(.root) .hide-scrollbar [role=button][style*="background-color: rgb(25, 25, 25)"] {
+  background-color: var(--spook-bg-interact) !important;
   box-shadow: var(--spook-tab-box-shadow) !important;
 }
 
