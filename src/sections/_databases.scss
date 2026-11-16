@@ -318,8 +318,30 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
 
 // Feed cards — Hover surface and existing inset outline.
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block:has([style*="--c-butGroBac"]) [style*="background: var(--c-bacSec)"][style*="box-shadow"]):hover {
-    background-color: var(--spook-bg-tertiary) !important;
     box-shadow: inset 0 0 0 1px var(--spook-border) !important;
+}
+
+// Feed view — Match the truncated content fade to the card surface.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block:has([style*="--c-butGroBac"]) [style*="linear-gradient"][style*="--c-selMarDisBac"]) {
+    --ca-conBacTra: rgb(from var(--c-bacSec) r g b / 0);
+    --c-selMarDisBac: var(--c-bacSec);
+}
+
+// Feed view — See more button.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block:has([style*="--c-butGroBac"]) [style*="linear-gradient"][style*="--c-selMarDisBac"] > [role="button"]) {
+    @include mixins.db-frame-button();
+    color: var(--spook-text-primary) !important;
+    box-shadow: var(--spook-shadow-raised) !important;
+}
+
+// Feed view — Image More toolbar surface and button.
+.notion-app-inner.notion-dark-theme :where(.notion-collection-view-body .notion-page-block:has([style*="--c-butGroBac"]) [role="figure"] [style*="background: var(--c-bacEle)"][style*="--c-shaOutMd"]:has(svg.ellipsisSmall)) {
+    --c-bacEle: var(--spook-bg-tertiary);
+    --c-shaOutMd: var(--spook-shadow-raised);
+
+    [role="button"]:has(svg.ellipsisSmall) {
+        @include mixins.db-hover-button();
+    }
 }
 
 // Feed view — Shared React and More toolbar surface.
