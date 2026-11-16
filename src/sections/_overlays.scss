@@ -10,10 +10,15 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
 
 // Tooltips — background, labels and shortcuts
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
-    --c-bacAccPri: var(--spook-bg-primary);
+    --c-bacAccPri: var(--spook-bg-tertiary);
     --c-texInvPri: var(--spook-text-primary);
     --c-texInvSec: var(--spook-text-secondary);
     --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+// Property tooltips — Background.
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container .notion-property-value-tooltip) {
+    --c-bacAccPri: var(--spook-bg-tertiary);
 }
 
 // Context menus — Raised frame and search surface.
