@@ -3,10 +3,22 @@
 $button-editor: '.notion-overlay-container [role="dialog"]:has(header[role="button"] svg.dragHandle)';
 $sub-page-picker: '.notion-overlay-container [role="dialog"]:has([style*="--ca-bacSecTra"] svg.collection)';
 $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(svg.envelope)';
+$comment-modal: '[role="dialog"]:has(.notion-discussion-input)';
 
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
+
+// Comment modal — Reaction, resolve, more, attachment, and mention hover surfaces.
+.notion-app-inner.notion-dark-theme :where(#{$comment-modal} [role="button"]:has(svg:is(.emojiFacePlusSmall, .checkmarkSmall, .ellipsisSmall, .paperClip, .at))) {
+    --ca-graBacIntTra: var(--spook-bg-interact);
+    --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+// Comment modal — Add comment field surface.
+.notion-app-inner.notion-dark-theme :where(#{$comment-modal} .notion-discussion-input [tabindex]:has(.discussion-input-text-block)) {
+    background-color: var(--spook-bg-primary) !important;
+}
 
 // Notification header — Pin, collapse, filter, and more hover surfaces.
 .notion-app-inner.notion-dark-theme :where([role="region"]:has([role="feed"]) [role="button"]:has(svg:is(.pin, .arrowChevronDoubleBackward, .filter, .ellipsis))) {

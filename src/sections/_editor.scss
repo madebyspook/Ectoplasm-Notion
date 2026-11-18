@@ -76,7 +76,7 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 }
 
 // Comment hover toolbar — Shared fill, frame, and button hover.
-.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) {
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.ellipsisSmall)) {
     --c-bacEle: var(--spook-bg-tertiary);
     --c-shaOutMd: var(--spook-shadow-raised);
 

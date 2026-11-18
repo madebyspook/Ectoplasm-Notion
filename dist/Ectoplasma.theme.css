@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.18
+ * @version 1.2.19
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -259,11 +259,11 @@
   background-color: var(--spook-bg-primary) !important;
 }
 
-.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) {
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.ellipsisSmall)) {
   --c-bacEle: var(--spook-bg-tertiary);
   --c-shaOutMd: var(--spook-shadow-raised);
 }
-.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) > [data-popup-origin] > [role=button]:hover {
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.ellipsisSmall)) > [data-popup-origin] > [role=button]:hover {
   background-color: var(--spook-bg-interact) !important;
 }
 
@@ -430,6 +430,15 @@
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
+.notion-app-inner.notion-dark-theme :where([role=dialog]:has(.notion-discussion-input) [role=button]:has(svg:is(.emojiFacePlusSmall, .checkmarkSmall, .ellipsisSmall, .paperClip, .at))) {
+  --ca-graBacIntTra: var(--spook-bg-interact);
+  --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+.notion-app-inner.notion-dark-theme :where([role=dialog]:has(.notion-discussion-input) .notion-discussion-input [tabindex]:has(.discussion-input-text-block)) {
+  background-color: var(--spook-bg-primary) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where([role=region]:has([role=feed]) [role=button]:has(svg:is(.pin, .arrowChevronDoubleBackward, .filter, .ellipsis))) {
   --ca-bacIntTra: var(--spook-bg-interact);
 }
