@@ -8,6 +8,32 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
    POPUPS AND PEEK VIEWS
    ======================================== */
 
+// Notification header — Pin, collapse, filter, and more hover surfaces.
+.notion-app-inner.notion-dark-theme :where([role="region"]:has([role="feed"]) [role="button"]:has(svg:is(.pin, .arrowChevronDoubleBackward, .filter, .ellipsis))) {
+    --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+// Notification categories — Heading text.
+.notion-app-inner.notion-dark-theme :where([role="feed"] [style*="--c-sidSecCol"]) {
+    --c-sidSecCol: var(--spook-text-primary);
+}
+
+// Notification row — Native hover surface.
+.notion-app-inner.notion-dark-theme :where([role="feed"] article a[role="link"][style*="--ca-bacIntTra"]) {
+    --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+// Notification hover toolbar — Shared fill, frame, and button hover.
+.notion-app-inner.notion-dark-theme :where([role="feed"] article [style*="--c-butGroBac"]:has(svg.bell):has(svg.archiveBox)) {
+    --c-butGroBac: var(--spook-bg-tertiary);
+    border-color: transparent !important;
+    box-shadow: var(--spook-shadow-raised) !important;
+
+    [role="button"] {
+        @include mixins.db-hover-button();
+    }
+}
+
 // Tooltips — background, labels and shortcuts
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
     --c-bacAccPri: var(--spook-bg-tertiary);

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.17
+ * @version 1.2.18
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -250,6 +250,23 @@
   --ca-texDisTra: var(--spook-text-muted);
 }
 
+.notion-app-inner.notion-dark-theme :where(.notion-margin-discussion-item) {
+  --c-hovMarDisBac: var(--spook-bg-interact);
+  --c-selMarDisBac: var(--spook-bg-interact);
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-margin-discussion-item .notion-discussion-input .notion-focusable-within:has(.discussion-input-text-block)) {
+  background-color: var(--spook-bg-primary) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) {
+  --c-bacEle: var(--spook-bg-tertiary);
+  --c-shaOutMd: var(--spook-shadow-raised);
+}
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) > [data-popup-origin] > [role=button]:hover {
+  background-color: var(--spook-bg-interact) !important;
+}
+
 /* ========================================
    PAGE BLOCKS
    ======================================== */
@@ -413,6 +430,27 @@
 /* ========================================
    POPUPS AND PEEK VIEWS
    ======================================== */
+.notion-app-inner.notion-dark-theme :where([role=region]:has([role=feed]) [role=button]:has(svg:is(.pin, .arrowChevronDoubleBackward, .filter, .ellipsis))) {
+  --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+.notion-app-inner.notion-dark-theme :where([role=feed] [style*="--c-sidSecCol"]) {
+  --c-sidSecCol: var(--spook-text-primary);
+}
+
+.notion-app-inner.notion-dark-theme :where([role=feed] article a[role=link][style*="--ca-bacIntTra"]) {
+  --ca-bacIntTra: var(--spook-bg-interact);
+}
+
+.notion-app-inner.notion-dark-theme :where([role=feed] article [style*="--c-butGroBac"]:has(svg.bell):has(svg.archiveBox)) {
+  --c-butGroBac: var(--spook-bg-tertiary);
+  border-color: transparent !important;
+  box-shadow: var(--spook-shadow-raised) !important;
+}
+.notion-app-inner.notion-dark-theme :where([role=feed] article [style*="--c-butGroBac"]:has(svg.bell):has(svg.archiveBox)) [role=button]:hover {
+  background-color: var(--spook-bg-interact) !important;
+}
+
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container) {
   --c-bacAccPri: var(--spook-bg-tertiary);
   --c-texInvPri: var(--spook-text-primary);

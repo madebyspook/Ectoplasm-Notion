@@ -64,6 +64,27 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
     --ca-texDisTra: var(--spook-text-muted);
 }
 
+// Margin comments — Native hover surface.
+.notion-app-inner.notion-dark-theme :where(.notion-margin-discussion-item) {
+    --c-hovMarDisBac: var(--spook-bg-interact);
+    --c-selMarDisBac: var(--spook-bg-interact);
+}
+
+// Margin comment reply — Input field surface.
+.notion-app-inner.notion-dark-theme :where(.notion-margin-discussion-item .notion-discussion-input .notion-focusable-within:has(.discussion-input-text-block)) {
+    background-color: var(--spook-bg-primary) !important;
+}
+
+// Comment hover toolbar — Shared fill, frame, and button hover.
+.notion-app-inner.notion-dark-theme :where([style*="--c-shaOutMd"]:has(svg.emojiFacePlusSmall):has(svg.checkmarkSmall):has(svg.ellipsisSmall)) {
+    --c-bacEle: var(--spook-bg-tertiary);
+    --c-shaOutMd: var(--spook-shadow-raised);
+
+    > [data-popup-origin] > [role="button"] {
+        @include mixins.db-hover-button();
+    }
+}
+
 
 /* ========================================
    PAGE BLOCKS
