@@ -4,91 +4,71 @@
    TAB BAR
    ======================================== */
 
-// Tab Bar — inactive tabs and New Tab container.
-.notion-dark-theme.notion-standard-contrast.root > div:first-child, // Left section
-.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar, // Tab strip
-.notion-dark-theme.notion-standard-contrast.root > .hide-scrollbar + div, // Right section
-:where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(32, 32, 32)"], // Inactive tabs
-:where(.root) .hide-scrollbar div:has(> [aria-label="New Tab"]) // New Tab container
-{
-    background: var(--spook-bg-secondary) !important;
+// Integrated desktop Tab Bar and sidebar header controls.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-desktop-drag-area:has([role="tablist"]),
+    .notion-sidebar .notion-desktop-drag-area:not([aria-hidden])
+) {
+    background-color: var(--spook-bg-secondary) !important;
+
+    [role="button"] {
+        background-color: transparent !important;
+
+        &:not([aria-disabled="true"]) {
+            svg {
+                color: var(--spook-text-primary) !important;
+                fill: currentColor !important;
+            }
+
+            &:hover,
+            &[aria-expanded="true"] {
+                background-color: var(--spook-bg-interact) !important;
+            }
+
+            &:active {
+                background-color: var(--spook-bg-tertiary) !important;
+                box-shadow: inset 0 0 0 1px var(--spook-border) !important;
+            }
+
+            &:focus-visible {
+                outline: 1px solid var(--spook-electric) !important;
+                outline-offset: -1px;
+            }
+
+            &:is(:hover, :focus-visible, [aria-expanded="true"]) svg {
+                @include mixins.icon-glow();
+            }
+        }
+    }
 }
 
-// Tab Bar — Back/Forward background.
-.notion-dark-theme.notion-standard-contrast.root > div:has(> [aria-label="Back"]) {
-    background: var(--spook-bg-secondary) !important;
-}
+// Integrated tabs — native rounded layout and semantic selection.
+.notion-app-inner.notion-dark-theme :where(.notion-virtual-tab[role="tab"]) {
+    background-color: transparent !important;
+    color: var(--spook-text-secondary) !important;
 
-// Tab Bar — selected-tab background, underline and glow.
-:where(.root) .hide-scrollbar [role="button"][style*="background-color: rgb(25, 25, 25)"] {
-    background-color: var(--spook-bg-interact) !important;
-    box-shadow: var(--spook-tab-box-shadow) !important;
-}
+    &:hover {
+        background-color: var(--spook-bg-interact) !important;
+        color: var(--spook-text-primary) !important;
+    }
 
-// Tab Bar — Hovered-tab background, underline and glow.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] {
-    background-color: var(--spook-bg-interact) !important;
-    box-shadow: var(--spook-tab-box-shadow) !important;
-}
+    &[aria-selected="true"] {
+        background-color: var(--spook-bg-interact) !important;
+        color: var(--spook-neon) !important;
+        box-shadow: inset 0 0 0 1px var(--spook-border) !important;
+    }
 
-// Tab Bar — inactive title fade.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: rgb(32, 32, 32)"]:not(:hover) div[style*="width: 9px"][style*="linear-gradient"] {
-    background: linear-gradient(
-        var(--gradient-direction, 90deg),
-        transparent 0%,
-        var(--spook-bg-secondary) 100%
-    ) !important;
-}
+    &:active {
+        background-color: var(--spook-bg-tertiary) !important;
+    }
 
-// Tab Bar — hovered title fade above the bottom 3px highlight.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"] {
-    height: calc(100% - 3px) !important;
-}
+    &:focus-visible {
+        outline: 1px solid var(--spook-electric) !important;
+        outline-offset: -1px;
+    }
 
-// Tab Bar — Hovered title edge and close-button fade.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby][style*="background-color: hsl(from rgb(32, 32, 32)"] div[style*="width: 9px"][style*="linear-gradient"],
-:where(.root) .hide-scrollbar div[style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] > div[style*="width: 16px"][style*="linear-gradient"] {
-    background: linear-gradient(
-        var(--gradient-direction, 90deg),
-        transparent 0%,
-        var(--spook-bg-interact) 100%
-    ) !important;
-}
-
-// Tab Bar — Close-button backplate (34px absolute overlay).
-:where(.root) .hide-scrollbar div[style*="position: absolute"][style*="width: 34px"][style*="height: 34px"][style*="pointer-events: none"] {
-    background: var(--spook-bg-interact) !important;
-}
-
-// Tab Bar — Close/New Tab, Back/Forward, Sidebar, Inbox and New buttons — hover.
-:where(.root) .hide-scrollbar [role="button"][aria-label^="Close Tab"]:hover,
-:where(.root) .hide-scrollbar [aria-label="New Tab"]:hover,
-.notion-dark-theme.notion-standard-contrast.root [aria-label="Back"]:hover,
-.notion-dark-theme.notion-standard-contrast.root [aria-label="Forward"]:hover,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label$="Sidebar"]:hover,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="Inbox"]:hover,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="New"]:hover {
-    background-color: var(--spook-tab-button-hover) !important;
-}
-
-// Tab Bar — title-group text and glow.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby] * {
-    color: var(--spook-neon) !important;
-    @include mixins.text-glow();
-}
-
-// Tab Bar — navigation/control SVGs — white icons and glow.
-:where(.root) .hide-scrollbar [aria-label="New Tab"] svg,
-:where(.root) .hide-scrollbar [aria-label^="Close Tab"] svg,
-.notion-dark-theme.notion-standard-contrast.root [aria-label="Back"] svg,
-.notion-dark-theme.notion-standard-contrast.root [aria-label="Forward"] svg,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label$="Sidebar"] svg,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="Inbox"] svg,
-.notion-dark-theme.notion-standard-contrast.root [role="button"][aria-label="New"] svg {
-    @include mixins.icon-glow();
-}
-
-//Tab Bar page-icon images — contrast and glow.
-:where(.root) .hide-scrollbar [role="button"][aria-labelledby] img:not([aria-label^="Close Tab"] svg) {
-    @include mixins.icon-glow();
+    // Filter the icon wrapper, preserving image colors and native clipping.
+    > div:not(.notion-desktop-drag-area) > span:has(> img) {
+        @include mixins.icon-glow($base-filter: brightness(1));
+    }
 }
