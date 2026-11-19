@@ -2,7 +2,7 @@
 
 $button-editor: '.notion-overlay-container [role="dialog"]:has(header[role="button"] svg.dragHandle)';
 $sub-page-picker: '.notion-overlay-container [role="dialog"]:has([style*="--ca-bacSecTra"] svg.collection)';
-$workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(svg.envelope)';
+$workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(svg.personCropCircleBadgePlus)';
 
 /* ========================================
    POPUPS AND PEEK VIEWS
