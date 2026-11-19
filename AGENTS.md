@@ -11,7 +11,7 @@ Ectoplasma is a custom macOS Notion Desktop theme. Preserve existing appearance 
 - Keep component base styles and interaction states together.
 - Database buttons use only `db-hover-button` or `db-frame-button`; apply non-button hover surfaces directly with `--spook-bg-interact`.
 - Inspect the actual DOM and computed styles via CDP before modifying unfamiliar selectors. Never guess native variable names.
-- The Tab Bar uses a separate renderer. Preserve selector specificity, declaration order, and `!important` unless a verified change requires otherwise.
+- The current Tab Bar lives in the main renderer: use `.notion-virtual-tab[role="tab"]` and `aria-selected` for tabs, and the containing `.notion-desktop-drag-area` for controls. Keep icon glow scoped to icon wrappers; preserve native layout, clipping, and disabled states.
 
 ## Build & Runtime
 
