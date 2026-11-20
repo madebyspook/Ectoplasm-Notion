@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.22
+ * @version 1.2.23
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -59,8 +59,8 @@
   --spook-bg-pin: oklch(from var(--spook-pin) calc(l * 0.5) calc(c * 0.45) h);
   --spook-bg-red: oklch(from var(--spook-red) calc(l * 0.5) calc(c * 0.45) h);
   /* Button hover Backgrounds */
-  --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gra) 50%, var(--spook-bg-secondary));
-  --spook-button-hover-gra: color-mix(in srgb, var(--spook-bg-gra) 70%, var(--spook-bg-secondary));
+  --spook-button-hover-default: var(--spook-bg-interact);
+  --spook-button-hover-gra: var(--spook-bg-primary);
   --spook-button-hover-bro: color-mix(in srgb, var(--spook-bg-bro) 70%, var(--spook-bg-secondary));
   --spook-button-hover-ora: color-mix(in srgb, var(--spook-bg-ora) 70%, var(--spook-bg-secondary));
   --spook-button-hover-yel: color-mix(in srgb, var(--spook-bg-yel) 70%, var(--spook-bg-secondary));

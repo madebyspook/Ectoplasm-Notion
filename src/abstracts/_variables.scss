@@ -59,9 +59,13 @@
     --spook-bg-red: oklch(from var(--spook-red) calc(l * 0.5) calc(c * 0.45) h);
 
     /* Button hover Backgrounds */
-    --spook-button-hover-default: color-mix(in srgb, var(--spook-bg-gra) 50%, var(--spook-bg-secondary));
+    --spook-button-hover-default: var(--spook-bg-interact);
     @each $color in colors.$colors {
-        --spook-button-hover-#{$color}: color-mix(in srgb, var(--spook-bg-#{$color}) 70%, var(--spook-bg-secondary));
+        @if $color == "gra" {
+            --spook-button-hover-#{$color}: var(--spook-bg-primary);
+        } @else {
+            --spook-button-hover-#{$color}: color-mix(in srgb, var(--spook-bg-#{$color}) 70%, var(--spook-bg-secondary));
+        }
     }
 
     /* Select/Status tag text */
