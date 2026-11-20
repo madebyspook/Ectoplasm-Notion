@@ -101,7 +101,10 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 }
 
 // Code Highlight - Color
-.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+.notion-app-inner.notion-dark-theme :where(
+    .notion-inline-code-container > .notion-enable-hover:not([data-notion-highlight]),
+    .notion-inline-code-container > .notion-enable-hover[data-notion-highlight$="_background"]
+) {
     color: var(--spook-electric) !important;
 }
 
@@ -152,7 +155,11 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 // Callout
 
 // Code Block - Background
-.notion-code-block div[style*="--ca-graBacPriTra"],.notion-app-inner.notion-dark-theme :where(.notion-inline-code-container > .notion-enable-hover) {
+.notion-code-block div[style*="--ca-graBacPriTra"],
+.notion-app-inner.notion-dark-theme :where(
+    .notion-inline-code-container > .notion-enable-hover:not([data-notion-highlight$="_background"]),
+    .notion-inline-code-container > .notion-enable-hover[data-notion-highlight="default_background"]
+) {
     background: rgb(from var(--spook-bg-gra) r g b / 0.6) !important;
 }
 // Code block — Action toolbar frame.
