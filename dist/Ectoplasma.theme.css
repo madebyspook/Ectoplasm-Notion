@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * @name Ectoplasma
- * @version 1.2.23
+ * @version 1.2.24
  * @description Dark futuristic theme with electric-blue glow for macOS Notion Desktop
  */
 /* ========================================
@@ -312,6 +312,18 @@
 
 .notion-app-inner.notion-dark-theme :where(.notion-button-block [role=button]:is([style*="--c-whiButHovBac"], [style*="hsl(from var(--c-bacPri)"]):hover) {
   background-color: var(--spook-button-hover-default) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-transclusion-block-component [style*="--c-shaOutMd"]:has([role=button])) {
+  --c-bacEle: var(--spook-bg-tertiary);
+  --c-shaOutMd: var(--spook-shadow-raised);
+}
+.notion-app-inner.notion-dark-theme :where(.notion-transclusion-block-component [style*="--c-shaOutMd"]:has([role=button])) > div > [role=button]:hover {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-transclusion-block-halo) {
+  border-color: var(--spook-electric) !important;
 }
 
 .notion-code-block div[style*="--ca-graBacPriTra"],
@@ -758,6 +770,11 @@ a[role=link]:has(svg.arrowExpandDiagonalSmall),
 .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [role=button][aria-expanded]:has(> svg.arrowCaretDownFillSmall),
 .notion-list-view > .notion-collection_view-block [role=button]:has(> svg.plusSmall):not(.notion-collection-item *),
 .notion-list-view > .notion-collection_view-block > div > [role=button]:has(svg.plusSmall)):hover {
+  background-color: var(--spook-bg-interact) !important;
+}
+
+.notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection_view-block [role=button]:has(> span > svg.plusSmall):not(.notion-collection-item *),
+.notion-list-view .notion-collection_view-block > div > [role=button][aria-haspopup=dialog]:has(> svg.ellipsisSmall)):hover {
   background-color: var(--spook-bg-interact) !important;
 }
 

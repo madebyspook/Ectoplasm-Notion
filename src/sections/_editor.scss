@@ -154,6 +154,21 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 
 // Callout
 
+// Synced block — Action toolbar surface and frame.
+.notion-app-inner.notion-dark-theme :where(.notion-transclusion-block-component [style*="--c-shaOutMd"]:has([role="button"])) {
+    --c-bacEle: var(--spook-bg-tertiary);
+    --c-shaOutMd: var(--spook-shadow-raised);
+
+    > div > [role="button"] {
+        @include mixins.db-hover-button();
+    }
+}
+
+// Synced block — Electric selection frame.
+.notion-app-inner.notion-dark-theme :where(.notion-transclusion-block-halo) {
+    border-color: var(--spook-electric) !important;
+}
+
 // Code Block - Background
 .notion-code-block div[style*="--ca-graBacPriTra"],
 .notion-app-inner.notion-dark-theme :where(
