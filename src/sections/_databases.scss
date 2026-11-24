@@ -184,6 +184,14 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
     @include mixins.db-hover-button();
 }
 
+// List view — Nested New sub-item and category menu buttons.
+.notion-app-inner.notion-dark-theme :where(
+    .notion-list-view .notion-collection_view-block [role="button"]:has(> span > svg.plusSmall):not(.notion-collection-item *),
+    .notion-list-view .notion-collection_view-block > div > [role="button"][aria-haspopup="dialog"]:has(> svg.ellipsisSmall)
+) {
+    @include mixins.db-hover-button();
+}
+
  // List view — Row Edit button
  .notion-app-inner.notion-dark-theme :where(.notion-list-view .notion-collection-item [style*="--c-shaOutMd"]:has([role="button"][style*="--c-bacInt"]) [role="button"]) {
     @include mixins.db-frame-button();
