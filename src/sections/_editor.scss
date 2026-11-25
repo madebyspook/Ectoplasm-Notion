@@ -191,13 +191,13 @@ $toggle-blocks: ':is(.notion-toggle-block, .notion-header-block, .notion-sub_hea
 // Page - Row hover
 .notion-app-inner.notion-dark-theme :where(
     .notion-page-content :is(.notion-page-block, .notion-collection_view_page-block) .content-editable-void-no-select > a[role="link"]:hover,
-    .notion-page-content a.notion-page-mention-token:hover
+    .notion-page-content a:is(.notion-page-mention-token, .notion-link-mention-token):hover
 ) {
     background-color: var(--spook-bg-interact) !important;
 }
 
 // Page mentions extend their hover surface with a native 3px shadow.
-.notion-app-inner.notion-dark-theme :where(.notion-page-content a.notion-page-mention-token:hover) {
+.notion-app-inner.notion-dark-theme :where(.notion-page-content a:is(.notion-page-mention-token, .notion-link-mention-token):hover) {
     box-shadow: 0 0 0 3px var(--spook-bg-interact) !important;
 }
 

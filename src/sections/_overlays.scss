@@ -3,6 +3,7 @@
 $button-editor: '.notion-overlay-container [role="dialog"]:has(header[role="button"] svg.dragHandle)';
 $sub-page-picker: '.notion-overlay-container [role="dialog"]:has([style*="--ca-bacSecTra"] svg.collection)';
 $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(svg.personCropCircleBadgePlus)';
+$link-preview: '.notion-overlay-container [role="dialog"]:has(svg.linkSmall):has([role="button"][aria-haspopup="dialog"] svg.ellipsisSmall)';
 
 /* ========================================
    POPUPS AND PEEK VIEWS
@@ -47,6 +48,21 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
     --c-bacAccPri: var(--spook-bg-tertiary);
 }
 
+// Link mention preview — Frame, text, and More button.
+.notion-app-inner.notion-dark-theme :where(#{$link-preview}) {
+    --c-shaOutMd: var(--spook-shadow-raised);
+    color: var(--spook-text-secondary);
+
+    [style*="color:"] {
+        color: var(--spook-text-secondary) !important;
+    }
+
+    [role="button"][aria-haspopup="dialog"]:has(svg.ellipsisSmall) {
+        border-color: var(--spook-border) !important;
+        @include mixins.db-frame-button();
+    }
+}
+
 // Context menus — Raised frame and search surface.
 .notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="dialog"]) {
     --c-shaOutLg: var(--spook-shadow-raised);
@@ -63,7 +79,7 @@ $workspace-menu: '.notion-overlay-container [role="dialog"]:has(svg.gear):has(sv
 }
 
 // Add tag — Token-input search surface and text.
-.notion-app-inner.notion-dark-theme :where(.notion-overlay-container [role="combobox"][style*="--ca-tokInpMenIteBac"]) {
+.notion-app-inner.notion-dark-theme :where(.notion-overlay-container :is([role="combobox"], .notion-scroller)[style*="--ca-tokInpMenIteBac"]:has(input)) {
     --ca-tokInpMenIteBac: var(--spook-bg-primary);
 
     input {
