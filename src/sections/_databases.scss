@@ -33,6 +33,11 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
    DATABASE CONTROLS
    ======================================== */
 
+// Inline database — Empty title placeholder.
+.notion-app-inner.notion-dark-theme :where(.notion-collection_view-block [role="textbox"][placeholder][style*="--cl-pagTitPlaTexCol"]:empty) {
+    --cl-pagTitPlaTexCol: var(--spook-text-muted);
+}
+
 // Database — View selected
 .notion-app-inner.notion-dark-theme :where(.notion-collection-view-tab[aria-selected="true"]) {
     background-color: var(--spook-bg-interact) !important;
@@ -128,6 +133,11 @@ $filter-bar: '.notion-collection_view-block [role="button"]:has(.notion-scroller
 // Table view — Row hover
 .notion-app-inner.notion-dark-theme :where(.notion-table-view .notion-table-view-row:hover) {
     background-color: var(--spook-bg-interact);
+}
+
+// Table view — Empty row hover.
+.notion-app-inner.notion-dark-theme :where(.notion-table-view .notion-table-view-empty-placeholder:hover) {
+    background-color: var(--spook-bg-interact) !important;
 }
 
 // Table view — Cell edit mode
